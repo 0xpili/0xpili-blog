@@ -32,6 +32,7 @@ def generate_post_html(template, filename):
     rendered_html = template.render(
         content=post_html,
         title=filename.replace(".md", ""),
+        css_path="../styles/main.css"
     )
     output_path = os.path.join(OUTPUT_DIR, filename.replace(".md", ".html"))
     save_html(output_path, rendered_html)
