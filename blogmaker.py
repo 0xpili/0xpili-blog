@@ -29,14 +29,19 @@ def generate_post_html(template, filename):
     with open(post_path, "r") as file:
         md_content = file.read()
     post_html = convert_markdown_to_html(md_content)
+    
+    # Create URL-friendly filename
+    url_friendly_name = filename.replace(" ", "-").lower()
+    output_filename = url_friendly_name.replace(".md", ".html")
+    
     rendered_html = template.render(
         content=post_html,
         title=filename.replace(".md", ""),
         css_path="../styles/main.css"
     )
-    output_path = os.path.join(OUTPUT_DIR, filename.replace(".md", ".html"))
+    output_path = os.path.join(OUTPUT_DIR, output_filename)
     save_html(output_path, rendered_html)
-    return filename.replace(".md", ".html")
+    return output_filename
 
 def generate_index_html(post_files):
     """Generate a central hub listing all posts."""
