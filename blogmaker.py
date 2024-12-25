@@ -5,7 +5,7 @@ from jinja2 import Template
 # Define paths
 TEMPLATES_DIR = "templates"
 POSTS_DIR = "posts"
-OUTPUT_DIR = "output"
+OUTPUT_DIR = "docs"
 
 def load_template(template_name):
     """Load a template by name."""
