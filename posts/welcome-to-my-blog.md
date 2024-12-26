@@ -1,6 +1,6 @@
-# Welcome to my blog, anon
+# Welcome to my blog
 
-### Pushing boundaries: My journey in web3
+### Pushing Boundaries: My Journey in web3
 
 Growth isn’t something that happens when you’re comfortable. It’s when you’re willing to take on what feels unfamiliar or even a little intimidating. That’s been my approach to life and work, whether I’m wunning a marathon or navigating the challenges of web3. The belief that progress comes from facing complexity head-on has shaped the choices I’ve made so far.
 
