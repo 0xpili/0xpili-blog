@@ -8,14 +8,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             background-color: #121212;
             color: #e0e0e0;
             font-family: 'Inter', sans-serif;
             font-weight: 400;
             line-height: 1.6;
-            margin: 2rem;
         }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 2rem 0;
+            width: 100%;
+        }
+
         a {
             color: #bb86fc;
             text-decoration: none;
@@ -129,31 +155,34 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>0xpili blog</h1>
+    <div class="container">
+        <header>
+            <h1>0xpili blog</h1>
+        </header>
 
-    </header>
+        <div class="bio-container">
+            <p>Hi anon, I am <a href="https://twitter.com/0xpili_" target="_blank">Pili</a>. Currently working as Ops Lead at <a href="https://graphops.xyz" target="_blank">GraphOps</a>, a blockchain infrastrucuture company. I also organize Ethereum events for fun. All my blogs are my own views.</p>
+        </div>
 
-    <div class="bio-container">
-        <p>Hi anon, I am <a href="https://twitter.com/0xpili_" target="_blank">Pili</a>. Currently working as Ops Lead at <a href="https://graphops.xyz" target="_blank">GraphOps</a>, a blockchain infrastrucuture company. I also organize Ethereum events for fun. All my blogs are my own views.</p>
+        <main>
+            <article>
+                <ul class="post-list">
+                    
+                    <li>
+                        <a href="welcome-to-my-blog.html">Welcome To My Blog</a>
+                    </li>
+                    
+                </ul>
+            </article>
+        </main>
+        <footer>
+            <ul class="social-links">
+                <li><a href="https://twitter.com/0xpili_" target="_blank">Twitter</a></li>
+                <li><a href="https://github.com/0xpili" target="_blank">GitHub</a></li>
+                <li><a href="mailto:blog@0xpili.xyz">Email</a></li>
+            </ul>
+        </footer>
     </div>
-
-    <article>
-        <ul class="post-list">
-            
-            <li>
-                <a href="welcome-to-my-blog.html">Welcome To My Blog</a>
-            </li>
-            
-        </ul>
-    </article>
-    <footer>
-        <ul class="social-links">
-            <li><a href="https://twitter.com/0xpili_" target="_blank">Twitter</a></li>
-            <li><a href="https://github.com/0xpili" target="_blank">GitHub</a></li>
-            <li><a href="mailto:blog@0xpili.xyz">Email</a></li>
-        </ul>
-    </footer>
 </body>
 </html>
 
