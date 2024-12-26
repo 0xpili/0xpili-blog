@@ -28,7 +28,6 @@ A minimalist, dark-themed static blog generator built with Python. Creates a cle
 2. Install required packages:
 - bash
 - pip install markdown2 jinja2
-```
 
 ### Usage
 
@@ -36,7 +35,6 @@ A minimalist, dark-themed static blog generator built with Python. Creates a cle
 2. Run the blog generator:
 - bash:README.md
 - python blogmaker.py
-```
 
 3. Your blog will be generated in the `docs/` directory
 
@@ -58,9 +56,6 @@ blog/
 ### Adding a New Post
 
 1. Create a new markdown file in `posts/`
-
-
-- Easy
 
 2. Run `python blogmaker.py` to generate the site
 
