@@ -30,13 +30,16 @@ def generate_post_html(template, filename):
         md_content = file.read()
     post_html = convert_markdown_to_html(md_content)
     
-    # Create URL-friendly filename
-    url_friendly_name = filename.replace(" ", "-").lower()
+    # Create clean URL-friendly filename
+    url_friendly_name = filename.lower().replace(" ", "-")
     output_filename = url_friendly_name.replace(".md", ".html")
+    
+    # Create pretty title by removing .md and replacing hyphens with spaces
+    pretty_title = filename.replace(".md", "").replace("-", " ").title()
     
     rendered_html = template.render(
         content=post_html,
-        title=filename.replace(".md", ""),
+        title=pretty_title,  # Use the pretty title here
         css_path="../styles/main.css"
     )
     output_path = os.path.join(OUTPUT_DIR, output_filename)
@@ -59,7 +62,7 @@ def generate_blog():
         if filename.endswith(".md"):
             post_html_filename = generate_post_html(post_template, filename)
             post_files.append({
-                "title": filename.replace(".md", ""),  # Post title
+                "title": filename.replace(".md", "").replace("-", " ").title(),  # Pretty title
                 "link": post_html_filename             # HTML file link
             })
 
