@@ -77,6 +77,12 @@ def generate_blog():
 
     # Generate index page
     generate_index_html(post_files)
+    
+    # Generate 404 page
+    error_template = load_template("404.html")
+    error_html = error_template.render()
+    save_html(os.path.join(OUTPUT_DIR, "404.html"), error_html)
+    
     print(f"Blog generated! Open {os.path.join(OUTPUT_DIR, 'index.html')} to view your homepage.")
 
 if __name__ == "__main__":
