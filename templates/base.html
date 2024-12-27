@@ -153,6 +153,49 @@
         nav {
             margin-bottom: 2rem;
         }
+
+        /* Mobile-specific fixes */
+        @media screen and (max-width: 768px) {
+            footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                background-color: #121212;
+                padding: 0.75rem 0;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            .social-links {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+                gap: 0.75rem;
+                margin: 0;
+                padding: 0 1rem;
+                height: auto;
+            }
+
+            .social-links a {
+                flex: 0 1 auto;
+                text-align: center;
+                font-size: 0.85rem;
+                padding: 0.4rem 1rem;
+                border-radius: 20px;
+                background-color: #2a2a2a;
+                transition: background-color 0.3s ease;
+                white-space: nowrap;
+                display: inline-block;
+                line-height: 1.2;
+            }
+
+            .container {
+                padding-bottom: 3.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -168,17 +211,6 @@
         <article>
             {{ content }}
         </article>
-
-        <footer>
-            <div class="footer-content">
-                <p>Connect with me:</p>
-                <div class="social-links">
-                    <a href="https://twitter.com/0xpili_" target="_blank">Twitter</a>
-                    <a href="https://github.com/0xpili" target="_blank">GitHub</a>
-                    <a href="mailto:blog@0xpili.xyz">Email</a>
-                </div>
-            </div>
-        </footer>
     </div>
 </body>
 </html>
