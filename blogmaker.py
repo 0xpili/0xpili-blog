@@ -38,9 +38,9 @@ def generate_post_html(template, filename):
     
     post_html = convert_markdown_to_html(md_content)
     
-    # Create clean URL-friendly filename
-    url_friendly_name = filename.lower().replace(" ", "-")
-    output_filename = url_friendly_name.replace(".md", ".html")
+    # Create clean URL-friendly filename without .html
+    url_friendly_name = filename.lower().replace(" ", "-").replace(".md", "")
+    output_filename = url_friendly_name + ".html"  # Keep .html for file but not URL
     
     # Create pretty title by removing .md and replacing hyphens with spaces
     pretty_title = filename.replace(".md", "").replace("-", " ").title()
@@ -54,7 +54,7 @@ def generate_post_html(template, filename):
     save_html(output_path, rendered_html)
     return {
         'title': pretty_title,
-        'filename': output_filename,
+        'filename': url_friendly_name,  # Remove .html from URLs
         'date': date  # Use the extracted date
     }
 

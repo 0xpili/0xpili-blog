@@ -324,7 +324,7 @@
                         {% for post in posts %}
                         <li>
                             <div class="post-date">{{ post.date }}</div>
-                            <a href="{{ post.filename }}" class="post-title">{{ post.title }}</a>
+                            <a href="/{{ post.filename }}" class="post-title">{{ post.title }}</a>
                         </li>
                         {% endfor %}
                     </ul>
