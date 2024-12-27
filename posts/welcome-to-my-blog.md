@@ -1,3 +1,4 @@
+Date: 2024 Dec 27
 
 Life rarely unfolds in straight lines, and my story is no exception. Starting out in engineering, I took an unexpected turn into psychology, and eventually found myself immersed in the fascinating web3 world. It’s been a journey defined by curiosity, challenges, and the desire to be part of something meaningful.
 

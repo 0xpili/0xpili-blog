@@ -28,6 +28,14 @@ def generate_post_html(template, filename):
     post_path = os.path.join(POSTS_DIR, filename)
     with open(post_path, "r") as file:
         md_content = file.read()
+    
+    # Extract date from content
+    date = "2024 Jan 01"  # Default date
+    lines = md_content.split('\n')
+    if lines and lines[0].startswith('Date:'):
+        date = lines[0].replace('Date:', '').strip()
+        md_content = '\n'.join(lines[1:])  # Remove date line from content
+    
     post_html = convert_markdown_to_html(md_content)
     
     # Create clean URL-friendly filename
@@ -39,12 +47,16 @@ def generate_post_html(template, filename):
     
     rendered_html = template.render(
         content=post_html,
-        title=pretty_title,  # Use the pretty title here
+        title=pretty_title,
         css_path="../styles/main.css"
     )
     output_path = os.path.join(OUTPUT_DIR, output_filename)
     save_html(output_path, rendered_html)
-    return output_filename
+    return {
+        'title': pretty_title,
+        'filename': output_filename,
+        'date': date  # Use the extracted date
+    }
 
 def generate_index_html(post_files):
     """Generate a central hub listing all posts."""
@@ -60,11 +72,8 @@ def generate_blog():
     # Generate each post
     for filename in os.listdir(POSTS_DIR):
         if filename.endswith(".md"):
-            post_html_filename = generate_post_html(post_template, filename)
-            post_files.append({
-                "title": filename.replace(".md", "").replace("-", " ").title(),  # Pretty title
-                "link": post_html_filename             # HTML file link
-            })
+            post_data = generate_post_html(post_template, filename)
+            post_files.append(post_data)
 
     # Generate index page
     generate_index_html(post_files)
