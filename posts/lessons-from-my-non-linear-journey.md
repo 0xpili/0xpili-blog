@@ -8,7 +8,7 @@ When I reflect on my academic background, it’s clear that the pieces fit toget
 
 What I find compelling now is how these disciplines, which initially seemed so distant, have converged. In leading teams or scaling systems, I often rely on this dual lens. Logic and empathy are not opposites; they’re complements, and bridging them creates clarity in decision-making and leadership.
 
-### Building with purpose
+## Building with purpose
 
 Today, I’m the Operations Lead at [GraphOps](https://graphops.xyz), a blockchain infrastructure company. At GraphOps I work on scaling teams and processes to support [The Graph](https://thegraph.com)–a decentralized protocol that serves as the indexing layer for web3. Before this, I worked with [Exactly Protocol](https://exact.ly), [Defiant Wallet](https://defiantapp.tech/en), and [Let’sBit](https://letsbit.io). Each role offered me a different perspective on how blockchain technology can solve real problems, and each experience added new tools to my mental toolkit.
 
