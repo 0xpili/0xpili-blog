@@ -26,7 +26,7 @@ What I find compelling now is how these disciplines, which initially seemed so d
 
 From a young age, I’ve been drawn to questioning the status quo. I often felt that the way things were done wasn’t necessarily the best way—that there was always room for improvement, innovation, and doing things differently. This mindset became more than just a personal philosophy when I started working at [Let’sBit](https://letsbit.io), a small but ambitious startup. There, I experienced firsthand what it means to challenge conventions. Each team member was committed to rethinking how crypto could work for the masses, driven by a shared belief in making its benefits accessible to everyone.
 
-Today, I continue that mission as the COO at [GraphOps](https://graphops.xyz), a blockchain infrastructure company. At GraphOps, we support [The Graph](https://thegraph.com), a decentralized protocol that serves as the indexing layer for web3—an essential piece of infrastructure for building a more open and inclusive internet.
+Today, I continue that mission as COO at [GraphOps](https://graphops.xyz), a blockchain infrastructure company. At GraphOps, we support [The Graph](https://thegraph.com), a decentralized protocol that serves as the indexing layer for web3—an essential piece of infrastructure for building a more open and inclusive internet.
 
 Before joining GraphOps, I also worked with [Exactly Protocol](https://exact.ly) and [Defiant Wallet](https://defiantapp.tech/en).
 
