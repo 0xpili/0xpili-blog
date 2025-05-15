@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Without Privacy Is Half Finished | 0xpili blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Typography System */
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            margin: 2rem;
+        }
+
+        /* Links */
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Headers */
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        /* Article content */
+        article {
+            max-width: 800px;
+            margin: auto;
+            background-color: #1e1e1e;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Article typography */
+        article h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        article h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: -0.01em;
+            color: #ffffff;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        article p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Navigation */
+        nav a {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #bb86fc;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            background-color: #2a2a2a;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #bb86fc;
+            color: #121212;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .social-links a {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            background-color: #2a2a2a;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #bb86fc;
+            color: #121212;
+            text-decoration: none;
+        }
+
+        /* Blockquotes */
+        blockquote {
+            border-left: 3px solid #bb86fc;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        article {
+            background-color: #1e1e1e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin: 2rem 0;
+        }
+
+        nav {
+            margin-bottom: 2rem;
+        }
+
+        /* Mobile-specific fixes */
+        @media screen and (max-width: 768px) {
+            footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                background-color: #121212;
+                padding: 0.75rem 0;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            .social-links {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+                gap: 0.75rem;
+                margin: 0;
+                padding: 0 1rem;
+                height: auto;
+            }
+
+            .social-links a {
+                flex: 0 1 auto;
+                text-align: center;
+                font-size: 0.85rem;
+                padding: 0.4rem 1rem;
+                border-radius: 20px;
+                background-color: #2a2a2a;
+                transition: background-color 0.3s ease;
+                white-space: nowrap;
+                display: inline-block;
+                line-height: 1.2;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            article {
+                background-color: #1e1e1e;
+                padding: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                margin: 1rem 0;
+                width: auto;
+            }
+
+            nav {
+                margin-bottom: 1rem;
+            }
+
+            nav a {
+                display: inline-block;
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Adjust title size for mobile */
+            header h1 {
+                font-size: 1.8rem;  /* Smaller title size */
+                line-height: 1.2;   /* Adjust line height */
+                margin-bottom: 1rem; /* Adjust spacing */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/" class="back-link">← Back to homepage</a>
+        </nav>
+        
+        <header>
+            <h1>Crypto Without Privacy Is Half Finished</h1>
+        </header>
+
+        <article>
+            <p>Crypto without privacy is half-finished. The tools exist; our job now is to weave them into every layer of the stack so users never have to trade sovereignty for exposure.</p>
+
+<p>Every time ETH changes hands, public-key cryptography quietly guarantees two things at once: the tokens are real, and the owner meant to move them—no middlemen, no rubber stamps. That same math can protect far more than money.</p>
+
+<p>Across the broader web3 stack, cryptography underpins ownership, identity, data integrity, consensus, and—most urgently—privacy. Without privacy, on-chain activity becomes an open diary. Salaries, donations, political beliefs, even mundane purchases are laid bare to anyone with a block explorer. A transparent ledger is great for verifying state, but terrible for protecting the humans behind each transaction.</p>
+
+<h2>So, what is privacy?</h2>
+
+<p>If we look at the etymology of the word privacy, it ultimately traces back to Latin prīvātus, meaning “set apart, one’s own, not public.” That root traveled into Old French as privité / privauté, meaning “secrecy” or “something hidden,” and was borrowed into Middle English as privatie.</p>
+
+<p>During the late 1500s, English speakers reshaped it by adding the noun-forming suffix -cy, yielding the modern spelling privacy, whose sense gradually shifted from “secrecy” to “freedom from public intrusion.”</p>
+
+<p>And depending on context, privacy takes different forms. One definition I really like I saw on a presentation from Althea Allen:</p>
+
+<blockquote>
+  <p>“Privacy is the ability of an individual or group to seclude themselves or information about themselves, and thereby express themselves selectively.”</p>
+</blockquote>
+
+<h2>Why we need privacy?</h2>
+
+<p>Privacy underpins autonomy and equality. Without privacy, the playing field tilts toward whoever has the biggest database.</p>
+
+<p>The equation looks quite simple. Privacy matters because information is power and whoever knows what you read, buy, say, or earn can shape your choices, charge you more, or put you at risk.</p>
+
+<p>Keeping some things for yourselve should be considered a human righ. Being able to keep some things for yourselve and not sharing things like your salary, medical history, pilitical leanings, onchain history, etc. is an act that protects your safety, preserves free speech, and lets you explore ideas without fear of judgment.</p>
+
+<h2>Exciting steps we have seen on privacy</h2>
+
+<p>At least from my perspective, in the past year (and mostly in the last couple of months) we have seen privacy on Ethereum moving from theory to viable infrastructure.</p>
+
+<p>Take Aztec. After years of R&amp;D, the team launched its public testnet in early this month, marking a major milestone for programmable privacy. Aztec allows developers to build encrypted smart contracts using Noir, a custom language that compiles to zero-knowledge circuits. The architecture keeps all transaction data—sender, receiver, amounts, and logic—private by default, while still settling proofs on Ethereum L1.</p>
+
+<p>Meanwhile, Privacy Pools, built with Tornado Cash learnings in mind, introduced a way to mix funds while preserving plausible deniability and reducing risk of misuse. They rely on zero-knowledge proofs and reputation-based filtering, enabling users to opt into privacy without blindly mixing with malicious actors. Vitalik called it a “better mixing model” for public blockchains.</p>
+
+<p>Beyond these, we’re seeing progress from projects like zkEmail, which links offchain identity and messaging to onchain actions, and Semaphore, which enables anonymous voting and signaling using ZK proofs.</p>
+
+<p>If we take a look at the full picture, each is a small but important puzzle piece pointing to a stack where privacy isn’t an add-on—it’s a default.</p>
+
+<p>Privacy isn’t a luxury. It’s Ethereum coming of age.
+It’s not about hiding. It’s about giving users real choice.
+It’s about making privacy usable, practical, and default.
+It’s about protecting agency, dignity, and the freedom to think, build, and belong, without broadcasting every move.
+And that’s a future worth shipping.</p>
+
+        </article>
+    </div>
+</body>
+</html>
