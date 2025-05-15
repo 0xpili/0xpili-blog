@@ -1,6 +1,7 @@
 import os
 import markdown2
 from jinja2 import Template
+from datetime import datetime
 
 # Define paths
 TEMPLATES_DIR = "templates"
@@ -74,6 +75,16 @@ def generate_blog():
         if filename.endswith(".md"):
             post_data = generate_post_html(post_template, filename)
             post_files.append(post_data)
+
+    # Sort posts by date (most recent first)
+    def parse_date(date_str):
+        for fmt in ("%Y %b %d", "%Y %b %dth", "%Y %b %dnd", "%Y %b %drd", "%Y %b %dst"):  # handle suffixes
+            try:
+                return datetime.strptime(date_str, fmt)
+            except ValueError:
+                continue
+        return datetime.min  # fallback for invalid dates
+    post_files.sort(key=lambda x: parse_date(x['date']), reverse=True)
 
     # Generate index page
     generate_index_html(post_files)
