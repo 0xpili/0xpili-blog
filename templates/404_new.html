@@ -9,18 +9,18 @@
 :root{
   --ratio:1.618;
   --base:1rem;
-  --scale2:calc(var(--base)*var(--ratio)*var(--ratio));
-  --ink:#1a1a1a;
-  --paper:#fafafa;
-  --accent:#6a4c93;
+  --scale4:calc(var(--base)*var(--ratio)*var(--ratio));
+  --ink:#2d2d2d;
+  --paper:#fdfdfc;
+  --accent:#8b4a6b;
   --space:var(--base);
-  --breath:var(--scale2);
+  --space-xl:calc(var(--base)*var(--ratio));
 }
 @media(prefers-color-scheme:dark){
   :root{
-    --ink:#e8e8e8;
-    --paper:#0a0a0a;
-    --accent:#9b7cc4;
+    --ink:#e8e6e3;
+    --paper:#0f0f0e;
+    --accent:#d4a5b8;
   }
 }
 *{box-sizing:border-box}
@@ -37,11 +37,24 @@ body{
   text-align:center;
   padding:var(--space);
 }
-main{max-width:30rem}
-h1{font-size:var(--scale2);font-weight:600;margin:0 0 var(--space)}
-p{margin:0 0 var(--breath)}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
+main{max-width:32rem}
+h1{font-size:var(--scale4);font-weight:700;margin:0 0 var(--space);letter-spacing:-0.04em}
+p{margin:0 0 var(--space-xl);line-height:1.75}
+a{
+  color:var(--accent);
+  text-decoration:none;
+  padding:var(--space) var(--space-xl);
+  border:1px solid var(--accent);
+  border-radius:4px;
+  transition:all 0.2s ease;
+  display:inline-block;
+  font-weight:500;
+}
+a:hover{
+  background:var(--accent);
+  color:var(--paper);
+  transform:translateY(-1px);
+}
 </style>
 </head>
 <body>

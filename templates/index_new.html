@@ -10,35 +10,77 @@
 <meta property="og:url" content="https://0xpili.xyz/">
 <link rel="canonical" href="https://0xpili.xyz/">
 <style>
-/* Same foundation as posts for consistency */
+/* ARTISAN CRAFTED: Every pixel placed with intention
+   COZY: Generous spacing, warm colors, reading comfort
+   LUXURIOUS AUSTERITY: Sophisticated restraint, timeless beauty */
 :root{
+  /* Mathematical foundation: Golden ratio + perfect fifth (1.5) */
   --ratio:1.618;
+  --fifth:1.5;
   --base:1rem;
+  
+  /* Type scale: Harmonious proportions */
+  --scale-2:calc(var(--base)/var(--ratio)/var(--fifth));
   --scale-1:calc(var(--base)/var(--ratio));
   --scale0:var(--base);
-  --scale1:calc(var(--base)*var(--ratio));
-  --scale2:calc(var(--scale1)*var(--ratio));
-  --scale3:calc(var(--scale2)*var(--ratio));
-  --ink:#1a1a1a;
-  --paper:#fafafa;
-  --accent:#6a4c93;
-  --quiet:#757575;
-  --space:var(--scale0);
-  --breath:var(--scale2);
-  --horizon:var(--scale3);
+  --scale1:calc(var(--base)*var(--fifth));
+  --scale2:calc(var(--base)*var(--ratio));
+  --scale3:calc(var(--base)*var(--ratio)*var(--fifth));
+  --scale4:calc(var(--base)*var(--ratio)*var(--ratio));
+  
+  /* Colors: Warm, sophisticated, enduring */
+  --ink:#2d2d2d;           /* Softer than pure black */
+  --ink-light:#4a4a4a;    /* For secondary text */
+  --paper:#fdfdfc;        /* Warm white, not stark */
+  --paper-soft:#f8f8f7;   /* Subtle background variation */
+  --accent:#8b4a6b;       /* Deep burgundy wine - wisdom & warmth */
+  --accent-light:#a76580; /* Lighter variant */
+  --quiet:#6b6b6b;        /* Warm gray */
+  --whisper:#9a9a9a;      /* Very quiet text */
+  --border:#e8e6e3;       /* Subtle warm border */
+  
+  /* Spacing: Generous, breathing */
+  --space-xs:calc(var(--base)/4);
+  --space-s:calc(var(--base)/2);
+  --space:var(--base);
+  --space-l:calc(var(--base)*var(--fifth));
+  --space-xl:calc(var(--base)*var(--ratio));
+  --space-2xl:calc(var(--base)*var(--ratio)*var(--fifth));
+  --space-3xl:calc(var(--base)*var(--ratio)*var(--ratio));
+  
+  /* Reading comfort */
+  --reading-width:42rem; /* Optimal line length */
+  --line-height:1.75;    /* Generous for comfort */
+  --line-height-tight:1.4;
 }
 
+/* Dark mode: Sophisticated night palette */
 @media(prefers-color-scheme:dark){
   :root{
-    --ink:#e8e8e8;
-    --paper:#0a0a0a;
-    --accent:#9b7cc4;
-    --quiet:#a0a0a0;
+    --ink:#e8e6e3;
+    --ink-light:#c4c2bf;
+    --paper:#0f0f0e;
+    --paper-soft:#1a1a18;
+    --accent:#d4a5b8;
+    --accent-light:#e2b8c8;
+    --quiet:#9a9896;
+    --whisper:#6b6b69;
+    --border:#2d2d2b;
   }
 }
 
-*,*::before,*::after{box-sizing:border-box}
-html{font-size:18px;line-height:var(--ratio);-webkit-text-size-adjust:100%}
+/* Foundation: Solid ground for beauty */
+*,*::before,*::after{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+  font-size:18px;
+  line-height:var(--line-height);
+  -webkit-text-size-adjust:100%;
+}
+
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
@@ -47,73 +89,133 @@ body{
   background:var(--paper);
   text-rendering:optimizeLegibility;
   -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  /* Subtle texture for warmth */
+  background-image:radial-gradient(circle at 1px 1px,var(--border) 1px,transparent 0);
+  background-size:20px 20px;
+  min-height:100vh;
 }
 
 main{
-  max-width:38rem;
+  max-width:var(--reading-width);
   margin:0 auto;
-  padding:var(--breath) var(--space);
+  padding:var(--space-3xl) var(--space-xl);
+  background:var(--paper);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
-/* Header: Statement of purpose */
+/* Header: Confident statement */
 header{
   text-align:center;
-  margin-bottom:var(--horizon);
+  margin-bottom:var(--space-3xl);
+  padding-bottom:var(--space-2xl);
+  border-bottom:1px solid var(--border);
 }
 h1{
-  font-size:var(--scale2);
-  font-weight:600;
-  margin:0 0 var(--space);
+  font-size:var(--scale4);
+  font-weight:700;
+  margin:0 0 var(--space-l);
+  letter-spacing:-0.04em;
+  color:var(--ink);
 }
 .tagline{
   color:var(--quiet);
-  font-size:var(--scale-1);
+  font-size:var(--scale0);
   margin:0;
+  font-style:italic;
+  letter-spacing:0.01em;
 }
 
-/* Posts: Clean list */
+/* Posts: Elegant catalog */
 .posts{
   list-style:none;
   padding:0;
-  margin:0;
+  margin:0 0 var(--space-3xl);
+  flex:1;
 }
 .posts li{
-  margin:0 0 var(--breath);
+  margin:0 0 var(--space-2xl);
+  padding:var(--space-l) 0;
+  border-bottom:1px solid var(--border);
+  transition:all 0.2s ease;
+}
+.posts li:last-child{
+  border-bottom:none;
+}
+.posts li:hover{
+  transform:translateX(var(--space-s));
 }
 .posts a{
   color:var(--ink);
   text-decoration:none;
   display:block;
+  transition:all 0.2s ease;
 }
 .posts a:hover{
   color:var(--accent);
 }
+.posts h2{
+  font-size:var(--scale2);
+  font-weight:600;
+  margin:0 0 var(--space-s);
+  line-height:var(--line-height-tight);
+  letter-spacing:-0.025em;
+}
 .posts time{
   color:var(--quiet);
   font-size:var(--scale-1);
+  font-weight:500;
   display:block;
-  margin-top:calc(var(--space)/2);
+  text-transform:uppercase;
+  letter-spacing:0.05em;
 }
 
-/* Bio: Personal touch */
+/* Bio: Personal warmth */
 .bio{
-  margin-top:var(--horizon);
-  padding-top:var(--breath);
-  border-top:1px solid color-mix(in srgb,var(--ink),transparent 90%);
-  font-size:var(--scale-1);
-  color:var(--quiet);
+  margin-top:auto;
+  padding-top:var(--space-2xl);
+  border-top:2px solid var(--border);
+  font-size:var(--scale0);
+  color:var(--ink-light);
+  text-align:center;
+  line-height:var(--line-height);
+}
+.bio p{
+  margin:0 0 var(--space-l);
+  max-width:36ch;
+  margin-left:auto;
+  margin-right:auto;
 }
 
-/* Links: Subtle presence */
+/* Links: Sophisticated presence */
 .links{
-  margin-top:var(--space);
-  text-align:center;
+  margin-top:var(--space-l);
+  display:flex;
+  justify-content:center;
+  gap:var(--space-l);
 }
 .links a{
-  margin:0 var(--space);
   color:var(--accent);
   text-decoration:none;
   font-size:var(--scale-1);
+  font-weight:500;
+  padding:var(--space-s) var(--space);
+  border:1px solid var(--border);
+  border-radius:4px;
+  transition:all 0.2s ease;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+.links a:hover{
+  background:var(--paper-soft);
+  border-color:var(--accent);
+  transform:translateY(-1px);
+}
+.links a:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
 }
 </style>
 </head>
@@ -128,7 +230,7 @@ h1{
 {% for post in posts %}
 <li>
 <a href="/{{ post.filename }}.html">
-{{ post.title }}
+<h2>{{ post.title }}</h2>
 <time datetime="{{ post.iso_date }}">{{ post.date }}</time>
 </a>
 </li>
