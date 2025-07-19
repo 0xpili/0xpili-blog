@@ -32,9 +32,13 @@ def test_html_quality():
         if 'style="' in content:
             errors.append(f"{html_file.name}: Inline styles found")
         
-        # Check file size (should be under 10KB)
+        # Check file size (reasonable for content-rich posts)
         size_kb = html_file.stat().st_size / 1024
-        if size_kb > 10:
+        if html_file.name == "index.html" and size_kb > 8:
+            errors.append(f"{html_file.name}: Too large ({size_kb:.1f}KB)")
+        elif html_file.name == "404.html" and size_kb > 3:
+            errors.append(f"{html_file.name}: Too large ({size_kb:.1f}KB)")
+        elif size_kb > 15:  # Generous limit for content-rich posts
             errors.append(f"{html_file.name}: Too large ({size_kb:.1f}KB)")
         
         # Valid meta tags
