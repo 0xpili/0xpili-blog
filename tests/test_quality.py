@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Test suite to ensure blog quality and performance."""
 
 import os
 import sys
@@ -9,7 +8,6 @@ import re
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def test_html_quality():
-    """Ensure HTML follows our principles."""
     docs = Path("docs")
     if not docs.exists():
         print("Run 'python3 blogmaker.py' first")
@@ -20,28 +18,23 @@ def test_html_quality():
     for html_file in docs.glob("*.html"):
         content = html_file.read_text()
         
-        # No external resources
         if "fonts.googleapis.com" in content:
             errors.append(f"{html_file.name}: External font dependency")
         
-        # No JavaScript
         if "<script" in content:
             errors.append(f"{html_file.name}: JavaScript found")
         
-        # No inline styles (should use style tag)
         if 'style="' in content:
             errors.append(f"{html_file.name}: Inline styles found")
         
-        # Check file size (reasonable for content-rich posts)
         size_kb = html_file.stat().st_size / 1024
         if html_file.name == "index.html" and size_kb > 8:
             errors.append(f"{html_file.name}: Too large ({size_kb:.1f}KB)")
         elif html_file.name == "404.html" and size_kb > 3:
             errors.append(f"{html_file.name}: Too large ({size_kb:.1f}KB)")
-        elif size_kb > 15:  # Generous limit for content-rich posts
+        elif size_kb > 15:
             errors.append(f"{html_file.name}: Too large ({size_kb:.1f}KB)")
         
-        # Valid meta tags
         if "<meta name=\"viewport\"" not in content:
             errors.append(f"{html_file.name}: Missing viewport meta")
     
@@ -55,7 +48,6 @@ def test_html_quality():
         return True
 
 def test_performance():
-    """Test performance characteristics."""
     docs = Path("docs")
     total_size = 0
     file_count = 0
@@ -71,25 +63,21 @@ def test_performance():
     print(f"  - Total site size: {total_size/1024:.1f}KB")
     print(f"  - Load time (3G): ~{avg_size_kb * 0.1:.1f}s")
     
-    return avg_size_kb < 10  # Average should be under 10KB
+    return avg_size_kb < 10
 
 def test_accessibility():
-    """Check basic accessibility."""
     docs = Path("docs")
     errors = []
     
     for html_file in docs.glob("*.html"):
         content = html_file.read_text()
         
-        # Check for alt texts (if images exist)
         if "<img" in content and 'alt="' not in content:
             errors.append(f"{html_file.name}: Images without alt text")
         
-        # Check heading hierarchy
         if "<h3" in content and "<h2" not in content:
             errors.append(f"{html_file.name}: H3 without H2")
         
-        # Check lang attribute
         if 'lang="en"' not in content:
             errors.append(f"{html_file.name}: Missing lang attribute")
     
@@ -103,7 +91,6 @@ def test_accessibility():
         return True
 
 def main():
-    """Run all quality tests."""
     print("Running quality tests...\n")
     
     results = [

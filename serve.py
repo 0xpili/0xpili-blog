@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Simple local server for testing the blog."""
 
 import http.server
 import socketserver
@@ -14,12 +13,10 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
     
     def end_headers(self):
-        # Add cache control for development
         self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
         super().end_headers()
 
 def serve():
-    """Start a local server."""
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     
     with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:

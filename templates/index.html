@@ -10,16 +10,10 @@
 <meta property="og:url" content="https://0xpili.xyz/">
 <link rel="canonical" href="https://0xpili.xyz/">
 <style>
-/* ARTISAN CRAFTED: Every pixel placed with intention
-   COZY: Generous spacing, warm colors, reading comfort
-   LUXURIOUS AUSTERITY: Sophisticated restraint, timeless beauty */
 :root{
-  /* Mathematical foundation: Golden ratio + perfect fifth (1.5) */
   --ratio:1.618;
   --fifth:1.5;
   --base:1rem;
-  
-  /* Type scale: Harmonious proportions */
   --scale-2:calc(var(--base)/var(--ratio)/var(--fifth));
   --scale-1:calc(var(--base)/var(--ratio));
   --scale0:var(--base);
@@ -27,19 +21,15 @@
   --scale2:calc(var(--base)*var(--ratio));
   --scale3:calc(var(--base)*var(--ratio)*var(--fifth));
   --scale4:calc(var(--base)*var(--ratio)*var(--ratio));
-  
-  /* Colors: Warm, sophisticated, enduring */
-  --ink:#2d2d2d;           /* Softer than pure black */
-  --ink-light:#4a4a4a;    /* For secondary text */
-  --paper:#fdfdfc;        /* Warm white, not stark */
-  --paper-soft:#f8f8f7;   /* Subtle background variation */
-  --accent:#8b4a6b;       /* Deep burgundy wine - wisdom & warmth */
-  --accent-light:#a76580; /* Lighter variant */
-  --quiet:#6b6b6b;        /* Warm gray */
-  --whisper:#9a9a9a;      /* Very quiet text */
-  --border:#e8e6e3;       /* Subtle warm border */
-  
-  /* Spacing: Generous, breathing */
+  --ink:#2d2d2d;
+  --ink-light:#4a4a4a;
+  --paper:#fdfdfc;
+  --paper-soft:#f8f8f7;
+  --accent:#8b4a6b;
+  --accent-light:#a76580;
+  --quiet:#6b6b6b;
+  --whisper:#9a9a9a;
+  --border:#e8e6e3;
   --space-xs:calc(var(--base)/4);
   --space-s:calc(var(--base)/2);
   --space:var(--base);
@@ -47,14 +37,11 @@
   --space-xl:calc(var(--base)*var(--ratio));
   --space-2xl:calc(var(--base)*var(--ratio)*var(--fifth));
   --space-3xl:calc(var(--base)*var(--ratio)*var(--ratio));
-  
-  /* Reading comfort */
-  --reading-width:42rem; /* Optimal line length */
-  --line-height:1.75;    /* Generous for comfort */
+  --reading-width:42rem;
+  --line-height:1.75;
   --line-height-tight:1.4;
 }
 
-/* Dark mode: Sophisticated night palette */
 @media(prefers-color-scheme:dark){
   :root{
     --ink:#e8e6e3;
@@ -69,7 +56,6 @@
   }
 }
 
-/* Foundation: Solid ground for beauty */
 *,*::before,*::after{
   box-sizing:border-box;
 }
@@ -90,7 +76,6 @@ body{
   text-rendering:optimizeLegibility;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  /* Subtle texture for warmth */
   background-image:radial-gradient(circle at 1px 1px,var(--border) 1px,transparent 0);
   background-size:20px 20px;
   min-height:100vh;
@@ -106,7 +91,6 @@ main{
   flex-direction:column;
 }
 
-/* Header: Confident statement */
 header{
   text-align:center;
   margin-bottom:var(--space-3xl);
@@ -128,7 +112,6 @@ h1{
   letter-spacing:0.01em;
 }
 
-/* Posts: Elegant catalog */
 .posts{
   list-style:none;
   padding:0;
@@ -172,7 +155,6 @@ h1{
   letter-spacing:0.05em;
 }
 
-/* Bio: Personal warmth */
 .bio{
   margin-top:auto;
   padding-top:var(--space-2xl);
@@ -189,7 +171,6 @@ h1{
   margin-right:auto;
 }
 
-/* Links: Sophisticated presence */
 .links{
   margin-top:var(--space-l);
   display:flex;

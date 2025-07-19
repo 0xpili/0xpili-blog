@@ -10,16 +10,10 @@
 <meta property="og:url" content="https://0xpili.xyz/{{ slug }}">
 <link rel="canonical" href="https://0xpili.xyz/{{ slug }}">
 <style>
-/* ARTISAN CRAFTED: Every pixel placed with intention
-   COZY: Generous spacing, warm colors, reading comfort
-   LUXURIOUS AUSTERITY: Sophisticated restraint, timeless beauty */
 :root{
-  /* Mathematical foundation: Golden ratio + perfect fifth (1.5) */
   --ratio:1.618;
   --fifth:1.5;
   --base:1rem;
-  
-  /* Type scale: Harmonious proportions */
   --scale-2:calc(var(--base)/var(--ratio)/var(--fifth));
   --scale-1:calc(var(--base)/var(--ratio));
   --scale0:var(--base);
@@ -27,19 +21,15 @@
   --scale2:calc(var(--base)*var(--ratio));
   --scale3:calc(var(--base)*var(--ratio)*var(--fifth));
   --scale4:calc(var(--base)*var(--ratio)*var(--ratio));
-  
-  /* Colors: Warm, sophisticated, enduring */
-  --ink:#2d2d2d;           /* Softer than pure black */
-  --ink-light:#4a4a4a;    /* For secondary text */
-  --paper:#fdfdfc;        /* Warm white, not stark */
-  --paper-soft:#f8f8f7;   /* Subtle background variation */
-  --accent:#8b4a6b;       /* Deep burgundy wine - wisdom & warmth */
-  --accent-light:#a76580; /* Lighter variant */
-  --quiet:#6b6b6b;        /* Warm gray */
-  --whisper:#9a9a9a;      /* Very quiet text */
-  --border:#e8e6e3;       /* Subtle warm border */
-  
-  /* Spacing: Generous, breathing */
+  --ink:#2d2d2d;
+  --ink-light:#4a4a4a;
+  --paper:#fdfdfc;
+  --paper-soft:#f8f8f7;
+  --accent:#8b4a6b;
+  --accent-light:#a76580;
+  --quiet:#6b6b6b;
+  --whisper:#9a9a9a;
+  --border:#e8e6e3;
   --space-xs:calc(var(--base)/4);
   --space-s:calc(var(--base)/2);
   --space:var(--base);
@@ -47,14 +37,10 @@
   --space-xl:calc(var(--base)*var(--ratio));
   --space-2xl:calc(var(--base)*var(--ratio)*var(--fifth));
   --space-3xl:calc(var(--base)*var(--ratio)*var(--ratio));
-  
-  /* Reading comfort */
-  --reading-width:42rem; /* Optimal line length */
-  --line-height:1.75;    /* Generous for comfort */
+  --reading-width:42rem;
+  --line-height:1.75;
   --line-height-tight:1.4;
 }
-
-/* Dark mode: Sophisticated night palette */
 @media(prefers-color-scheme:dark){
   :root{
     --ink:#e8e6e3;
@@ -68,20 +54,13 @@
     --border:#2d2d2b;
   }
 }
-
-/* Foundation: Solid ground for beauty */
-*,*::before,*::after{
-  box-sizing:border-box;
-}
-
-/* Smooth scrolling for elegance */
+*,*::before,*::after{box-sizing:border-box}
 html{
   scroll-behavior:smooth;
   font-size:18px;
   line-height:var(--line-height);
   -webkit-text-size-adjust:100%;
 }
-
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
@@ -91,12 +70,9 @@ body{
   text-rendering:optimizeLegibility;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  /* Subtle texture for warmth */
   background-image:radial-gradient(circle at 1px 1px,var(--border) 1px,transparent 0);
   background-size:20px 20px;
 }
-
-/* Reading container: Perfect for human eyes */
 article{
   max-width:var(--reading-width);
   margin:0 auto;
@@ -104,10 +80,6 @@ article{
   background:var(--paper);
   position:relative;
 }
-
-/* Drop caps removed - clean first paragraphs */
-
-/* Typography: Each element perfectly spaced */
 h1,h2,h3{
   font-weight:600;
   line-height:var(--line-height-tight);
@@ -132,16 +104,12 @@ h3{
   font-weight:500;
   color:var(--ink-light);
 }
-
-/* Paragraphs: Generous breathing room */
 p{
   margin:0 0 var(--space-l);
   line-height:var(--line-height);
   font-size:var(--scale0);
-  max-width:68ch; /* Optimal reading width */
+  max-width:68ch;
 }
-
-/* Links: Sophisticated interaction */
 a{
   color:var(--accent);
   text-decoration:none;
@@ -160,12 +128,8 @@ a:focus{
   outline-offset:2px;
   border-radius:2px;
 }
-
-/* Lists: Proper spacing */
 ul,ol{margin:0 0 var(--space-l);padding-left:var(--space-l)}
 li{margin-bottom:var(--space-s)}
-
-/* Blockquotes: Distinctive styling */
 blockquote{
   margin:var(--space-xl) 0;
   padding:var(--space-l) var(--space-xl);
@@ -176,8 +140,6 @@ blockquote{
   color:var(--ink-light);
 }
 blockquote p:last-child{margin-bottom:0}
-
-/* Code: Technical elegance */
 code{
   font-family:"SF Mono",Monaco,"Cascadia Code",monospace;
   font-size:var(--scale-1);
@@ -200,8 +162,6 @@ pre code{
   padding:0;
   color:var(--ink);
 }
-
-/* Meta information: Quiet dignity */
 .meta{
   color:var(--quiet);
   font-size:var(--scale-1);
@@ -212,8 +172,6 @@ pre code{
   border-bottom:1px solid var(--border);
   padding-bottom:var(--space-l);
 }
-
-/* Navigation: Understated presence */
 nav{
   text-align:center;
   padding:var(--space-2xl) var(--space);
@@ -235,8 +193,6 @@ nav a:hover{
   background:var(--paper-soft);
   transform:translateY(-1px);
 }
-
-/* Print: Timeless on paper too */
 @media print{
   body{
     font-size:11pt;
