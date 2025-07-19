@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ title }} — 0xpili</title>
+<meta name="description" content="{{ description or 'Thoughtful writings on technology, privacy, and the human condition.' }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://0xpili.xyz/{{ slug }}">
+<link rel="canonical" href="https://0xpili.xyz/{{ slug }}">
+<style>
+/* FAST: All CSS inlined, no external requests
+   ENDURING: System fonts, mathematical ratios, no trends
+   AUSTERE: Minimal styles, maximum impact */
+:root{
+  --ratio:1.618; /* Golden ratio for timeless proportions */
+  --base:1rem;
+  --scale-1:calc(var(--base)/var(--ratio));
+  --scale0:var(--base);
+  --scale1:calc(var(--base)*var(--ratio));
+  --scale2:calc(var(--scale1)*var(--ratio));
+  --scale3:calc(var(--scale2)*var(--ratio));
+  
+  /* Colors: Austere yet warm */
+  --ink:#1a1a1a;
+  --paper:#fafafa;
+  --accent:#6a4c93; /* Deep purple, wisdom */
+  --quiet:#757575;
+  
+  /* Spacing: Musical intervals */
+  --space:var(--scale0);
+  --breath:var(--scale2);
+  --horizon:var(--scale3);
+}
+
+/* Dark mode: Respect system preference */
+@media(prefers-color-scheme:dark){
+  :root{
+    --ink:#e8e8e8;
+    --paper:#0a0a0a;
+    --accent:#9b7cc4;
+    --quiet:#a0a0a0;
+  }
+}
+
+/* Foundation: Box model sanity */
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:18px;line-height:var(--ratio);-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--paper);
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Layout: Simple center column */
+article{
+  max-width:38rem; /* ~70 characters at 18px */
+  margin:0 auto;
+  padding:var(--breath) var(--space);
+}
+
+/* Typography: Crafted with care */
+h1,h2,h3{
+  font-weight:600;
+  line-height:1.2;
+  margin:var(--breath) 0 var(--space);
+}
+h1{font-size:var(--scale2)}
+h2{font-size:var(--scale1);margin-top:var(--horizon)}
+h3{font-size:var(--scale0);font-weight:500}
+
+p{margin:0 0 var(--space)}
+a{color:var(--accent);text-underline-offset:0.2em}
+a:hover{text-decoration-thickness:0.15em}
+
+/* Code: Monospace rhythm */
+code,pre{font-family:"SF Mono",Monaco,monospace;font-size:var(--scale-1)}
+pre{
+  overflow-x:auto;
+  padding:var(--space);
+  margin:var(--space) 0;
+  background:color-mix(in srgb,var(--paper),var(--ink) 4%);
+}
+
+/* Meta: Quiet but present */
+.meta{
+  color:var(--quiet);
+  font-size:var(--scale-1);
+  margin:var(--space) 0 var(--breath);
+}
+
+/* Navigation: Minimal presence */
+nav{
+  text-align:center;
+  padding:var(--space);
+  font-size:var(--scale-1);
+}
+nav a{margin:0 var(--space);text-decoration:none}
+
+/* Print: Because quality endures */
+@media print{
+  body{font-size:11pt;line-height:1.5}
+  article{max-width:none}
+  nav,.meta{display:none}
+}
+</style>
+</head>
+<body>
+<article>
+<h1>{{ title }}</h1>
+<div class="meta">{{ date }}</div>
+{{ content|safe }}
+</article>
+<nav>
+<a href="/index.html">Index</a>
+<a href="https://twitter.com/0xpili">Twitter</a>
+<a href="https://github.com/pili-engineering">GitHub</a>
+</nav>
+</body>
+</html>

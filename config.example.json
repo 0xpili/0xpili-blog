@@ -1,0 +1,11 @@
+{
+  "site_url": "https://0xpili.xyz",
+  "site_title": "0xpili", 
+  "site_description": "Thoughtful writings on technology, privacy, and the human condition.",
+  "author": "0xpili",
+  "templates_dir": "templates",
+  "posts_dir": "posts",
+  "output_dir": "docs",
+  "date_format": "%Y %b %d",
+  "_comment": "Copy to config.json and customize. Or set BLOG_SITE_URL, BLOG_SITE_TITLE, etc. environment variables."
+}

@@ -125,24 +125,14 @@ h1{
 </header>
 
 <ul class="posts">
+{% for post in posts %}
 <li>
-<a href="/crypto-without-privacy-is-half-finished.html">
-Crypto Without Privacy Is Half Finished
-<time datetime="2025-05-14T00:00:00">2025 May 14</time>
+<a href="/{{ post.filename }}.html">
+{{ post.title }}
+<time datetime="{{ post.iso_date }}">{{ post.date }}</time>
 </a>
 </li>
-<li>
-<a href="/how-athletics-shape-your-best-self.html">
-How Athletics Shape Your Best Self
-<time datetime="2025-05-11T00:00:00">2025 May 11</time>
-</a>
-</li>
-<li>
-<a href="/lessons-from-my-non-linear-journey.html">
-Lessons From My Non Linear Journey
-<time datetime="2024-12-27T00:00:00">2024 Dec 27</time>
-</a>
-</li>
+{% endfor %}
 </ul>
 
 <section class="bio">

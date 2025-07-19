@@ -1,247 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Without Privacy Is Half Finished | 0xpili blog</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Typography System */
-        body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            line-height: 1.6;
-            margin: 2rem;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crypto Without Privacy Is Half Finished — 0xpili</title>
+<meta name="description" content="Thoughtful writings on technology, privacy, and the human condition.">
+<meta property="og:title" content="Crypto Without Privacy Is Half Finished">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://0xpili.xyz/crypto-without-privacy-is-half-finished">
+<link rel="canonical" href="https://0xpili.xyz/crypto-without-privacy-is-half-finished">
+<style>
+/* FAST: All CSS inlined, no external requests
+   ENDURING: System fonts, mathematical ratios, no trends
+   AUSTERE: Minimal styles, maximum impact */
+:root{
+  --ratio:1.618; /* Golden ratio for timeless proportions */
+  --base:1rem;
+  --scale-1:calc(var(--base)/var(--ratio));
+  --scale0:var(--base);
+  --scale1:calc(var(--base)*var(--ratio));
+  --scale2:calc(var(--scale1)*var(--ratio));
+  --scale3:calc(var(--scale2)*var(--ratio));
+  
+  /* Colors: Austere yet warm */
+  --ink:#1a1a1a;
+  --paper:#fafafa;
+  --accent:#6a4c93; /* Deep purple, wisdom */
+  --quiet:#757575;
+  
+  /* Spacing: Musical intervals */
+  --space:var(--scale0);
+  --breath:var(--scale2);
+  --horizon:var(--scale3);
+}
 
-        /* Links */
-        a {
-            color: #bb86fc;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+/* Dark mode: Respect system preference */
+@media(prefers-color-scheme:dark){
+  :root{
+    --ink:#e8e8e8;
+    --paper:#0a0a0a;
+    --accent:#9b7cc4;
+    --quiet:#a0a0a0;
+  }
+}
 
-        /* Headers */
-        header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        header h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.8rem;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-        }
+/* Foundation: Box model sanity */
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:18px;line-height:var(--ratio);-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--paper);
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
 
-        /* Article content */
-        article {
-            max-width: 800px;
-            margin: auto;
-            background-color: #1e1e1e;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
+/* Layout: Simple center column */
+article{
+  max-width:38rem; /* ~70 characters at 18px */
+  margin:0 auto;
+  padding:var(--breath) var(--space);
+}
 
-        /* Article typography */
-        article h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            letter-spacing: -0.02em;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-        }
+/* Typography: Crafted with care */
+h1,h2,h3{
+  font-weight:600;
+  line-height:1.2;
+  margin:var(--breath) 0 var(--space);
+}
+h1{font-size:var(--scale2)}
+h2{font-size:var(--scale1);margin-top:var(--horizon)}
+h3{font-size:var(--scale0);font-weight:500}
 
-        article h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: -0.01em;
-            color: #ffffff;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
+p{margin:0 0 var(--space)}
+a{color:var(--accent);text-underline-offset:0.2em}
+a:hover{text-decoration-thickness:0.15em}
 
-        article p {
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
+/* Code: Monospace rhythm */
+code,pre{font-family:"SF Mono",Monaco,monospace;font-size:var(--scale-1)}
+pre{
+  overflow-x:auto;
+  padding:var(--space);
+  margin:var(--space) 0;
+  background:color-mix(in srgb,var(--paper),var(--ink) 4%);
+}
 
-        /* Navigation */
-        nav a {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            color: #bb86fc;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            background-color: #2a2a2a;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+/* Meta: Quiet but present */
+.meta{
+  color:var(--quiet);
+  font-size:var(--scale-1);
+  margin:var(--space) 0 var(--breath);
+}
 
-        nav a:hover {
-            background-color: #bb86fc;
-            color: #121212;
-            text-decoration: none;
-        }
+/* Navigation: Minimal presence */
+nav{
+  text-align:center;
+  padding:var(--space);
+  font-size:var(--scale-1);
+}
+nav a{margin:0 var(--space);text-decoration:none}
 
-        /* Footer */
-        footer {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .social-links a {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            background-color: #2a2a2a;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: #bb86fc;
-            color: #121212;
-            text-decoration: none;
-        }
-
-        /* Blockquotes */
-        blockquote {
-            border-left: 3px solid #bb86fc;
-            padding-left: 1rem;
-            margin: 1.5rem 0;
-            font-style: italic;
-        }
-
-        /* Lists */
-        ul, ol {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        article {
-            background-color: #1e1e1e;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            margin: 2rem 0;
-        }
-
-        nav {
-            margin-bottom: 2rem;
-        }
-
-        /* Mobile-specific fixes */
-        @media screen and (max-width: 768px) {
-            footer {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                width: 100%;
-                background-color: #121212;
-                padding: 0.75rem 0;
-                margin: 0;
-                overflow: hidden;
-            }
-
-            .social-links {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                width: 100%;
-                gap: 0.75rem;
-                margin: 0;
-                padding: 0 1rem;
-                height: auto;
-            }
-
-            .social-links a {
-                flex: 0 1 auto;
-                text-align: center;
-                font-size: 0.85rem;
-                padding: 0.4rem 1rem;
-                border-radius: 20px;
-                background-color: #2a2a2a;
-                transition: background-color 0.3s ease;
-                white-space: nowrap;
-                display: inline-block;
-                line-height: 1.2;
-            }
-
-            .container {
-                padding: 1rem;
-            }
-
-            article {
-                background-color: #1e1e1e;
-                padding: 1.5rem;
-                border-radius: 8px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-                margin: 1rem 0;
-                width: auto;
-            }
-
-            nav {
-                margin-bottom: 1rem;
-            }
-
-            nav a {
-                display: inline-block;
-                padding: 0.4rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            /* Adjust title size for mobile */
-            header h1 {
-                font-size: 1.8rem;  /* Smaller title size */
-                line-height: 1.2;   /* Adjust line height */
-                margin-bottom: 1rem; /* Adjust spacing */
-            }
-        }
-    </style>
+/* Print: Because quality endures */
+@media print{
+  body{font-size:11pt;line-height:1.5}
+  article{max-width:none}
+  nav,.meta{display:none}
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <a href="/" class="back-link">← Back to homepage</a>
-        </nav>
-        
-        <header>
-            <h1>Crypto Without Privacy Is Half Finished</h1>
-        </header>
-
-        <article>
-            <p>Crypto without privacy is half-finished. The tools exist; our job now is to weave them into every layer of the stack so users never have to trade sovereignty for exposure.</p>
+<article>
+<h1>Crypto Without Privacy Is Half Finished</h1>
+<div class="meta">2025 May 14</div>
+<p>Crypto without privacy is half-finished. The tools exist; our job now is to weave them into every layer of the stack so users never have to trade sovereignty for exposure.</p>
 
 <p>Every time ETH changes hands, public-key cryptography quietly guarantees two things at once: the tokens are real, and the owner meant to move them—no middlemen, no rubber stamps. That same math can protect far more than money.</p>
 
 <p>Across the broader web3 stack, cryptography underpins ownership, identity, data integrity, consensus, and—most urgently—privacy. Without privacy, on-chain activity becomes an open diary. Salaries, donations, political beliefs, even mundane purchases are laid bare to anyone with a block explorer. A transparent ledger is great for verifying state, but terrible for protecting the humans behind each transaction.</p>
 
-<h2>So, what is privacy?</h2>
+<h2 id="so-what-is-privacy">So, what is privacy?</h2>
 
 <p>If we look at the etymology of the word privacy, it ultimately traces back to Latin prīvātus, meaning “set apart, one’s own, not public.” That root traveled into Old French as privité / privauté, meaning “secrecy” or “something hidden,” and was borrowed into Middle English as privatie.</p>
 
@@ -253,7 +132,7 @@
   <p>“Privacy is the ability of an individual or group to seclude themselves or information about themselves, and thereby express themselves selectively.”</p>
 </blockquote>
 
-<h2>Why we need privacy?</h2>
+<h2 id="why-we-need-privacy">Why we need privacy?</h2>
 
 <p>Privacy underpins autonomy and equality. Without privacy, the playing field tilts toward whoever has the biggest database.</p>
 
@@ -261,7 +140,7 @@
 
 <p>Keeping some things for yourselve should be considered a human righ. Being able to keep some things for yourselve and not sharing things like your salary, medical history, pilitical leanings, onchain history, etc. is an act that protects your safety, preserves free speech, and lets you explore ideas without fear of judgment.</p>
 
-<h2>Exciting steps we have seen on privacy</h2>
+<h2 id="exciting-steps-we-have-seen-on-privacy">Exciting steps we have seen on privacy</h2>
 
 <p>At least from my perspective, in the past year (and mostly in the last couple of months) we have seen privacy on Ethereum moving from theory to viable infrastructure.</p>
 
@@ -279,7 +158,11 @@ It’s about making privacy usable, practical, and default.
 It’s about protecting agency, dignity, and the freedom to think, build, and belong, without broadcasting every move.
 And that’s a future worth shipping.</p>
 
-        </article>
-    </div>
+</article>
+<nav>
+<a href="/">Index</a>
+<a href="https://twitter.com/0xpili">Twitter</a>
+<a href="https://github.com/pili-engineering">GitHub</a>
+</nav>
 </body>
 </html>
