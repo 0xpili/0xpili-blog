@@ -1,242 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} | 0xpili blog</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Typography System */
-        body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            line-height: 1.6;
-            margin: 2rem;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ title }} — 0xpili</title>
+<meta name="description" content="{{ description or 'Thoughtful writings on technology, privacy, and the human condition.' }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://0xpili.xyz/{{ slug }}">
+<link rel="canonical" href="https://0xpili.xyz/{{ slug }}">
+<style>
+/* ARTISAN CRAFTED: Every pixel placed with intention
+   COZY: Generous spacing, warm colors, reading comfort
+   LUXURIOUS AUSTERITY: Sophisticated restraint, timeless beauty */
+:root{
+  /* Mathematical foundation: Golden ratio + perfect fifth (1.5) */
+  --ratio:1.618;
+  --fifth:1.5;
+  --base:1rem;
+  
+  /* Type scale: Harmonious proportions */
+  --scale-2:calc(var(--base)/var(--ratio)/var(--fifth));
+  --scale-1:calc(var(--base)/var(--ratio));
+  --scale0:var(--base);
+  --scale1:calc(var(--base)*var(--fifth));
+  --scale2:calc(var(--base)*var(--ratio));
+  --scale3:calc(var(--base)*var(--ratio)*var(--fifth));
+  --scale4:calc(var(--base)*var(--ratio)*var(--ratio));
+  
+  /* Colors: Warm, sophisticated, enduring */
+  --ink:#2d2d2d;           /* Softer than pure black */
+  --ink-light:#4a4a4a;    /* For secondary text */
+  --paper:#fdfdfc;        /* Warm white, not stark */
+  --paper-soft:#f8f8f7;   /* Subtle background variation */
+  --accent:#8b4a6b;       /* Deep burgundy wine - wisdom & warmth */
+  --accent-light:#a76580; /* Lighter variant */
+  --quiet:#6b6b6b;        /* Warm gray */
+  --whisper:#9a9a9a;      /* Very quiet text */
+  --border:#e8e6e3;       /* Subtle warm border */
+  
+  /* Spacing: Generous, breathing */
+  --space-xs:calc(var(--base)/4);
+  --space-s:calc(var(--base)/2);
+  --space:var(--base);
+  --space-l:calc(var(--base)*var(--fifth));
+  --space-xl:calc(var(--base)*var(--ratio));
+  --space-2xl:calc(var(--base)*var(--ratio)*var(--fifth));
+  --space-3xl:calc(var(--base)*var(--ratio)*var(--ratio));
+  
+  /* Reading comfort */
+  --reading-width:42rem; /* Optimal line length */
+  --line-height:1.75;    /* Generous for comfort */
+  --line-height-tight:1.4;
+}
 
-        /* Links */
-        a {
-            color: #bb86fc;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+/* Dark mode: Sophisticated night palette */
+@media(prefers-color-scheme:dark){
+  :root{
+    --ink:#e8e6e3;
+    --ink-light:#c4c2bf;
+    --paper:#0f0f0e;
+    --paper-soft:#1a1a18;
+    --accent:#d4a5b8;
+    --accent-light:#e2b8c8;
+    --quiet:#9a9896;
+    --whisper:#6b6b69;
+    --border:#2d2d2b;
+  }
+}
 
-        /* Headers */
-        header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        header h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.8rem;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-        }
+/* Foundation: Solid ground for beauty */
+*,*::before,*::after{
+  box-sizing:border-box;
+}
 
-        /* Article content */
-        article {
-            max-width: 800px;
-            margin: auto;
-            background-color: #1e1e1e;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
+/* Smooth scrolling for elegance */
+html{
+  scroll-behavior:smooth;
+  font-size:18px;
+  line-height:var(--line-height);
+  -webkit-text-size-adjust:100%;
+}
 
-        /* Article typography */
-        article h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            letter-spacing: -0.02em;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-        }
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--paper);
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  /* Subtle texture for warmth */
+  background-image:radial-gradient(circle at 1px 1px,var(--border) 1px,transparent 0);
+  background-size:20px 20px;
+}
 
-        article h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: -0.01em;
-            color: #ffffff;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
+/* Reading container: Perfect for human eyes */
+article{
+  max-width:var(--reading-width);
+  margin:0 auto;
+  padding:var(--space-3xl) var(--space-xl);
+  background:var(--paper);
+  position:relative;
+}
 
-        article p {
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
+/* Drop caps removed - clean first paragraphs */
 
-        /* Navigation */
-        nav a {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            color: #bb86fc;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            background-color: #2a2a2a;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+/* Typography: Each element perfectly spaced */
+h1,h2,h3{
+  font-weight:600;
+  line-height:var(--line-height-tight);
+  margin:var(--space-2xl) 0 var(--space-l);
+  letter-spacing:-0.025em;
+  color:var(--ink);
+}
+h1{
+  font-size:var(--scale3);
+  margin-top:0;
+  font-weight:700;
+  letter-spacing:-0.04em;
+}
+h2{
+  font-size:var(--scale2);
+  margin-top:var(--space-3xl);
+  border-bottom:1px solid var(--border);
+  padding-bottom:var(--space-s);
+}
+h3{
+  font-size:var(--scale1);
+  font-weight:500;
+  color:var(--ink-light);
+}
 
-        nav a:hover {
-            background-color: #bb86fc;
-            color: #121212;
-            text-decoration: none;
-        }
+/* Paragraphs: Generous breathing room */
+p{
+  margin:0 0 var(--space-l);
+  line-height:var(--line-height);
+  font-size:var(--scale0);
+  max-width:68ch; /* Optimal reading width */
+}
 
-        /* Footer */
-        footer {
-            margin-top: 2rem;
-            text-align: center;
-        }
+/* Links: Sophisticated interaction */
+a{
+  color:var(--accent);
+  text-decoration:none;
+  text-underline-offset:0.3em;
+  text-decoration-thickness:0.05em;
+  border-bottom:1px solid transparent;
+  transition:all 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+a:hover{
+  color:var(--accent-light);
+  border-bottom-color:var(--accent-light);
+  text-decoration:none;
+}
+a:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+  border-radius:2px;
+}
 
-        .social-links a {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            background-color: #2a2a2a;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+/* Lists: Proper spacing */
+ul,ol{margin:0 0 var(--space-l);padding-left:var(--space-l)}
+li{margin-bottom:var(--space-s)}
 
-        .social-links a:hover {
-            background-color: #bb86fc;
-            color: #121212;
-            text-decoration: none;
-        }
+/* Blockquotes: Distinctive styling */
+blockquote{
+  margin:var(--space-xl) 0;
+  padding:var(--space-l) var(--space-xl);
+  border-left:4px solid var(--accent);
+  background:var(--paper-soft);
+  font-style:italic;
+  font-size:var(--scale1);
+  color:var(--ink-light);
+}
+blockquote p:last-child{margin-bottom:0}
 
-        /* Blockquotes */
-        blockquote {
-            border-left: 3px solid #bb86fc;
-            padding-left: 1rem;
-            margin: 1.5rem 0;
-            font-style: italic;
-        }
+/* Code: Technical elegance */
+code{
+  font-family:"SF Mono",Monaco,"Cascadia Code",monospace;
+  font-size:var(--scale-1);
+  background:var(--paper-soft);
+  padding:var(--space-xs) var(--space-s);
+  border-radius:3px;
+  color:var(--accent);
+}
+pre{
+  overflow-x:auto;
+  padding:var(--space-l);
+  margin:var(--space-xl) 0;
+  background:var(--paper-soft);
+  border:1px solid var(--border);
+  border-radius:6px;
+  font-size:var(--scale-1);
+}
+pre code{
+  background:none;
+  padding:0;
+  color:var(--ink);
+}
 
-        /* Lists */
-        ul, ol {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-        }
+/* Meta information: Quiet dignity */
+.meta{
+  color:var(--quiet);
+  font-size:var(--scale-1);
+  font-weight:500;
+  margin:var(--space) 0 var(--space-2xl);
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  border-bottom:1px solid var(--border);
+  padding-bottom:var(--space-l);
+}
 
-        li {
-            margin-bottom: 0.5rem;
-        }
+/* Navigation: Understated presence */
+nav{
+  text-align:center;
+  padding:var(--space-2xl) var(--space);
+  margin-top:var(--space-3xl);
+  border-top:1px solid var(--border);
+}
+nav a{
+  display:inline-block;
+  margin:0 var(--space-l);
+  padding:var(--space-s) var(--space);
+  font-size:var(--scale-1);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  border-radius:4px;
+  transition:all 0.2s ease;
+}
+nav a:hover{
+  background:var(--paper-soft);
+  transform:translateY(-1px);
+}
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        article {
-            background-color: #1e1e1e;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            margin: 2rem 0;
-        }
-
-        nav {
-            margin-bottom: 2rem;
-        }
-
-        /* Mobile-specific fixes */
-        @media screen and (max-width: 768px) {
-            footer {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                width: 100%;
-                background-color: #121212;
-                padding: 0.75rem 0;
-                margin: 0;
-                overflow: hidden;
-            }
-
-            .social-links {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                width: 100%;
-                gap: 0.75rem;
-                margin: 0;
-                padding: 0 1rem;
-                height: auto;
-            }
-
-            .social-links a {
-                flex: 0 1 auto;
-                text-align: center;
-                font-size: 0.85rem;
-                padding: 0.4rem 1rem;
-                border-radius: 20px;
-                background-color: #2a2a2a;
-                transition: background-color 0.3s ease;
-                white-space: nowrap;
-                display: inline-block;
-                line-height: 1.2;
-            }
-
-            .container {
-                padding: 1rem;
-            }
-
-            article {
-                background-color: #1e1e1e;
-                padding: 1.5rem;
-                border-radius: 8px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-                margin: 1rem 0;
-                width: auto;
-            }
-
-            nav {
-                margin-bottom: 1rem;
-            }
-
-            nav a {
-                display: inline-block;
-                padding: 0.4rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            /* Adjust title size for mobile */
-            header h1 {
-                font-size: 1.8rem;  /* Smaller title size */
-                line-height: 1.2;   /* Adjust line height */
-                margin-bottom: 1rem; /* Adjust spacing */
-            }
-        }
-    </style>
+/* Print: Timeless on paper too */
+@media print{
+  body{
+    font-size:11pt;
+    line-height:1.5;
+    background:white;
+    background-image:none;
+  }
+  article{
+    max-width:none;
+    padding:0;
+    background:white;
+  }
+  nav,.meta{display:none}
+  h1,h2,h3{page-break-after:avoid}
+  p{orphans:3;widows:3}
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <a href="/" class="back-link">← Back to homepage</a>
-        </nav>
-        
-        <header>
-            <h1>{{ title }}</h1>
-        </header>
-
-        <article>
-            {{ content }}
-        </article>
-    </div>
+<article>
+<h1>{{ title }}</h1>
+<div class="meta">{{ date }}</div>
+{{ content|safe }}
+</article>
+<nav>
+<a href="/index.html">Index</a>
+<a href="https://twitter.com/0xpili">Twitter</a>
+<a href="https://github.com/pili-engineering">GitHub</a>
+</nav>
 </body>
 </html>

@@ -1,216 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0xpili blog</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Removed Google Fonts for a more common font -->
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>0xpili — Thoughtful Technology</title>
+<meta name="description" content="Writings on technology, privacy, and the human condition by 0xpili.">
+<meta property="og:title" content="0xpili">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://0xpili.xyz/">
+<link rel="canonical" href="https://0xpili.xyz/">
+<style>
+/* ARTISAN CRAFTED: Every pixel placed with intention
+   COZY: Generous spacing, warm colors, reading comfort
+   LUXURIOUS AUSTERITY: Sophisticated restraint, timeless beauty */
+:root{
+  /* Mathematical foundation: Golden ratio + perfect fifth (1.5) */
+  --ratio:1.618;
+  --fifth:1.5;
+  --base:1rem;
+  
+  /* Type scale: Harmonious proportions */
+  --scale-2:calc(var(--base)/var(--ratio)/var(--fifth));
+  --scale-1:calc(var(--base)/var(--ratio));
+  --scale0:var(--base);
+  --scale1:calc(var(--base)*var(--fifth));
+  --scale2:calc(var(--base)*var(--ratio));
+  --scale3:calc(var(--base)*var(--ratio)*var(--fifth));
+  --scale4:calc(var(--base)*var(--ratio)*var(--ratio));
+  
+  /* Colors: Warm, sophisticated, enduring */
+  --ink:#2d2d2d;           /* Softer than pure black */
+  --ink-light:#4a4a4a;    /* For secondary text */
+  --paper:#fdfdfc;        /* Warm white, not stark */
+  --paper-soft:#f8f8f7;   /* Subtle background variation */
+  --accent:#8b4a6b;       /* Deep burgundy wine - wisdom & warmth */
+  --accent-light:#a76580; /* Lighter variant */
+  --quiet:#6b6b6b;        /* Warm gray */
+  --whisper:#9a9a9a;      /* Very quiet text */
+  --border:#e8e6e3;       /* Subtle warm border */
+  
+  /* Spacing: Generous, breathing */
+  --space-xs:calc(var(--base)/4);
+  --space-s:calc(var(--base)/2);
+  --space:var(--base);
+  --space-l:calc(var(--base)*var(--fifth));
+  --space-xl:calc(var(--base)*var(--ratio));
+  --space-2xl:calc(var(--base)*var(--ratio)*var(--fifth));
+  --space-3xl:calc(var(--base)*var(--ratio)*var(--ratio));
+  
+  /* Reading comfort */
+  --reading-width:42rem; /* Optimal line length */
+  --line-height:1.75;    /* Generous for comfort */
+  --line-height-tight:1.4;
+}
 
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #181824;
-            color: #e0e0e0;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: 400;
-            line-height: 1.6;
-        }
+/* Dark mode: Sophisticated night palette */
+@media(prefers-color-scheme:dark){
+  :root{
+    --ink:#e8e6e3;
+    --ink-light:#c4c2bf;
+    --paper:#0f0f0e;
+    --paper-soft:#1a1a18;
+    --accent:#d4a5b8;
+    --accent-light:#e2b8c8;
+    --quiet:#9a9896;
+    --whisper:#6b6b69;
+    --border:#2d2d2b;
+  }
+}
 
-        .container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 1.5rem;
-        }
+/* Foundation: Solid ground for beauty */
+*,*::before,*::after{
+  box-sizing:border-box;
+}
 
-        header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        header h1 {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 2.2rem;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-        }
+html{
+  scroll-behavior:smooth;
+  font-size:18px;
+  line-height:var(--line-height);
+  -webkit-text-size-adjust:100%;
+}
 
-        .bio-container {
-            max-width: 700px;
-            margin: 1.5rem auto 1.5rem auto;
-            padding: 0.5rem 0;
-            text-align: center;
-        }
-        .bio-container p {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.6;
-            color: #e0e0e0;
-            margin-bottom: 0;
-            text-align: center;
-            margin-top: 0rem;
-        }
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--paper);
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  /* Subtle texture for warmth */
+  background-image:radial-gradient(circle at 1px 1px,var(--border) 1px,transparent 0);
+  background-size:20px 20px;
+  min-height:100vh;
+}
 
-        .posts {
-            width: 100%;
-        }
-        .post-list {
-            list-style: none;
-            padding: 0;
-            margin: 2rem 0;
-        }
-        .post-list li {
-            margin-bottom: 1.5rem;
-            padding: 0;
-        }
-        .post-date {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 0.95rem;
-            color: #888;
-            margin-bottom: 0.2rem;
-        }
-        .post-title {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 1.2rem;
-            color: #bb86fc;
-            text-decoration: none;
-            transition: color 0.3s;
-            display: block;
-            margin: 0.2rem 0 0.5rem 0;
-        }
-        .post-title:hover {
-            color: #fff;
-        }
+main{
+  max-width:var(--reading-width);
+  margin:0 auto;
+  padding:var(--space-3xl) var(--space-xl);
+  background:var(--paper);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
 
-        a {
-            color: #bb86fc;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+/* Header: Confident statement */
+header{
+  text-align:center;
+  margin-bottom:var(--space-3xl);
+  padding-bottom:var(--space-2xl);
+  border-bottom:1px solid var(--border);
+}
+h1{
+  font-size:var(--scale4);
+  font-weight:700;
+  margin:0 0 var(--space-l);
+  letter-spacing:-0.04em;
+  color:var(--ink);
+}
+.tagline{
+  color:var(--quiet);
+  font-size:var(--scale0);
+  margin:0;
+  font-style:italic;
+  letter-spacing:0.01em;
+}
 
-        footer {
-            max-width: 700px;
-            margin: 2rem auto 0 auto;
-            padding: 0.5rem 0;
-            text-align: center;
-            background: none;
-            border-radius: 0;
-            box-shadow: none;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin: 1rem 0 0 0;
-            padding: 0;
-        }
-        .social-links a {
-            text-decoration: none;
-            color: #bb86fc;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.2rem 0.7rem;
-            border-radius: 4px;
-            background: none;
-            transition: background 0.3s, color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .social-links a:hover {
-            background: #bb86fc22;
-            color: #fff;
-            text-decoration: none;
-        }
-        .social-links svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-            margin-right: 0.4rem;
-        }
-        @media screen and (max-width: 768px) {
-            .container {
-                padding: 0.5rem;
-            }
-            .bio-container {
-                padding: 0.2rem;
-            }
-            .post-list li {
-                margin-bottom: 1rem;
-            }
-            .post-title {
-                font-size: 1rem;
-            }
-            .social-links {
-                gap: 0.4rem;
-            }
-            .social-links a {
-                margin: 0.15rem;
-                font-size: 0.95rem;
-                padding: 0.2rem 0.5rem;
-            }
-        }
-    </style>
+/* Posts: Elegant catalog */
+.posts{
+  list-style:none;
+  padding:0;
+  margin:0 0 var(--space-3xl);
+  flex:1;
+}
+.posts li{
+  margin:0 0 var(--space-2xl);
+  padding:var(--space-l) 0;
+  border-bottom:1px solid var(--border);
+  transition:all 0.2s ease;
+}
+.posts li:last-child{
+  border-bottom:none;
+}
+.posts li:hover{
+  transform:translateX(var(--space-s));
+}
+.posts a{
+  color:var(--ink);
+  text-decoration:none;
+  display:block;
+  transition:all 0.2s ease;
+}
+.posts a:hover{
+  color:var(--accent);
+}
+.posts h2{
+  font-size:var(--scale2);
+  font-weight:600;
+  margin:0 0 var(--space-s);
+  line-height:var(--line-height-tight);
+  letter-spacing:-0.025em;
+}
+.posts time{
+  color:var(--quiet);
+  font-size:var(--scale-1);
+  font-weight:500;
+  display:block;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+
+/* Bio: Personal warmth */
+.bio{
+  margin-top:auto;
+  padding-top:var(--space-2xl);
+  border-top:2px solid var(--border);
+  font-size:var(--scale0);
+  color:var(--ink-light);
+  text-align:center;
+  line-height:var(--line-height);
+}
+.bio p{
+  margin:0 0 var(--space-l);
+  max-width:36ch;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Links: Sophisticated presence */
+.links{
+  margin-top:var(--space-l);
+  display:flex;
+  justify-content:center;
+  gap:var(--space-l);
+}
+.links a{
+  color:var(--accent);
+  text-decoration:none;
+  font-size:var(--scale-1);
+  font-weight:500;
+  padding:var(--space-s) var(--space);
+  border:1px solid var(--border);
+  border-radius:4px;
+  transition:all 0.2s ease;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+.links a:hover{
+  background:var(--paper-soft);
+  border-color:var(--accent);
+  transform:translateY(-1px);
+}
+.links a:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>0xpili blog</h1>
-        </header>
+<main>
+<header>
+<h1>0xpili</h1>
+<p class="tagline">On technology, privacy, and being human</p>
+</header>
 
-        <div class="bio-container">
-            <p>Hi anon, I am <a href="https://twitter.com/0xpili_" target="_blank">Pili</a>. Currently working as Ops Lead at <a href="https://graphops.xyz" target="_blank">GraphOps</a>, a blockchain infrastrucuture company. I also organize Ethereum events for fun. All my blogs are my own views.</p>
-        </div>
+<ul class="posts">
+{% for post in posts %}
+<li>
+<a href="/{{ post.filename }}.html">
+<h2>{{ post.title }}</h2>
+<time datetime="{{ post.iso_date }}">{{ post.date }}</time>
+</a>
+</li>
+{% endfor %}
+</ul>
 
-        <main>
-            <article>
-                <div class="posts">
-                    <ul class="post-list">
-                        {% for post in posts %}
-                        <li>
-                            <div class="post-date">{{ post.date }}</div>
-                            <a href="/{{ post.filename }}" class="post-title">{{ post.title }}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </article>
-        </main>
-        <footer>
-            <div class="social-links">
-                <a href="https://twitter.com/0xpili_" aria-label="Twitter">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                </a>
-                <a href="https://github.com/0xpili" aria-label="GitHub">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
-                    </svg>
-                </a>
-                <a href="mailto:blog@0xpili.xyz" aria-label="Email">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
-                        <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
-                    </svg>
-                </a>
-            </div>
-        </footer>
-    </div>
+<section class="bio">
+<p>Entrepreneur in decentralized systems. Building tools that respect human agency. Previously founded successful ventures in emerging markets.</p>
+<div class="links">
+<a href="https://twitter.com/0xpili">Twitter</a>
+<a href="https://github.com/pili-engineering">GitHub</a>
+<a href="mailto:hello@0xpili.xyz">Email</a>
+</div>
+</section>
+</main>
 </body>
 </html>
-
-
