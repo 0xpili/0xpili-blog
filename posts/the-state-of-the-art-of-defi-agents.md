@@ -1,4 +1,4 @@
-Date: 2025 Jul 19
+Date: 2025 Jul 20
 
 # The State of the Art of DeFi Agents
 
