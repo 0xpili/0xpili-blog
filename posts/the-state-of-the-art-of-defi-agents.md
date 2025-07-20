@@ -98,7 +98,7 @@ As agents begin to explore real‑world assets (RWA) and bridge TradFi rails int
 
 If you're building an agent I haven't covered here, or if you simply want to swap notes, drop me a line at hola@0xpili.xyz, I'd love to hear what you're working on!
 
-Thanks to everyone who read, critiqued, and pushed me to make this piece stronger. Specially to Fio, Martin, Mati and Tadeo who reviewed this piece
+Thanks to everyone who read, critiqued, and pushed me to make this piece stronger. Specially to Fio, Martin, Mati, and Tadeo.
 
 ---
 
