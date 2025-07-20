@@ -1,1 +1,15 @@
 CLAUDE.md
+.build_cache.json
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.env
+.pytest_cache/
+.coverage
+htmlcov/
