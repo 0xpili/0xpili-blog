@@ -10,93 +10,44 @@
 <meta property="og:url" content="https://0xpili.xyz/crypto-without-privacy-is-half-finished">
 <link rel="canonical" href="https://0xpili.xyz/crypto-without-privacy-is-half-finished">
 <style>
-/* ARTISAN CRAFTED: Every pixel placed with intention
-   COZY: Generous spacing, warm colors, reading comfort
-   LUXURIOUS AUSTERITY: Sophisticated restraint, timeless beauty */
 :root{
-  /* Mathematical foundation: Golden ratio + perfect fifth (1.5) */
   --ratio:1.618;
-  --fifth:1.5;
   --base:1rem;
-  
-  /* Type scale: Harmonious proportions */
-  --scale-2:calc(var(--base)/var(--ratio)/var(--fifth));
-  --scale-1:calc(var(--base)/var(--ratio));
+  --scale-1:calc(var(--base)*0.875);
   --scale0:var(--base);
-  --scale1:calc(var(--base)*var(--fifth));
-  --scale2:calc(var(--base)*var(--ratio));
-  --scale3:calc(var(--base)*var(--ratio)*var(--fifth));
-  --scale4:calc(var(--base)*var(--ratio)*var(--ratio));
-  
-  /* Colors: Warm, sophisticated, enduring */
-  --ink:#2d2d2d;           /* Softer than pure black */
-  --ink-light:#4a4a4a;    /* For secondary text */
-  --paper:#fdfdfc;        /* Warm white, not stark */
-  --paper-soft:#f8f8f7;   /* Subtle background variation */
-  --accent:#8b4a6b;       /* Deep burgundy wine - wisdom & warmth */
-  --accent-light:#a76580; /* Lighter variant */
-  --quiet:#6b6b6b;        /* Warm gray */
-  --whisper:#9a9a9a;      /* Very quiet text */
-  --border:#e8e6e3;       /* Subtle warm border */
-  
-  /* Spacing: Generous, breathing */
-  --space-xs:calc(var(--base)/4);
-  --space-s:calc(var(--base)/2);
-  --space:var(--base);
-  --space-l:calc(var(--base)*var(--fifth));
-  --space-xl:calc(var(--base)*var(--ratio));
-  --space-2xl:calc(var(--base)*var(--ratio)*var(--fifth));
-  --space-3xl:calc(var(--base)*var(--ratio)*var(--ratio));
-  
-  /* Reading comfort */
-  --reading-width:42rem; /* Optimal line length */
-  --line-height:1.75;    /* Generous for comfort */
-  --line-height-tight:1.4;
+  --scale1:calc(var(--base)*1.25);
+  --scale2:calc(var(--base)*1.5);
+  --scale3:calc(var(--base)*2);
+  --ink:#1a1a1a;
+  --ink-muted:#666666;
+  --paper:#ffffff;
+  --paper-subtle:#fafafa;
+  --accent:#2563eb;
+  --border:#e5e5e5;
+  --space-xs:0.25rem;
+  --space-s:0.5rem;
+  --space:1rem;
+  --space-l:1.5rem;
+  --space-xl:2rem;
+  --space-2xl:3rem;
+  --space-3xl:4rem;
+  --reading-width:38rem;
+  --line-height:1.6;
+  --line-height-tight:1.3;
 }
-
-/* Dark mode: Sophisticated night palette */
-@media(prefers-color-scheme:dark){
-  :root{
-    --ink:#e8e6e3;
-    --ink-light:#c4c2bf;
-    --paper:#0f0f0e;
-    --paper-soft:#1a1a18;
-    --accent:#d4a5b8;
-    --accent-light:#e2b8c8;
-    --quiet:#9a9896;
-    --whisper:#6b6b69;
-    --border:#2d2d2b;
-  }
-}
-
-/* Foundation: Solid ground for beauty */
-*,*::before,*::after{
-  box-sizing:border-box;
-}
-
-/* Smooth scrolling for elegance */
+*,*::before,*::after{box-sizing:border-box}
 html{
-  scroll-behavior:smooth;
   font-size:18px;
   line-height:var(--line-height);
-  -webkit-text-size-adjust:100%;
 }
-
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  font-family:ui-serif,Georgia,"Times New Roman",serif;
   font-weight:400;
   color:var(--ink);
   background:var(--paper);
   text-rendering:optimizeLegibility;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  /* Subtle texture for warmth */
-  background-image:radial-gradient(circle at 1px 1px,var(--border) 1px,transparent 0);
-  background-size:20px 20px;
 }
-
-/* Reading container: Perfect for human eyes */
 article{
   max-width:var(--reading-width);
   margin:0 auto;
@@ -104,152 +55,115 @@ article{
   background:var(--paper);
   position:relative;
 }
-
-/* Drop caps removed - clean first paragraphs */
-
-/* Typography: Each element perfectly spaced */
 h1,h2,h3{
+  font-family:ui-sans-serif,system-ui,sans-serif;
   font-weight:600;
   line-height:var(--line-height-tight);
   margin:var(--space-2xl) 0 var(--space-l);
-  letter-spacing:-0.025em;
   color:var(--ink);
 }
 h1{
   font-size:var(--scale3);
   margin-top:0;
   font-weight:700;
-  letter-spacing:-0.04em;
 }
 h2{
   font-size:var(--scale2);
   margin-top:var(--space-3xl);
-  border-bottom:1px solid var(--border);
   padding-bottom:var(--space-s);
+  border-bottom:1px solid var(--border);
 }
 h3{
   font-size:var(--scale1);
   font-weight:500;
-  color:var(--ink-light);
+  color:var(--ink-muted);
 }
-
-/* Paragraphs: Generous breathing room */
 p{
   margin:0 0 var(--space-l);
   line-height:var(--line-height);
-  font-size:var(--scale0);
-  max-width:68ch; /* Optimal reading width */
 }
-
-/* Links: Sophisticated interaction */
 a{
   color:var(--accent);
-  text-decoration:none;
-  text-underline-offset:0.3em;
-  text-decoration-thickness:0.05em;
-  border-bottom:1px solid transparent;
-  transition:all 0.2s cubic-bezier(0.4,0,0.2,1);
+  text-decoration:underline;
+  text-underline-offset:0.2em;
+  text-decoration-thickness:1px;
 }
 a:hover{
-  color:var(--accent-light);
-  border-bottom-color:var(--accent-light);
   text-decoration:none;
 }
 a:focus{
   outline:2px solid var(--accent);
   outline-offset:2px;
-  border-radius:2px;
 }
-
-/* Lists: Proper spacing */
 ul,ol{margin:0 0 var(--space-l);padding-left:var(--space-l)}
 li{margin-bottom:var(--space-s)}
-
-/* Blockquotes: Distinctive styling */
 blockquote{
   margin:var(--space-xl) 0;
-  padding:var(--space-l) var(--space-xl);
-  border-left:4px solid var(--accent);
-  background:var(--paper-soft);
+  padding:var(--space-l);
+  border-left:3px solid var(--border);
   font-style:italic;
-  font-size:var(--scale1);
-  color:var(--ink-light);
+  color:var(--ink-muted);
 }
 blockquote p:last-child{margin-bottom:0}
-
-/* Code: Technical elegance */
 code{
-  font-family:"SF Mono",Monaco,"Cascadia Code",monospace;
+  font-family:ui-monospace,"SF Mono",Monaco,monospace;
   font-size:var(--scale-1);
-  background:var(--paper-soft);
+  background:var(--paper-subtle);
   padding:var(--space-xs) var(--space-s);
   border-radius:3px;
-  color:var(--accent);
 }
 pre{
   overflow-x:auto;
   padding:var(--space-l);
   margin:var(--space-xl) 0;
-  background:var(--paper-soft);
-  border:1px solid var(--border);
+  background:var(--paper-subtle);
   border-radius:6px;
   font-size:var(--scale-1);
 }
 pre code{
   background:none;
   padding:0;
-  color:var(--ink);
 }
-
-/* Meta information: Quiet dignity */
 .meta{
-  color:var(--quiet);
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  color:var(--ink-muted);
   font-size:var(--scale-1);
-  font-weight:500;
   margin:var(--space) 0 var(--space-2xl);
-  text-transform:uppercase;
-  letter-spacing:0.05em;
-  border-bottom:1px solid var(--border);
   padding-bottom:var(--space-l);
+  border-bottom:1px solid var(--border);
 }
-
-/* Navigation: Understated presence */
 nav{
   text-align:center;
-  padding:var(--space-2xl) var(--space);
+  padding:var(--space-2xl) 0;
   margin-top:var(--space-3xl);
   border-top:1px solid var(--border);
 }
 nav a{
   display:inline-block;
   margin:0 var(--space-l);
-  padding:var(--space-s) var(--space);
+  font-family:ui-sans-serif,system-ui,sans-serif;
   font-size:var(--scale-1);
-  font-weight:500;
-  text-transform:uppercase;
-  letter-spacing:0.05em;
-  border-radius:4px;
-  transition:all 0.2s ease;
+  text-decoration:none;
 }
 nav a:hover{
-  background:var(--paper-soft);
-  transform:translateY(-1px);
+  text-decoration:underline;
 }
-
-/* Print: Timeless on paper too */
+.cover{
+  margin:calc(var(--space-3xl)*-1) calc(var(--space-xl)*-1) var(--space-3xl);
+  overflow:hidden;
+  aspect-ratio:16/9;
+  background:var(--paper-subtle);
+}
+.cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
 @media print{
-  body{
-    font-size:11pt;
-    line-height:1.5;
-    background:white;
-    background-image:none;
-  }
-  article{
-    max-width:none;
-    padding:0;
-    background:white;
-  }
-  nav,.meta{display:none}
+  body{font-size:11pt;line-height:1.4}
+  article{max-width:none;padding:0}
+  .cover,nav,.meta{display:none}
   h1,h2,h3{page-break-after:avoid}
   p{orphans:3;widows:3}
 }

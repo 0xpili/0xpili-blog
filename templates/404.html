@@ -7,27 +7,19 @@
 <meta name="robots" content="noindex">
 <style>
 :root{
-  --ratio:1.618;
   --base:1rem;
-  --scale4:calc(var(--base)*var(--ratio)*var(--ratio));
-  --ink:#2d2d2d;
-  --paper:#fdfdfc;
-  --accent:#8b4a6b;
-  --space:var(--base);
-  --space-xl:calc(var(--base)*var(--ratio));
-}
-@media(prefers-color-scheme:dark){
-  :root{
-    --ink:#e8e6e3;
-    --paper:#0f0f0e;
-    --accent:#d4a5b8;
-  }
+  --scale4:2.5rem;
+  --ink:#1a1a1a;
+  --paper:#ffffff;
+  --accent:#2563eb;
+  --space:1rem;
+  --space-xl:2rem;
 }
 *{box-sizing:border-box}
-html{font-size:18px;line-height:1.618}
+html{font-size:18px;line-height:1.6}
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  font-family:ui-serif,Georgia,"Times New Roman",serif;
   color:var(--ink);
   background:var(--paper);
   display:flex;
@@ -38,22 +30,21 @@ body{
   padding:var(--space);
 }
 main{max-width:32rem}
-h1{font-size:var(--scale4);font-weight:700;margin:0 0 var(--space);letter-spacing:-0.04em}
-p{margin:0 0 var(--space-xl);line-height:1.75}
+h1{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-size:var(--scale4);
+  font-weight:700;
+  margin:0 0 var(--space);
+}
+p{margin:0 0 var(--space-xl);line-height:1.6}
 a{
   color:var(--accent);
-  text-decoration:none;
-  padding:var(--space) var(--space-xl);
-  border:1px solid var(--accent);
-  border-radius:4px;
-  transition:all 0.2s ease;
-  display:inline-block;
-  font-weight:500;
+  text-decoration:underline;
+  text-underline-offset:0.2em;
+  font-family:ui-sans-serif,system-ui,sans-serif;
 }
 a:hover{
-  background:var(--accent);
-  color:var(--paper);
-  transform:translateY(-1px);
+  text-decoration:none;
 }
 </style>
 </head>

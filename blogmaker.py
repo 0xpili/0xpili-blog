@@ -79,17 +79,23 @@ class BlogBuilder:
                 print(f"Warning: Invalid date format in {filepath.name}: {date_str}")
                 return None
             
-            md_content = '\n'.join(lines[1:]).strip()
-            html_content = markdown2.markdown(
-                md_content,
-                extras=['fenced-code-blocks', 'tables', 'header-ids']
-            )
-            
             slug = filepath.stem.lower().replace(' ', '-')
             
             title = filepath.stem.replace('-', ' ').title()
             if lines and lines[1].startswith('# '):
                 title = lines[1][2:].strip()
+            
+            cover_image, filtered_lines = self._extract_cover_image(lines, slug)
+            
+            if cover_image:
+                content_text = '\n'.join(filtered_lines[1:]).strip()
+            else:
+                content_text = '\n'.join(lines[1:]).strip()
+            
+            html_content = markdown2.markdown(
+                content_text,
+                extras=['fenced-code-blocks', 'header-ids', 'tables']
+            )
             
             return {
                 'title': title,
@@ -99,6 +105,7 @@ class BlogBuilder:
                 'iso_date': date_obj.isoformat(),
                 'date_obj': date_obj,
                 'content': html_content,
+                'cover_image': cover_image,
                 'filepath': str(filepath),
                 'hash': self._file_hash(filepath),
             }
@@ -106,6 +113,29 @@ class BlogBuilder:
         except Exception as e:
             print(f"Error parsing {filepath.name}: {e}")
             return None
+    
+    def _extract_cover_image(self, lines: List[str], slug: str) -> Tuple[Optional[str], List[str]]:
+        cover_image = None
+        filtered_lines = []
+        
+        for line in lines:
+            stripped = line.strip()
+            if stripped.startswith('![') and '](' in stripped and stripped.endswith(')'):
+                if cover_image is None:
+                    start = stripped.find('](') + 2
+                    end = stripped.rfind(')')
+                    image_path = stripped[start:end]
+                    
+                    if image_path.startswith('http'):
+                        cover_image = image_path
+                    elif image_path.startswith('/'):
+                        cover_image = image_path
+                    else:
+                        cover_image = f"/{image_path}"
+                    continue
+            filtered_lines.append(line)
+        
+        return cover_image, filtered_lines
     
     def _needs_rebuild(self, post: Dict) -> bool:
         cached_hash = self.cache.get(post['filepath'])
@@ -143,6 +173,7 @@ class BlogBuilder:
                             title=post['title'],
                             date=post['date'],
                             content=post['content'],
+                            cover_image=post['cover_image'],
                             slug=post['slug'],
                             description=None,
                         )

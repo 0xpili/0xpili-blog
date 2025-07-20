@@ -12,48 +12,29 @@
 <style>
 :root{
   --ratio:1.618;
-  --fifth:1.5;
   --base:1rem;
-  --scale-2:calc(var(--base)/var(--ratio)/var(--fifth));
-  --scale-1:calc(var(--base)/var(--ratio));
+  --scale-1:calc(var(--base)*0.875);
   --scale0:var(--base);
-  --scale1:calc(var(--base)*var(--fifth));
-  --scale2:calc(var(--base)*var(--ratio));
-  --scale3:calc(var(--base)*var(--ratio)*var(--fifth));
-  --scale4:calc(var(--base)*var(--ratio)*var(--ratio));
-  --ink:#2d2d2d;
-  --ink-light:#4a4a4a;
-  --paper:#fdfdfc;
-  --paper-soft:#f8f8f7;
-  --accent:#8b4a6b;
-  --accent-light:#a76580;
-  --quiet:#6b6b6b;
-  --whisper:#9a9a9a;
-  --border:#e8e6e3;
-  --space-xs:calc(var(--base)/4);
-  --space-s:calc(var(--base)/2);
-  --space:var(--base);
-  --space-l:calc(var(--base)*var(--fifth));
-  --space-xl:calc(var(--base)*var(--ratio));
-  --space-2xl:calc(var(--base)*var(--ratio)*var(--fifth));
-  --space-3xl:calc(var(--base)*var(--ratio)*var(--ratio));
-  --reading-width:42rem;
-  --line-height:1.75;
-  --line-height-tight:1.4;
-}
-
-@media(prefers-color-scheme:dark){
-  :root{
-    --ink:#e8e6e3;
-    --ink-light:#c4c2bf;
-    --paper:#0f0f0e;
-    --paper-soft:#1a1a18;
-    --accent:#d4a5b8;
-    --accent-light:#e2b8c8;
-    --quiet:#9a9896;
-    --whisper:#6b6b69;
-    --border:#2d2d2b;
-  }
+  --scale1:calc(var(--base)*1.25);
+  --scale2:calc(var(--base)*1.5);
+  --scale3:calc(var(--base)*2);
+  --scale4:calc(var(--base)*2.5);
+  --ink:#1a1a1a;
+  --ink-muted:#666666;
+  --paper:#ffffff;
+  --paper-subtle:#fafafa;
+  --accent:#2563eb;
+  --border:#e5e5e5;
+  --space-xs:0.25rem;
+  --space-s:0.5rem;
+  --space:1rem;
+  --space-l:1.5rem;
+  --space-xl:2rem;
+  --space-2xl:3rem;
+  --space-3xl:4rem;
+  --reading-width:38rem;
+  --line-height:1.6;
+  --line-height-tight:1.3;
 }
 
 *,*::before,*::after{
@@ -61,23 +42,17 @@
 }
 
 html{
-  scroll-behavior:smooth;
   font-size:18px;
   line-height:var(--line-height);
-  -webkit-text-size-adjust:100%;
 }
 
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  font-family:ui-serif,Georgia,"Times New Roman",serif;
   font-weight:400;
   color:var(--ink);
   background:var(--paper);
   text-rendering:optimizeLegibility;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  background-image:radial-gradient(circle at 1px 1px,var(--border) 1px,transparent 0);
-  background-size:20px 20px;
   min-height:100vh;
 }
 
@@ -98,18 +73,17 @@ header{
   border-bottom:1px solid var(--border);
 }
 h1{
+  font-family:ui-sans-serif,system-ui,sans-serif;
   font-size:var(--scale4);
   font-weight:700;
   margin:0 0 var(--space-l);
-  letter-spacing:-0.04em;
   color:var(--ink);
 }
 .tagline{
-  color:var(--quiet);
+  color:var(--ink-muted);
   font-size:var(--scale0);
   margin:0;
   font-style:italic;
-  letter-spacing:0.01em;
 }
 
 .posts{
@@ -122,53 +96,41 @@ h1{
   margin:0 0 var(--space-2xl);
   padding:var(--space-l) 0;
   border-bottom:1px solid var(--border);
-  transition:all 0.2s ease;
 }
 .posts li:last-child{
   border-bottom:none;
-}
-.posts li:hover{
-  transform:translateX(var(--space-s));
 }
 .posts a{
   color:var(--ink);
   text-decoration:none;
   display:block;
-  transition:all 0.2s ease;
 }
 .posts a:hover{
   color:var(--accent);
 }
 .posts h2{
+  font-family:ui-sans-serif,system-ui,sans-serif;
   font-size:var(--scale2);
   font-weight:600;
   margin:0 0 var(--space-s);
   line-height:var(--line-height-tight);
-  letter-spacing:-0.025em;
 }
 .posts time{
-  color:var(--quiet);
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  color:var(--ink-muted);
   font-size:var(--scale-1);
-  font-weight:500;
   display:block;
-  text-transform:uppercase;
-  letter-spacing:0.05em;
 }
 
 .bio{
   margin-top:auto;
   padding-top:var(--space-2xl);
-  border-top:2px solid var(--border);
-  font-size:var(--scale0);
-  color:var(--ink-light);
+  border-top:1px solid var(--border);
   text-align:center;
-  line-height:var(--line-height);
 }
 .bio p{
   margin:0 0 var(--space-l);
-  max-width:36ch;
-  margin-left:auto;
-  margin-right:auto;
+  color:var(--ink-muted);
 }
 
 .links{
@@ -178,25 +140,13 @@ h1{
   gap:var(--space-l);
 }
 .links a{
+  font-family:ui-sans-serif,system-ui,sans-serif;
   color:var(--accent);
   text-decoration:none;
   font-size:var(--scale-1);
-  font-weight:500;
-  padding:var(--space-s) var(--space);
-  border:1px solid var(--border);
-  border-radius:4px;
-  transition:all 0.2s ease;
-  text-transform:uppercase;
-  letter-spacing:0.05em;
 }
 .links a:hover{
-  background:var(--paper-soft);
-  border-color:var(--accent);
-  transform:translateY(-1px);
-}
-.links a:focus{
-  outline:2px solid var(--accent);
-  outline-offset:2px;
+  text-decoration:underline;
 }
 </style>
 </head>
@@ -208,6 +158,12 @@ h1{
 </header>
 
 <ul class="posts">
+<li>
+<a href="/the-state-of-the-art-of-defi-agents.html">
+<h2>The State Of The Art Of Defi Agents</h2>
+<time datetime="2025-07-19T00:00:00">2025 Jul 19</time>
+</a>
+</li>
 <li>
 <a href="/crypto-without-privacy-is-half-finished.html">
 <h2>Crypto Without Privacy Is Half Finished</h2>

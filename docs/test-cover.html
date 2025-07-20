@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Test Cover — 0xpili</title>
+<meta name="description" content="Thoughtful writings on technology, privacy, and the human condition.">
+<meta property="og:title" content="Test Cover">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://0xpili.xyz/test-cover">
+<link rel="canonical" href="https://0xpili.xyz/test-cover">
+<style>
+:root{
+  --ratio:1.618;
+  --fifth:1.5;
+  --base:1rem;
+  --scale-2:calc(var(--base)/var(--ratio)/var(--fifth));
+  --scale-1:calc(var(--base)/var(--ratio));
+  --scale0:var(--base);
+  --scale1:calc(var(--base)*var(--fifth));
+  --scale2:calc(var(--base)*var(--ratio));
+  --scale3:calc(var(--base)*var(--ratio)*var(--fifth));
+  --scale4:calc(var(--base)*var(--ratio)*var(--ratio));
+  --ink:#2d2d2d;
+  --ink-light:#4a4a4a;
+  --paper:#fdfdfc;
+  --paper-soft:#f8f8f7;
+  --accent:#8b4a6b;
+  --accent-light:#a76580;
+  --quiet:#6b6b6b;
+  --whisper:#9a9a9a;
+  --border:#e8e6e3;
+  --space-xs:calc(var(--base)/4);
+  --space-s:calc(var(--base)/2);
+  --space:var(--base);
+  --space-l:calc(var(--base)*var(--fifth));
+  --space-xl:calc(var(--base)*var(--ratio));
+  --space-2xl:calc(var(--base)*var(--ratio)*var(--fifth));
+  --space-3xl:calc(var(--base)*var(--ratio)*var(--ratio));
+  --reading-width:42rem;
+  --line-height:1.75;
+  --line-height-tight:1.4;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --ink:#e8e6e3;
+    --ink-light:#c4c2bf;
+    --paper:#0f0f0e;
+    --paper-soft:#1a1a18;
+    --accent:#d4a5b8;
+    --accent-light:#e2b8c8;
+    --quiet:#9a9896;
+    --whisper:#6b6b69;
+    --border:#2d2d2b;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{
+  scroll-behavior:smooth;
+  font-size:18px;
+  line-height:var(--line-height);
+  -webkit-text-size-adjust:100%;
+}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--paper);
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background-image:radial-gradient(circle at 1px 1px,var(--border) 1px,transparent 0);
+  background-size:20px 20px;
+}
+article{
+  max-width:var(--reading-width);
+  margin:0 auto;
+  padding:var(--space-3xl) var(--space-xl);
+  background:var(--paper);
+  position:relative;
+}
+h1,h2,h3{
+  font-weight:600;
+  line-height:var(--line-height-tight);
+  margin:var(--space-2xl) 0 var(--space-l);
+  letter-spacing:-0.025em;
+  color:var(--ink);
+}
+h1{
+  font-size:var(--scale3);
+  margin-top:0;
+  font-weight:700;
+  letter-spacing:-0.04em;
+}
+h2{
+  font-size:var(--scale2);
+  margin-top:var(--space-3xl);
+  border-bottom:1px solid var(--border);
+  padding-bottom:var(--space-s);
+}
+h3{
+  font-size:var(--scale1);
+  font-weight:500;
+  color:var(--ink-light);
+}
+p{
+  margin:0 0 var(--space-l);
+  line-height:var(--line-height);
+  font-size:var(--scale0);
+  max-width:68ch;
+}
+a{
+  color:var(--accent);
+  text-decoration:none;
+  text-underline-offset:0.3em;
+  text-decoration-thickness:0.05em;
+  border-bottom:1px solid transparent;
+  transition:all 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+a:hover{
+  color:var(--accent-light);
+  border-bottom-color:var(--accent-light);
+  text-decoration:none;
+}
+a:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+  border-radius:2px;
+}
+ul,ol{margin:0 0 var(--space-l);padding-left:var(--space-l)}
+li{margin-bottom:var(--space-s)}
+blockquote{
+  margin:var(--space-xl) 0;
+  padding:var(--space-l) var(--space-xl);
+  border-left:4px solid var(--accent);
+  background:var(--paper-soft);
+  font-style:italic;
+  font-size:var(--scale1);
+  color:var(--ink-light);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:"SF Mono",Monaco,"Cascadia Code",monospace;
+  font-size:var(--scale-1);
+  background:var(--paper-soft);
+  padding:var(--space-xs) var(--space-s);
+  border-radius:3px;
+  color:var(--accent);
+}
+pre{
+  overflow-x:auto;
+  padding:var(--space-l);
+  margin:var(--space-xl) 0;
+  background:var(--paper-soft);
+  border:1px solid var(--border);
+  border-radius:6px;
+  font-size:var(--scale-1);
+}
+pre code{
+  background:none;
+  padding:0;
+  color:var(--ink);
+}
+.meta{
+  color:var(--quiet);
+  font-size:var(--scale-1);
+  font-weight:500;
+  margin:var(--space) 0 var(--space-2xl);
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  border-bottom:1px solid var(--border);
+  padding-bottom:var(--space-l);
+}
+nav{
+  text-align:center;
+  padding:var(--space-2xl) var(--space);
+  margin-top:var(--space-3xl);
+  border-top:1px solid var(--border);
+}
+nav a{
+  display:inline-block;
+  margin:0 var(--space-l);
+  padding:var(--space-s) var(--space);
+  font-size:var(--scale-1);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  border-radius:4px;
+  transition:all 0.2s ease;
+}
+nav a:hover{
+  background:var(--paper-soft);
+  transform:translateY(-1px);
+}
+.cover{
+  margin:calc(var(--space-3xl)*-1) calc(var(--space-xl)*-1) var(--space-3xl);
+  border-radius:0 0 12px 12px;
+  overflow:hidden;
+  position:relative;
+  aspect-ratio:16/9;
+  background:var(--paper-soft);
+}
+.cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform 0.3s ease;
+}
+@media print{
+  body{
+    font-size:11pt;
+    line-height:1.5;
+    background:white;
+    background-image:none;
+  }
+  article{
+    max-width:none;
+    padding:0;
+    background:white;
+  }
+  .cover{display:none}
+  nav,.meta{display:none}
+  h1,h2,h3{page-break-after:avoid}
+  p{orphans:3;widows:3}
+}
+</style>
+</head>
+<body>
+<article>
+<div class="cover">
+<img src="/images/test-cover.jpg" alt="Test Cover" />
+</div>
+<h1>Test Cover</h1>
+<div class="meta">2025 Jul 19</div>
+<p>This is a test article with a cover image to verify the cover system works properly.</p>
+
+<p>The cover image should appear at the top of the article with elegant styling that matches our design principles.</p>
+
+<h2 id="testing-the-cover-system">Testing the Cover System</h2>
+
+<p>The cover should:
+- Only appear when an image is found in the markdown
+- Use 16:9 aspect ratio
+- Extend to article edges with rounded bottom corners
+- Maintain consistent spacing with the title</p>
+
+<p>This test will help verify everything works as expected.</p>
+
+</article>
+<nav>
+<a href="/index.html">Index</a>
+<a href="https://twitter.com/0xpili">Twitter</a>
+<a href="https://github.com/pili-engineering">GitHub</a>
+</nav>
+</body>
+</html>
