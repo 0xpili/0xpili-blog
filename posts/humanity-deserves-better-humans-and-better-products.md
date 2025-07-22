@@ -9,7 +9,7 @@ Humans who put love and care into their work.
 Humans who are obsessed with reconnecting humans with humanity.  
 Humans who make others feel that they are in *[good hands](https://stephango.com/in-good-hands)*.
 
-Humans deserve better products that make them feel they are in *good hands*. Products that reconnect users with their humanity, crafted with love and detail, offering extreme quality and refinement. Products that enable users to adopt healthier consumption patterns. Products that make the user breathe and enjoy their time.
+Humans deserve better products that make them feel they are in *good hands*. Products that reconnect users with their humanity. Products that are crafted with love and detail, offering extreme quality and refinement. Products that enable users to adopt healthier consumption patterns. Products that make the user breathe and enjoy their time.
 
 As humanity, we need to explore other ways to make products and businesses. Businesses that genuinely care about and love their users, offering them incredible, high-quality products that make users feel they are in *good hands.*
 
