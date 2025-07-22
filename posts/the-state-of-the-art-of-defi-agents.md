@@ -1,15 +1,15 @@
 Date: 2025 Jul 20
-# The State of the Art of DeFi Agents
+
 The intersection between web3 and AI is giving rise to a new paradigm of autonomous interactions, promising to reshape how we use blockchains, how much time we spend on research, and how many decisions are made by humans.
 
 By embedding intelligent decision‑making, agents can tirelessly scout liquidity opportunities, react to market shifts in real time, and even negotiate complex lending arrangements, all with minimal human oversight.
 
 ### Why DeFi creates the perfect breeding ground for autonomous agents
-By combining permissionless 24/7 markets with composable smart contracts and a wealth of transparent, machine‑readable onchain data, Decentralized Finance (DeFi) is the perfect enviroment for AI agents to deploy capital, execute multi step strategies atomically, and adapt in real time without human gatekeepers or jurisdictional barriers. Add in low entry hurdles, global liquidity incentives and verifiable performance tracking, and you have an open source laboratory where next‑generation "money legos" can be stitched together into smarter financial agents.
+By combining permissionless 24/7 markets with composable smart contracts and a wealth of transparent, machine‑readable onchain data, Decentralized Finance (DeFi) is the perfect enviroment for AI agents to deploy capital, execute multi step strategies atomically, and adapt in real time without human gatekeepers or jurisdictional barriers. Add in low entry hurdles, global liquidity incentives and verifiable performance tracking, and you have an open source laboratory where next‑generation “money legos” can be stitched together into smarter financial agents.
 
 Based on this assumptions about DeFi being the perfect breeding ground for agentic experiments, I started creating a list of DeFi agents that I find interesting and believe are worth exploring. This article just includes agents which are already deployed and capable of performing actions on behalf of their users on EVMs. The list is not a comprehensive one, it just includes agents I have curated and believe could have potential to continue maturing.
 
-> Disclaimer: This article reflects my personal research and opinions. It's not financial advice, and none of these projects have sponsored this writeup.
+> Disclaimer: This article reflects my personal research and opinions. It’s not financial advice, and none of these projects have sponsored this writeup.
 
 At the end of this article, you can also find a glossary with brief explanations of some key terms that may sound niche.
 
@@ -89,13 +89,13 @@ Regarding ZyfAI fees, their documentation indicates that rebalancing fees are co
 
 # Conclusion
 
-I jumped into crypto back in 2019, and even then, the idea of agents seamlessly navigating DeFi felt like science fiction. Today, that fiction is real: our "open laboratory" of permissionless markets, composable contracts, and transparent data is exactly what these agents need to learn, adapt, and improve.
+I jumped into crypto back in 2019, and even then, the idea of agents seamlessly navigating DeFi felt like science fiction. Today, that fiction is real: our “open laboratory” of permissionless markets, composable contracts, and transparent data is exactly what these agents need to learn, adapt, and improve.
 
-Watching us build standards, refine account abstraction, and harden security—sometimes by making hard mistakes—fills me with pride. Every protocol iteration, every audit, every hack and recovery has shaped an ecosystem where smart, autonomous strategies can finally shine.
+Watching us build standards, refine account abstraction, and harden security (sometimes by making hard mistakes) fills me with pride. Every protocol iteration, every audit, every hack and recovery has shaped an ecosystem where smart, autonomous strategies can finally shine.
 
-As agents begin to explore real‑world assets (RWA) and bridge TradFi rails into DeFi, I expect many early experiments to fade, but the lessons they teach will fuel the next generation of tools and autonomous finance. That cycle of trial, error, and progress is exactly how we'll unlock richer, more intuitive ways for anyone to trade, invest, or earn yield with minimal friction.
+As agents begin to explore real‑world assets (RWA) and bridge TradFi rails into DeFi, I expect many early experiments to fade, but the lessons they teach will fuel the next generation of tools and autonomous finance. That cycle of trial, error, and progress is exactly how we’ll unlock richer, more intuitive ways for anyone to trade, invest, or earn yield with minimal friction.
 
-If you're building an agent I haven't covered here, or if you simply want to swap notes, drop me a line at hola@0xpili.xyz, I'd love to hear what you're working on!
+If you’re building an agent I haven’t covered here, or if you simply want to swap notes, drop me a line at hola@0xpili.xyz, I’d love to hear what you’re working on!
 
 Thanks to everyone who read, critiqued, and pushed me to make this piece stronger. Specially to Fio, Martin, Mati, and Tadeo.
 
@@ -103,13 +103,13 @@ Thanks to everyone who read, critiqued, and pushed me to make this piece stronge
 
 # Glossary
 - APY vs APR: Annual Percentage Yield (takes compounding into account) versus Annual Percentage Rate (simple interest rate).
-- Kamino Multiply (leveraged JLP): "Multiply" denotes a leveraged position, you deposit one token, borrow against it, then redeposit the borrowed amount to amplify your exposure. JLP means you're leveraging a Jupiter DEX liquidity position—so both sides of the pool get boosted returns (and risk).
+- Kamino Multiply (leveraged JLP): “Multiply” denotes a leveraged position, you deposit one token, borrow against it, then redeposit the borrowed amount to amplify your exposure. JLP means you’re leveraging a Jupiter DEX liquidity position—so both sides of the pool get boosted returns (and risk).
 - Money legos: Modular DeFi building blocks (e.g. lending, swapping, staking) that can be composed together to create new financial products or strategies.
 - LSDFi: Decentralized finance built around liquid staking derivatives (like stETH).
-    - "Stacks" here means layered strategies: you stake ETH, receive stETH, use that as collateral in DeFi to earn additional yield, then stake again, and so on, creating a stack of yield sources.
-- Looping: A strategy that repeatedly borrows against collateral and redeposits to increase exposure. Each "loop" amplifies potential gains (and losses) in step with the borrowed amount.
-- "LP" stands for liquidity provider. 
+    - “Stacks” here means layered strategies: you stake ETH, receive stETH, use that as collateral in DeFi to earn additional yield, then stake again, and so on, creating a stack of yield sources.
+- Looping: A strategy that repeatedly borrows against collateral and redeposits to increase exposure. Each “loop” amplifies potential gains (and losses) in step with the borrowed amount.
+- “LP” stands for liquidity provider. 
 - Performance fee: A percentage of profits that an agent or protocol charges you as compensation when your position gains value.
 - Rebalancing: Automatically moving funds between protocols or pools to maintain target allocations or chase higher yields.
-- Smart account: A programmable onchain wallet (or "account abstraction" module) that lets agents bundle and authorize transactions on your behalf.
+- Smart account: A programmable onchain wallet (or “account abstraction” module) that lets agents bundle and authorize transactions on your behalf.
 - Session keys: Time or permission limited cryptographic keys that grant an agent restricted access to your smart account.
