@@ -2,11 +2,11 @@ Date: 2025 Jul 22
 # Humanity Deserves Better Humans (and Better Products)
 I truly believe that humanity deserves better humans.
 
-Humans who care for other humans.
-Humans who respect others' time.
-Humans who respect others' agency.
-Humans who put love and care into their work.
-Humans who are obsessed with reconnecting humans with humanity.
+Humans who care for other humans.  
+Humans who respect others' time.  
+Humans who respect others' agency.  
+Humans who put love and care into their work.  
+Humans who are obsessed with reconnecting humans with humanity.  
 Humans who make others feel that they are in *[good hands](https://stephango.com/in-good-hands)*.
 
 Humans deserve better products that make them feel they are in *good hands*. Products that reconnect users with their humanity, crafted with love and detail, offering extreme quality and refinement. Products that enable users to adopt healthier consumption patterns. Products that make the user breathe and enjoy their time.
