@@ -11,7 +11,7 @@ Humans who make others feel that they are in *[good hands](https://stephango.com
 
 Humans deserve better products that make them feel they are in *good hands*.
 
-## Which Kind of Products I Would Love to See
+### Which Kind of Products I Would Like to See
 - Products that are crafted with love and detail, offering extreme quality.
 - Products that respect users' agency.
 - Products that enable users to adopt healthier consumption patterns.
