@@ -1,12 +1,12 @@
 Date: 2024 Dec 27
 
-Life rarely moves in straight lines, and my journey has been no exception. I began with engineering, detoured through psychology, and eventually found myself embedded in the web3 rabbit hole. Each step felt distinct at the time, but looking back, I see the quiet patterns that connect them—a constant curiosity and a drive to make meaningful contributions.
+Life rarely moves in straight lines, and my journey has been no exception. I began with engineering, detoured through psychology, and eventually found myself embedded in the web3 rabbit hole. Each step felt distinct at the time, but looking back, I see the quiet patterns that connect them, a constant curiosity and a drive to make meaningful contributions.
 
 ## The slow, steady nature of growth
 
-I’ve always been drawn to sports. Growing up, I played hockey and handball—not the most technical player, but I was usually the fastest on the team. At some point, I realized that I might never excel at them, but I could channel that speed into something else. That’s how I found running. It started casually, joining a running club at a local gym, but soon became a core part of my life. Seven years later, I’ve run countless races and continue working to improve, one step at a time.
+I’ve always been drawn to sports. Growing up, I played hockey and handball. I was not the most technical player, but I was usually the fastest on the team. At some point, I realized that I might never excel at them, but I could channel that speed into something else. That’s how I found running. It started casually, joining a running club at a local gym, but soon became a core part of my life. Seven years later, I’ve run countless races and continue to work on improving, one step at a time.
 
-Running has taught me that progress doesn’t come in quick bursts. It’s not about one big effort or a single finish line. Real growth happens through consistency—by showing up, day after day, even when it’s hard or the results feel distant. Improvement is built slowly, through small, deliberate actions that accumulate over time.
+Running has taught me that progress doesn’t come in quick bursts. It’s not about one big effort or a single finish line. Real growth happens through consistency by showing up, day after day, even when it’s hard or the results feel distant. Improvement is built slowly, through small, deliberate actions that accumulate over time.
 
 This lesson shapes how I approach work and life, I’ve learned to prioritize steady, meaningful progress over quick wins. The same patience and persistence that gets me through training runs also help me tackle every challenge.
 
