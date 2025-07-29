@@ -10,7 +10,7 @@ Humans who make others feel that they are in *[good hands](https://stephango.com
 
 Humans also deserve better businesses. Businesses that create [Great Software](https://maraoz.com/great-software/). And Great Software that makes users feel they are in *good hands*.
 
-### Which Kind of Businesses I Would Like to See
+## Which Kind of Businesses I Would Like to See
 I would like to see businesses that create exceptional products.
 
 - Products that are crafted with love and detail, offering extreme quality.
