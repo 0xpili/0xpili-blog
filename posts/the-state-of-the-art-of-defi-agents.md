@@ -1,4 +1,6 @@
 Date: 2025 Jul 20
+# The State of The Art of DeFi Agents
+
 The intersection between web3 and AI is giving rise to a new paradigm of autonomous interactions, promising to reshape how we use blockchains, how much time we spend on research, and how many decisions are made by humans.
 
 By embedding intelligent decision‑making, agents can tirelessly scout liquidity opportunities, react to market shifts in real time, and even negotiate complex lending arrangements, all with minimal human oversight.
