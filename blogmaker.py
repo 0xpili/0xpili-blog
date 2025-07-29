@@ -82,15 +82,17 @@ class BlogBuilder:
             slug = filepath.stem.lower().replace(' ', '-')
             
             title = filepath.stem.replace('-', ' ').title()
+            start_line = 1
             if lines and lines[1].startswith('# '):
                 title = lines[1][2:].strip()
+                start_line = 2
             
             cover_image, filtered_lines = self._extract_cover_image(lines, slug)
             
             if cover_image:
-                content_text = '\n'.join(filtered_lines[1:]).strip()
+                content_text = '\n'.join(filtered_lines[start_line:]).strip()
             else:
-                content_text = '\n'.join(lines[1:]).strip()
+                content_text = '\n'.join(lines[start_line:]).strip()
             
             html_content = markdown2.markdown(
                 content_text,
@@ -139,7 +141,8 @@ class BlogBuilder:
     
     def _needs_rebuild(self, post: Dict) -> bool:
         cached_hash = self.cache.get(post['filepath'])
-        return cached_hash != post['hash']
+        output_file = Path(self.config["output_dir"]) / f"{post['slug']}.html"
+        return cached_hash != post['hash'] or not output_file.exists()
     
     def build(self):
         print("Building blog...")
