@@ -11,19 +11,67 @@
 <link rel="canonical" href="https://0xpili.xyz/">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{font:18px/1.7 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+:root{
+  --text:#111;
+  --text-muted:#666;
+  --bg:#fff;
+  --toggle-bg:#f0f0f0;
+  --toggle-hover:#e0e0e0;
+}
+[data-theme="dark"]{
+  --text:#e0e0e0;
+  --text-muted:#999;
+  --bg:#111;
+  --toggle-bg:#222;
+  --toggle-hover:#333;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --text:#e0e0e0;
+    --text-muted:#999;
+    --bg:#111;
+    --toggle-bg:#222;
+    --toggle-hover:#333;
+  }
+}
+html{
+  font:18px/1.7 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  transition:background 0.2s ease;
+}
 body{
-  color:#111;
+  color:var(--text);
   max-width:38rem;
   margin:0 auto;
   padding:4rem 1.5rem;
+  position:relative;
+}
+.theme-toggle{
+  position:fixed;
+  top:1rem;
+  right:1rem;
+  width:2.5rem;
+  height:2.5rem;
+  border:none;
+  border-radius:50%;
+  background:var(--toggle-bg);
+  color:var(--text);
+  cursor:pointer;
+  font-size:1.2rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.2s ease;
+}
+.theme-toggle:hover{
+  background:var(--toggle-hover);
 }
 h1{
   font:700 2rem/1.2 ui-sans-serif,system-ui,sans-serif;
   margin-bottom:0.5rem;
 }
 .tagline{
-  color:#666;
+  color:var(--text-muted);
   margin-bottom:4rem;
 }
 .posts{
@@ -45,11 +93,11 @@ h1{
   margin-bottom:0.25rem;
 }
 .posts time{
-  color:#666;
+  color:var(--text-muted);
   font-size:0.875rem;
 }
 .bio{
-  color:#666;
+  color:var(--text-muted);
   margin-bottom:1rem;
 }
 .links{
@@ -57,7 +105,7 @@ h1{
   gap:1.5rem;
 }
 .links a{
-  color:#111;
+  color:var(--text);
   text-decoration:none;
   font-size:0.875rem;
 }
@@ -67,6 +115,9 @@ h1{
 </style>
 </head>
 <body>
+<button class="theme-toggle" aria-label="Toggle theme">
+<span class="theme-icon">◐</span>
+</button>
 <h1>0xpili</h1>
 <p class="tagline">On web3, AI, and being human</p>
 
@@ -115,5 +166,38 @@ h1{
 <a href="https://github.com/0xpili">GitHub</a>
 <a href="mailto:hola@0xpili.xyz">Email</a>
 </div>
+<script>
+(function(){
+  const toggle = document.querySelector('.theme-toggle');
+  const icon = document.querySelector('.theme-icon');
+  const root = document.documentElement;
+  
+  // Get saved theme or use system preference
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    root.setAttribute('data-theme', savedTheme);
+  }
+  
+  // Update icon based on current theme
+  function updateIcon() {
+    const isDark = root.getAttribute('data-theme') === 'dark' || 
+                   (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    icon.textContent = isDark ? '☀' : '☾';
+  }
+  
+  updateIcon();
+  
+  toggle.addEventListener('click', () => {
+    const currentTheme = root.getAttribute('data-theme');
+    const isDark = currentTheme === 'dark' || 
+                   (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const newTheme = isDark ? 'light' : 'dark';
+    
+    root.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon();
+  });
+})();
+</script>
 </body>
 </html>
