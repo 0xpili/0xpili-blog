@@ -12,6 +12,7 @@ What does it mean to be a _safe place_ in a world that changes every moment? In 
 Being a safe place isn't a matter of time, energy, or money. It's about transmitting trust and calm. It's about being an _open hand_, a presence that welcomes without gripping and supports without controlling. It's becoming the person whose company guarantees that words won't be weaponized, flaws won't be turned into gossip, and joy won't be met with envy.
 
 So, what is a safe place?
+
 - An open hand where someone can share what's not going well, or celebrate something wonderful they've done, without judgment or envy.
 - An open hand that offers support, not control.
 - A place where, no matter the conflict, the other person leaves with their dignity intact.
