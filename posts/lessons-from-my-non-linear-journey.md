@@ -32,4 +32,4 @@ Today, I continue that mission as COO at [GraphOps](https://graphops.xyz), a blo
 Before joining GraphOps, I also worked with [Exactly Protocol](https://exact.ly) and [Defiant Wallet](https://defiantapp.tech/en).
 
 ## Conclusion
-Each step, from my personal lessons of running to the professional challenges of navigating web3 startups, has shown me that growth and innovation rarely follow straight lines. It’s the unexpected turns that often make the biggest impact. As I continue building in web3, I’m reminded that meaningful progress is not about finding shortcuts but about the commitment to keep moving forward, one step at a time. 
+Each step, from my personal lessons of running to the professional challenges of navigating web3 startups, has shown me that growth and innovation rarely follow straight lines. It’s the unexpected turns that often make the biggest impact. As I continue building in web3, I’m reminded that meaningful progress is not about finding shortcuts but about the commitment to keep moving forward, one step at a time.

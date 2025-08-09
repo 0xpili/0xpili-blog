@@ -1,8 +1,8 @@
 Date: 2025 Aug 09
 # The Art of Being a Safe Place
 
-Someone sighs and lets their shoulders drop the moment they walk into the room.  
-A friend tells you something they've never said out loud before.  
+Someone sighs and lets their shoulders drop the moment they walk into the room.
+A friend tells you something they've never said out loud before.
 A teammate calls you first when everything has gone wrong.
 
 *You have become a safe place.*
@@ -24,4 +24,4 @@ So, what is a safe place?
 
 The world needs more people who choose to be a safe place for others. People willing to listen without judgment. People who guard dignity and offer care without keeping score.
 
-To those who do: humanity owes you deep respect and gratitude. 
+To those who do: humanity owes you deep respect and gratitude.

@@ -109,8 +109,8 @@ Thanks to everyone who read, critiqued, and pushed me to make this piece stronge
 - LSDFi: Decentralized finance built around liquid staking derivatives (like stETH).
     - “Stacks” here means layered strategies: you stake ETH, receive stETH, use that as collateral in DeFi to earn additional yield, then stake again, and so on, creating a stack of yield sources.
 - Looping: A strategy that repeatedly borrows against collateral and redeposits to increase exposure. Each “loop” amplifies potential gains (and losses) in step with the borrowed amount.
-- “LP” stands for liquidity provider. 
+- “LP” stands for liquidity provider.
 - Performance fee: A percentage of profits that an agent or protocol charges you as compensation when your position gains value.
 - Rebalancing: Automatically moving funds between protocols or pools to maintain target allocations or chase higher yields.
 - Smart account: A programmable onchain wallet (or “account abstraction” module) that lets agents bundle and authorize transactions on your behalf.
-- Session keys: Time or permission limited cryptographic keys that grant an agent restricted access to your smart account. 
+- Session keys: Time or permission limited cryptographic keys that grant an agent restricted access to your smart account.
