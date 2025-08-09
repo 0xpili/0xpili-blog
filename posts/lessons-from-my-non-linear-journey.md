@@ -1,4 +1,5 @@
 Date: 2024 Dec 27
+# Lessons From My Non Linear Journey
 
 Life rarely moves in straight lines, and my journey has been no exception. I began with engineering, detoured through psychology, and eventually found myself embedded in the web3 rabbit hole. Each step felt distinct at the time, but looking back, I see the quiet patterns that connect them, a constant curiosity and a drive to make meaningful contributions.
 

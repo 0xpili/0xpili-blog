@@ -1,4 +1,6 @@
 Date: 2025 May 14
+# Crypto Without Privacy Is Half Finished
+
 Crypto without privacy is half-finished. The tools exist; our job now is to weave them into every layer of the stack so users never have to trade sovereignty for exposure.
 
 Every time ETH changes hands, public-key cryptography quietly guarantees two things at once: the tokens are real, and the owner meant to move them—no middlemen, no rubber stamps. That same math can protect far more than money.

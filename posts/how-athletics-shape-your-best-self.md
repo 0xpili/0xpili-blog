@@ -1,5 +1,7 @@
 Date: 2025 May 11th
-I’ve always been fascinated by how people think, feel, and interact with the world. My studies in philosophy and psychology gave me a framework to explore big questions about the human mind and spirit. But I never expected to find the most practical life lessons on the track.
+# How Athletics Shape Your Best Self
+
+I've always been fascinated by how people think, feel, and interact with the world. My studies in philosophy and psychology gave me a framework to explore big questions about the human mind and spirit. But I never expected to find the most practical life lessons on the track.
 
 Did your parents ever sign you up for a sport when you were a kid? Or maybe you naturally gravitated toward one on your own. In my case, I tried a bit of everything: gymnastics, acrobatics, hockey, and handball. Somewhere in my twenties, I finally stumbled into running. It felt like I’d found my calling.
 
