@@ -24,4 +24,4 @@ Running has been part of my life for six years now, and I’ve even managed to w
 
 In fast-paced environments—where quick decisions and constant pivots are the norm—habits built through sports become invaluable.
 
-That pre-dawn run trains you to stay focused despite fatigue and distractions; regular practice sessions remind you that steady effort compounds over time. And when challenges arise, you learn to see them as part of the journey, not a dead end. The endurance, mental toughness, and determination honed through sports can keep you moving forward—even when the finish line feels out of reach.
+That pre-dawn run trains you to stay focused despite fatigue and distractions; regular practice sessions remind you that steady effort compounds over time. And when challenges arise, you learn to see them as part of the journey, not a dead end. The endurance, mental toughness, and determination honed through sports can keep you moving forward—even when the finish line feels out of reach. 

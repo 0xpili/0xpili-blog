@@ -179,21 +179,32 @@ nav a:hover{
   position:fixed;
   top:1rem;
   right:1rem;
-  width:2.5rem;
-  height:2.5rem;
+  width:3.5rem;
+  height:2rem;
   border:none;
-  border-radius:50%;
-  background:var(--toggle-bg);
-  color:var(--ink);
+  border-radius:2rem;
+  background:#ccc;
   cursor:pointer;
-  font-size:1.2rem;
+  padding:0.25rem;
+  transition:background 0.3s ease;
+}
+[data-theme="dark"] .theme-toggle{
+  background:#444;
+}
+.theme-toggle-slider{
+  width:1.5rem;
+  height:1.5rem;
+  border-radius:50%;
+  background:#fff;
+  transition:transform 0.3s ease;
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:all 0.2s ease;
+  font-size:0.9rem;
 }
-.theme-toggle:hover{
-  background:var(--toggle-hover);
+[data-theme="dark"] .theme-toggle-slider{
+  transform:translateX(1.5rem);
+  background:#222;
 }
 .cover{
   margin:calc(var(--space-3xl)*-1) calc(var(--space-xl)*-1) var(--space-3xl);
@@ -218,7 +229,9 @@ nav a:hover{
 </head>
 <body>
 <button class="theme-toggle" aria-label="Toggle theme">
-<span class="theme-icon">◐</span>
+<div class="theme-toggle-slider">
+<span class="theme-icon">☾</span>
+</div>
 </button>
 <article>
 {% if cover_image %}
@@ -244,20 +257,19 @@ nav a:hover{
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme) {
     root.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
   }
   
   function updateIcon() {
-    const isDark = root.getAttribute('data-theme') === 'dark' || 
-                   (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDark = root.getAttribute('data-theme') === 'dark';
     icon.textContent = isDark ? '☀' : '☾';
   }
   
   updateIcon();
   
   toggle.addEventListener('click', () => {
-    const currentTheme = root.getAttribute('data-theme');
-    const isDark = currentTheme === 'dark' || 
-                   (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDark = root.getAttribute('data-theme') === 'dark';
     const newTheme = isDark ? 'light' : 'dark';
     
     root.setAttribute('data-theme', newTheme);

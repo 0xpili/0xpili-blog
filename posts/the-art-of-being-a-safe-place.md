@@ -24,4 +24,4 @@ So, what is a safe place?
 
 The world needs more people who choose to be a safe place for others. People willing to listen without judgment. People who guard dignity and offer care without keeping score.
 
-To those who do: humanity owes you deep respect and gratitude.
+To those who do: humanity owes you deep respect and gratitude. 

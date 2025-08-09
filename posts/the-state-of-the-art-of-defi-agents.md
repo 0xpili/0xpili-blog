@@ -113,4 +113,4 @@ Thanks to everyone who read, critiqued, and pushed me to make this piece stronge
 - Performance fee: A percentage of profits that an agent or protocol charges you as compensation when your position gains value.
 - Rebalancing: Automatically moving funds between protocols or pools to maintain target allocations or chase higher yields.
 - Smart account: A programmable onchain wallet (or “account abstraction” module) that lets agents bundle and authorize transactions on your behalf.
-- Session keys: Time or permission limited cryptographic keys that grant an agent restricted access to your smart account.
+- Session keys: Time or permission limited cryptographic keys that grant an agent restricted access to your smart account. 

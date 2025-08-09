@@ -40,4 +40,5 @@ Privacy isn’t a luxury. It’s Ethereum coming of age.
 It’s not about hiding. It’s about giving users real choice.
 It’s about making privacy usable, practical, and default.
 It’s about protecting agency, dignity, and the freedom to think, build, and belong, without broadcasting every move.
-And that’s a future worth shipping.
+And that’s a future worth shipping. 
+ 

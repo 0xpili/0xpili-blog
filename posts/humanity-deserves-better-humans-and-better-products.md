@@ -23,4 +23,4 @@ I would like to see businesses that create exceptional products.
 
 As humanity, we need to explore other ways to make products and businesses. Businesses that genuinely care about and love their users, offering them incredible, high-quality products that make users feel they are in *good hands.*
 
-The ideas presented here have been inspired by [Great Software](https://maraoz.com/great-software/).
+The ideas presented here have been inspired by [Great Software](https://maraoz.com/great-software/). 
