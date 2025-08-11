@@ -26,6 +26,12 @@ Date: 2025 Aug 09
 Your content in markdown...
 ```
 
+When you add or edit a `.md` file in `posts/`:
+1. Run `python3 blogmaker.py` to rebuild
+2. The generator creates/updates the HTML in `docs/`
+3. Changes are cached - only modified files rebuild
+4. Commit and push to deploy via GitHub Pages
+
 ## Features
 
 - Static HTML generation
