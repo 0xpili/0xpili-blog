@@ -1,39 +1,44 @@
 # 0xpili Blog
 
-A minimal static blog built with Python, focused on technology, privacy, and the human condition.
+Minimal static blog generator with dark mode support.
 
-## Overview
-
-This blog uses a custom static site generator that converts Markdown files to HTML. The design prioritizes readability, speed, and longevity with no external dependencies.
-
-## Structure
-
-- `posts/` - Markdown source files for blog posts
-- `templates/` - HTML templates for the blog
-- `docs/` - Generated static HTML files (served by GitHub Pages)
-- `blogmaker.py` - Static site generator
-
-## Usage
-
-To build the blog:
+## Quick Start
 
 ```bash
+# Install dependencies
+pip install markdown2 jinja2
+
+# Build the blog
 python3 blogmaker.py
-```
 
-To serve locally for development:
-
-```bash
+# Serve locally (http://localhost:8000)
 python3 serve.py
 ```
 
-## Design Principles
+## Writing Posts
 
-- Clean, minimal interface with no distractions
-- Fast loading with no JavaScript or external resources
-- Timeless design that will look good in decades
-- Focus on content and readability
+Create markdown files in `posts/` with this format:
 
-## License
+```markdown
+Date: 2025 Aug 09
+# Your Title Here
 
-All content is proprietary. The code structure is available for reference but not for reuse without permission.
+Your content in markdown...
+```
+
+## Features
+
+- Static HTML generation
+- Dark/light mode with system detection
+- Pink accent colors
+- ~5KB average page size
+- No JavaScript dependencies
+- Responsive design
+
+## Structure
+
+- `posts/` - Markdown source files
+- `templates/` - Jinja2 HTML templates
+- `docs/` - Generated site (GitHub Pages)
+- `blogmaker.py` - Static site generator
+- `tests/` - Quality checks
