@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Complexity Tax — 0xpili</title>
+<meta name="description" content="Thoughtful writings on technology, privacy, and the human condition.">
+<meta property="og:title" content="The Complexity Tax">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://0xpili.xyz/the-complexity-tax">
+<link rel="canonical" href="https://0xpili.xyz/the-complexity-tax">
+<style>
+:root{
+  --ratio:1.618;
+  --base:1rem;
+  --scale-1:calc(var(--base)*0.875);
+  --scale0:var(--base);
+  --scale1:calc(var(--base)*1.25);
+  --scale2:calc(var(--base)*1.5);
+  --scale3:calc(var(--base)*2);
+  --ink:#1a1a1a;
+  --ink-muted:#666666;
+  --paper:#ffffff;
+  --paper-subtle:#fafafa;
+  --accent:#ec4899;
+  --border:#e5e5e5;
+  --space-xs:0.25rem;
+  --space-s:0.5rem;
+  --space:1rem;
+  --space-l:1.5rem;
+  --space-xl:2rem;
+  --space-2xl:3rem;
+  --space-3xl:4rem;
+  --reading-width:38rem;
+  --line-height:1.75;
+  --line-height-tight:1.3;
+  --toggle-bg:#f0f0f0;
+  --toggle-hover:#e0e0e0;
+}
+[data-theme="dark"]{
+  --ink:#e0e0e0;
+  --ink-muted:#999;
+  --paper:#111;
+  --paper-subtle:#1a1a1a;
+  --accent:#f472b6;
+  --border:#333;
+  --toggle-bg:#222;
+  --toggle-hover:#333;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#e0e0e0;
+    --ink-muted:#999;
+    --paper:#111;
+    --paper-subtle:#1a1a1a;
+    --accent:#f472b6;
+    --border:#333;
+    --toggle-bg:#222;
+    --toggle-hover:#333;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{
+  font-size:18px;
+  line-height:var(--line-height);
+  background:var(--paper);
+  transition:background 0.2s ease;
+}
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--paper);
+  text-rendering:optimizeLegibility;
+  position:relative;
+}
+article{
+  max-width:var(--reading-width);
+  margin:0 auto;
+  padding:var(--space-3xl) var(--space-xl);
+  background:var(--paper);
+  position:relative;
+}
+h1,h2,h3{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-weight:600;
+  line-height:var(--line-height-tight);
+  margin:var(--space-2xl) 0 var(--space-l);
+  color:var(--ink);
+}
+h1{
+  font-size:var(--scale3);
+  margin-top:0;
+  font-weight:700;
+}
+h2{
+  font-size:var(--scale2);
+  margin-top:var(--space-3xl);
+  padding-bottom:var(--space-s);
+  border-bottom:1px solid var(--border);
+}
+h3{
+  font-size:var(--scale1);
+  font-weight:500;
+  color:var(--ink-muted);
+}
+p{
+  margin:0 0 var(--space-l);
+  line-height:var(--line-height);
+}
+a{
+  color:var(--accent);
+  text-decoration:underline;
+  text-underline-offset:0.2em;
+  text-decoration-thickness:1px;
+}
+a:hover{
+  text-decoration:none;
+}
+a:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+ul,ol{margin:0 0 var(--space-l);padding-left:var(--space-l)}
+li{margin-bottom:var(--space-s)}
+blockquote{
+  margin:var(--space-xl) 0;
+  padding:var(--space-l);
+  border-left:3px solid var(--border);
+  font-style:italic;
+  color:var(--ink-muted);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,"SF Mono",Monaco,monospace;
+  font-size:var(--scale-1);
+  background:var(--paper-subtle);
+  padding:var(--space-xs) var(--space-s);
+  border-radius:3px;
+}
+pre{
+  overflow-x:auto;
+  padding:var(--space-l);
+  margin:var(--space-xl) 0;
+  background:var(--paper-subtle);
+  border-radius:6px;
+  font-size:var(--scale-1);
+}
+pre code{
+  background:none;
+  padding:0;
+}
+.meta{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  color:var(--ink-muted);
+  font-size:var(--scale-1);
+  margin:var(--space) 0 var(--space-2xl);
+  padding-bottom:var(--space-l);
+  border-bottom:1px solid var(--border);
+}
+nav{
+  text-align:center;
+  padding:var(--space-2xl) 0;
+  margin-top:var(--space-3xl);
+  border-top:1px solid var(--border);
+}
+nav a{
+  display:inline-block;
+  margin:0 var(--space-l);
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-size:var(--scale-1);
+  color:var(--accent);
+  text-decoration:none;
+}
+nav a:hover{
+  text-decoration:underline;
+}
+.theme-toggle{
+  position:fixed;
+  top:1rem;
+  right:1rem;
+  width:3.5rem;
+  height:2rem;
+  border:none;
+  border-radius:2rem;
+  background:#ccc;
+  cursor:pointer;
+  padding:0.25rem;
+  transition:background 0.3s ease;
+}
+[data-theme="dark"] .theme-toggle{
+  background:#444;
+}
+.theme-toggle-slider{
+  width:1.5rem;
+  height:1.5rem;
+  border-radius:50%;
+  background:#fff;
+  transition:transform 0.3s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.9rem;
+}
+[data-theme="dark"] .theme-toggle-slider{
+  transform:translateX(1.5rem);
+  background:#222;
+}
+.cover{
+  margin:calc(var(--space-3xl)*-1) calc(var(--space-xl)*-1) var(--space-3xl);
+  overflow:hidden;
+  aspect-ratio:16/9;
+  background:var(--paper-subtle);
+}
+.cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+@media print{
+  body{font-size:11pt;line-height:1.4}
+  article{max-width:none;padding:0}
+  .cover,nav,.meta{display:none}
+  h1,h2,h3{page-break-after:avoid}
+  p{orphans:3;widows:3}
+}
+</style>
+</head>
+<body>
+<button class="theme-toggle" aria-label="Toggle theme">
+<div class="theme-toggle-slider">
+<span class="theme-icon">☾</span>
+</div>
+</button>
+<article>
+<h1>The Complexity Tax</h1>
+<div class="meta">2025 Aug 29</div>
+<p>The most underestimated skill in ~~business~~ life is <em>making things simple</em>. Not dumbed down. Simple.</p>
+
+<p>Most corporate complexity is defensive in nature, a shield against accountability, a hedge against being wrong. But every layer of unnecessary complexity costs you time, talent, speed, and innovation. The companies that systematically eliminate complexity at every level move faster, decide quicker, and win more often.</p>
+
+<h2 id="making-it-simple-works">Making It Simple Works</h2>
+
+<blockquote>
+  <p>True simplicity demands "understanding the essence of something" and "remaining authentic to that essence". It's not dumbing down, it's smartening up the delivery.</p>
+</blockquote>
+
+<p>As an example:
+- Apple doesn't explain the technical specs of the M3 chip. They say "crazy fast."
+- Tesla doesn't talk about automotive paradigm shifts. They build cars that drive themselves.
+- Amazon didn't revolutionize retail with complexity. They made buying anything as easy as one click.</p>
+
+<p>Simplicity scales, and this is true everywhere. The best salespeople don't pitch features, they solve problems. The most successful leaders don't give complex mission statements, they give clear direction. The strongest relationships aren't built on elaborate gestures but on consistent, simple acts of care.</p>
+
+<p>The hidden cost of complexity is huge and multiplies exponentially. One unclear process creates three workarounds. One confusing email spawns five clarifying messages. One overcomplicated product feature requires an entire support team.</p>
+
+<p>But simplicity compounds too. Clear communication eliminates meetings. Simple systems reduce errors. Straightforward processes attract better talent who don't want to waste time navigating bureaucracy.</p>
+
+<p>Making things easy is incredibly hard. It requires deep understanding, careful prioritization, and the courage to say no to good ideas in service of great ones.</p>
+
+</article>
+<nav>
+<a href="/index.html">Index</a>
+<a href="https://twitter.com/0xpili_">Twitter</a>
+<a href="https://github.com/0xpili">GitHub</a>
+</nav>
+<script>
+(function(){
+  const toggle = document.querySelector('.theme-toggle');
+  const icon = document.querySelector('.theme-icon');
+  const root = document.documentElement;
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    root.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
+  }
+  
+  function updateIcon() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    icon.textContent = isDark ? '☀' : '☾';
+  }
+  
+  updateIcon();
+  
+  toggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    
+    root.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon();
+  });
+})();
+</script>
+</body>
+</html>
