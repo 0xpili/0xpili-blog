@@ -7,7 +7,7 @@ Most corporate complexity is defensive in nature, a shield against accountabilit
 
 ## Making It Simple Works
 
-> True simplicity demands "understanding the essence of something" and "remaining authentic to that essence". It's not dumbing down, it's smartening up the delivery.
+True simplicity demands "understanding the essence of something" and "remaining authentic to that essence". It's not dumbing down, it's smartening up the delivery.
 
 As an example:
 - Apple doesn't explain the technical specs of the M3 chip. They say "crazy fast."

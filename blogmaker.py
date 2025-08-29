@@ -96,7 +96,7 @@ class BlogBuilder:
             
             html_content = markdown2.markdown(
                 content_text,
-                extras=['fenced-code-blocks', 'header-ids', 'tables']
+                extras=['fenced-code-blocks', 'header-ids', 'tables', 'strike']
             )
             
             return {
