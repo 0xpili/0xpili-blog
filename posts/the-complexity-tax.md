@@ -3,7 +3,9 @@ Date: 2025 Aug 29
 
 The most underestimated skill in ~~business~~ life is _making things simple_. Not dumbed down. Simple.
 
-Most corporate complexity is defensive in nature, a shield against accountability, a hedge against being wrong. But every layer of unnecessary complexity costs you time, talent, speed, and innovation. The companies that systematically eliminate complexity at every level move faster, decide quicker, and win more often.
+Most corporate complexity is defensive in nature, a shield against accountability, a hedge against being wrong. 
+
+Every layer of unnecessary complexity costs your business time, talent, speed, and innovation. Companies that systematically eliminate complexity at every level move faster, decide quickly, and win more often.
 
 ## Making It Simple Works
 
