@@ -12,6 +12,7 @@ Every layer of unnecessary complexity costs your business time, talent, speed, a
 True simplicity demands "understanding the essence of something" and "remaining authentic to that essence". It's not dumbing down, it's smartening up the delivery.
 
 As an example:
+
 - Apple doesn't explain the technical specs of the M3 chip. They say "crazy fast."
 - Tesla doesn't talk about automotive paradigm shifts. They build cars that drive themselves.
 - Amazon didn't revolutionize retail with complexity. They made buying anything as easy as one click.
