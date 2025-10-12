@@ -36,3 +36,5 @@ AI is unlocking new forms of intelligence. Crypto is unlocking new forms of coor
 [Agentic Zero](https://agenticzero.xyz/) is a one-day conference, during [Devconnect](https://devconnect.org/) Buenos Aires, about shaping the rails that will carry the most powerful technology of our time. Ensuring agents have open, permissionless foundations, designed for human benefit. The opportunity isn't just technological, it's economic, creative, and societal.
 
 If you are interested in AgentFi, Agentic Zero the place to be this year. Grab your [free tickets](https://devconnect.org/calendar?event=agenticzero)! 
+---
+Thanks to [Euge](https://x.com/eugenia_0x) and [Mati](https://x.com/0xEulersID) for reviewing this article.
