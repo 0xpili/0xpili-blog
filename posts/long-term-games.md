@@ -36,7 +36,7 @@ My team was key in this process. During every training session that seemed endle
 
 I'm nowhere near where I want to be. I always want to get better, and I know I can. Lately, I've been reflecting on the long game and wanted to share my experience to nudge more people to play it. Long-term games are good for your self-esteem. They teach you more about life than you realize. They push you to your limits.
 
-## My learning over the years
+## The long game teaches
 - Show up every day, consistency compounds.
 - Identity is a verb. You don't "have" discipline, you practice it. Who you are is the trail of what you repeat.
 - Progress hides in plain sight. The most important changes are too small to notice day to day.
