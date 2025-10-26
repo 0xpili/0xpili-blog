@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Long-term games — 0xpili</title>
+<meta name="description" content="Thoughtful writings on technology, privacy, and the human condition.">
+<meta property="og:title" content="Long-term games">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://0xpili.xyz/long-term-games">
+<link rel="canonical" href="https://0xpili.xyz/long-term-games">
+<style>
+:root{
+  --ratio:1.618;
+  --base:1rem;
+  --scale-1:calc(var(--base)*0.875);
+  --scale0:var(--base);
+  --scale1:calc(var(--base)*1.25);
+  --scale2:calc(var(--base)*1.5);
+  --scale3:calc(var(--base)*2);
+  --ink:#1a1a1a;
+  --ink-muted:#666666;
+  --paper:#ffffff;
+  --paper-subtle:#fafafa;
+  --accent:#ec4899;
+  --border:#e5e5e5;
+  --space-xs:0.25rem;
+  --space-s:0.5rem;
+  --space:1rem;
+  --space-l:1.5rem;
+  --space-xl:2rem;
+  --space-2xl:3rem;
+  --space-3xl:4rem;
+  --reading-width:38rem;
+  --line-height:1.75;
+  --line-height-tight:1.3;
+  --toggle-bg:#f0f0f0;
+  --toggle-hover:#e0e0e0;
+}
+[data-theme="dark"]{
+  --ink:#e0e0e0;
+  --ink-muted:#999;
+  --paper:#111;
+  --paper-subtle:#1a1a1a;
+  --accent:#f472b6;
+  --border:#333;
+  --toggle-bg:#222;
+  --toggle-hover:#333;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#e0e0e0;
+    --ink-muted:#999;
+    --paper:#111;
+    --paper-subtle:#1a1a1a;
+    --accent:#f472b6;
+    --border:#333;
+    --toggle-bg:#222;
+    --toggle-hover:#333;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{
+  font-size:18px;
+  line-height:var(--line-height);
+  background:var(--paper);
+  transition:background 0.2s ease;
+}
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--paper);
+  text-rendering:optimizeLegibility;
+  position:relative;
+}
+article{
+  max-width:var(--reading-width);
+  margin:0 auto;
+  padding:var(--space-3xl) var(--space-xl);
+  background:var(--paper);
+  position:relative;
+}
+h1,h2,h3{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-weight:600;
+  line-height:var(--line-height-tight);
+  margin:var(--space-2xl) 0 var(--space-l);
+  color:var(--ink);
+}
+h1{
+  font-size:var(--scale3);
+  margin-top:0;
+  font-weight:700;
+}
+h2{
+  font-size:var(--scale2);
+  margin-top:var(--space-3xl);
+  padding-bottom:var(--space-s);
+  border-bottom:1px solid var(--border);
+}
+h3{
+  font-size:var(--scale1);
+  font-weight:500;
+  color:var(--ink-muted);
+}
+p{
+  margin:0 0 var(--space-l);
+  line-height:var(--line-height);
+}
+a{
+  color:var(--accent);
+  text-decoration:underline;
+  text-underline-offset:0.2em;
+  text-decoration-thickness:1px;
+}
+a:hover{
+  text-decoration:none;
+}
+a:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+ul,ol{margin:0 0 var(--space-l);padding-left:var(--space-l)}
+li{margin-bottom:var(--space-s)}
+blockquote{
+  margin:var(--space-xl) 0;
+  padding:var(--space-l);
+  border-left:3px solid var(--border);
+  font-style:italic;
+  color:var(--ink-muted);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,"SF Mono",Monaco,monospace;
+  font-size:var(--scale-1);
+  background:var(--paper-subtle);
+  padding:var(--space-xs) var(--space-s);
+  border-radius:3px;
+}
+pre{
+  overflow-x:auto;
+  padding:var(--space-l);
+  margin:var(--space-xl) 0;
+  background:var(--paper-subtle);
+  border-radius:6px;
+  font-size:var(--scale-1);
+}
+pre code{
+  background:none;
+  padding:0;
+}
+del,s{
+  text-decoration:line-through;
+  color:var(--ink-muted);
+}
+.meta{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  color:var(--ink-muted);
+  font-size:var(--scale-1);
+  margin:var(--space) 0 var(--space-2xl);
+  padding-bottom:var(--space-l);
+  border-bottom:1px solid var(--border);
+}
+nav{
+  text-align:center;
+  padding:var(--space-2xl) 0;
+  margin-top:var(--space-3xl);
+  border-top:1px solid var(--border);
+}
+nav a{
+  display:inline-block;
+  margin:0 var(--space-l);
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-size:var(--scale-1);
+  color:var(--accent);
+  text-decoration:none;
+}
+nav a:hover{
+  text-decoration:underline;
+}
+.theme-toggle{
+  position:fixed;
+  top:1rem;
+  right:1rem;
+  width:3.5rem;
+  height:2rem;
+  border:none;
+  border-radius:2rem;
+  background:#ccc;
+  cursor:pointer;
+  padding:0.25rem;
+  transition:background 0.3s ease;
+}
+[data-theme="dark"] .theme-toggle{
+  background:#444;
+}
+.theme-toggle-slider{
+  width:1.5rem;
+  height:1.5rem;
+  border-radius:50%;
+  background:#fff;
+  transition:transform 0.3s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.9rem;
+}
+[data-theme="dark"] .theme-toggle-slider{
+  transform:translateX(1.5rem);
+  background:#222;
+}
+.cover{
+  margin:calc(var(--space-3xl)*-1) calc(var(--space-xl)*-1) var(--space-3xl);
+  overflow:hidden;
+  aspect-ratio:16/9;
+  background:var(--paper-subtle);
+}
+.cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+@media print{
+  body{font-size:11pt;line-height:1.4}
+  article{max-width:none;padding:0}
+  .cover,nav,.meta{display:none}
+  h1,h2,h3{page-break-after:avoid}
+  p{orphans:3;widows:3}
+}
+</style>
+</head>
+<body>
+<button class="theme-toggle" aria-label="Toggle theme">
+<div class="theme-toggle-slider">
+<span class="theme-icon">☾</span>
+</div>
+</button>
+<article>
+<div class="cover">
+<img src="/images/long-term-games-race-1.png" alt="Long-term games" />
+</div>
+<h1>Long-term games</h1>
+<div class="meta">2025 Oct 26</div>
+<p>Long-term games are tough.
+The rent is due daily.</p>
+
+<p>I started running seven years ago. In my early twenties, lifting at the gym, I randomly joined a local running team. Three runs a week turned into a quiet obsession with the niche.</p>
+
+<p>A couple of months later, I ran my first 5K, decent. Then a few 10Ks, and I decided I wanted to get good. I wanted to be near the front. I wanted sub-4:00/km, and I realized that wasn't going to come easy.</p>
+
+<p>After ~6 months, I realized that I was planning a long-term game. I didn't just want to "finish a marathon." I wanted to run fast: first 5K, then 10K, then a half-marathon, then a marathon.</p>
+
+<p>I got obsessed.</p>
+
+<p>Three years in, I left the club to work with a more professional coach. I broke 40' in the 10K, great, I became one of the top runners in my city. But I wanted more.</p>
+
+<p>Two years later, I moved to Buenos Aires, met <a href="https://www.instagram.com/fer_diaz_sanchez/">Fernando</a>, and started training with his team twice a week. He became my coach, and we embraced an even longer process. The goal was to continue progressing and find the best version of myself I can (we are still on that path, no near the finish line).</p>
+
+<p>I showed up with love, care, and thoughtfulness every day. I learned to show up even when my body was tired, even when the weather sucked, even while traveling, juggling meetings, or dealing with jet lag, even when race days didn't reflect the ridiculous amount of work I'd put in.</p>
+
+<p>All the hard work started, paying... I got the best paces I've ever had in a race.</p>
+
+<p><img src="/images/long-term-games-race-2.png" alt="Crossing the finish line" /></p>
+
+<p>Every year, it started to get better; consistency compounds.</p>
+
+<p>This year I got 10K in 37'30" (top ~2% worldwide among 10K finishers), 15K in 58' (roughly top ~2–3% among 15K finishers), and a half in 1'21'' (top &lt;1% worldwide among half-marathon finishers).</p>
+
+<p>To prepare for my last half-marathon, I trained between 110 km and 130 km per week. That's a lot. It means fewer breaks, double sessions, sleepiness, hunger, and pain.</p>
+
+<p>My team was key in this process. During every training session that seemed endless, a teammate showed up to help me keep a good pace. To encourage me, to help me find the best version of myself that even I didn't know I had. I had never felt so supported by a team.</p>
+
+<p><img src="/images/long-term-games-team.jpg" alt="Training with my team" /></p>
+
+<p>I'm nowhere near where I want to be. I always want to get better, and I know I can. Lately, I've been reflecting on the long game and wanted to share my experience to nudge more people to play it. Long-term games are good for your self-esteem. They teach you more about life than you realize. They push you to your limits.</p>
+
+<h2 id="my-learning-over-the-years">My learning over the years</h2>
+
+<ul>
+<li>Show up every day, consistency compounds.</li>
+<li>Identity is a verb. You don't "have" discipline, you practice it. Who you are is the trail of what you repeat.</li>
+<li>Progress hides in plain sight. The most important changes are too small to notice day to day.</li>
+<li>Humility keeps the door open.</li>
+<li>Long-term games are good for the mind when everything else chases instant results.</li>
+<li>Attention is a rare resource. Training is a daily exercise in choosing what deserves your focus.</li>
+<li>Patience is a superpower. Speed arrives quietly to people who stopped counting the days.</li>
+<li>You'll have good and bad days. The bad days don't define you.</li>
+<li>You need a good team, even if on race day you run alone</li>
+<li>Take care of yourself. Listen to your body. We all have limits.</li>
+<li>Limits are conversation starters. "I can't (yet)" is an invitation to renegotiate with yourself.</li>
+</ul>
+
+<p>Every training block introduces me to a new version of myself. I won't chase "arrival." I'll keep paying the rent, one quiet day at a time, and try to enjoy the fact that I get to run.</p>
+
+</article>
+<nav>
+<a href="/index.html">Index</a>
+<a href="https://twitter.com/0xpili_">Twitter</a>
+<a href="https://github.com/0xpili">GitHub</a>
+</nav>
+<script>
+(function(){
+  const toggle = document.querySelector('.theme-toggle');
+  const icon = document.querySelector('.theme-icon');
+  const root = document.documentElement;
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    root.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
+  }
+  
+  function updateIcon() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    icon.textContent = isDark ? '☀' : '☾';
+  }
+  
+  updateIcon();
+  
+  toggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    
+    root.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon();
+  });
+})();
+</script>
+</body>
+</html>
