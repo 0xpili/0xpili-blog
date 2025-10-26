@@ -45,7 +45,7 @@ I'm nowhere near where I want to be. I always want to get better, and I know I c
 - Attention is a rare resource. Training is a daily exercise in choosing what deserves your focus.
 - Patience is a superpower. Speed arrives quietly to people who stopped counting the days.
 - You'll have good and bad days. The bad days don't define you.
-- You need a good team, even if on race day you run alone
+- You need a good team, even if on race day you run alone.
 - Take care of yourself. Listen to your body. We all have limits.
 - Limits are conversation starters. "I can't (yet)" is an invitation to renegotiate with yourself.
 
