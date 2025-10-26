@@ -14,7 +14,7 @@ I got obsessed.
 
 Three years in, I left the club to work with a more professional coach. I broke 40' in the 10K, great, I became one of the top runners in my city. But I wanted more.
 
-![Race finish line](/images/long-term-games-race-1.png)
+<img src="/images/long-term-games-race-1.png" alt="Race finish line" />
 
 Two years later, I moved to Buenos Aires, met [Fernando](https://www.instagram.com/fer_diaz_sanchez/), and started training with his team twice a week. He became my coach, and we embraced an even longer process. The goal was to continue progressing and find the best version of myself I can (we are still on that path, no near the finish line).
 
@@ -22,7 +22,7 @@ I showed up with love, care, and thoughtfulness every day. I learned to show up 
 
 All the hard work started, paying... I got the best paces I've ever had in a race.
 
-![Crossing the finish line](/images/long-term-games-race-2.png)
+<img src="/images/long-term-games-race-2.png" alt="Crossing the finish line" />
 
 Every year, it started to get better; consistency compounds.
 
@@ -32,7 +32,7 @@ To prepare for my last half-marathon, I trained between 110 km and 130 km per we
 
 My team was key in this process. During every training session that seemed endless, a teammate showed up to help me keep a good pace. To encourage me, to help me find the best version of myself that even I didn't know I had. I had never felt so supported by a team.
 
-![Training with my team](/images/long-term-games-team.jpg)
+<img src="/images/long-term-games-team.jpg" alt="Training with my team" />
 
 I'm nowhere near where I want to be. I always want to get better, and I know I can. Lately, I've been reflecting on the long game and wanted to share my experience to nudge more people to play it. Long-term games are good for your self-esteem. They teach you more about life than you realize. They push you to your limits.
 
