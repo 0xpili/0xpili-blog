@@ -16,7 +16,7 @@ All Agentic Zero talks were recorded, you can watch them on our [YouTube channel
 # The Why Behind Agentic Zero
 *What happens when AI agents become the primary users of blockchains? When autonomous systems manage more assets than humans? When the rails we’re building today quietly become the foundation for a machine economy we can barely imagine?* These are some of the questions we started asking with a group of friends that have been participating in the Ethereum ecosystem for a long time. 
 
-With the team that ended organizing Agentic Zero,first we started an AI study group trying to find some answers to these big questions. We started from the basics and invited people at the frontier of the space to share resources to learn together
+With the team that ended organizing Agentic Zero, first we started an AI study group trying to find some answers to these big questions. We started from the basics and invited people at the frontier of the space to share resources to learn together
 
 The outcome from these initial conversations was clear: [agents are becoming the default consumer](https://every.to/thesis/the-race-is-on-to-redesign-everything-for-ai-agents/), and regardless of whether or not you are working on AI, most of your users will be agents in the next few years.
 
