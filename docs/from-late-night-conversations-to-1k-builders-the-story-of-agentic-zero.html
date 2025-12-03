@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>From Late-Night Conversations to 1k+ Builders: The Story of Agentic Zero — 0xpili</title>
+<meta name="description" content="Thoughtful writings on technology, privacy, and the human condition.">
+<meta property="og:title" content="From Late-Night Conversations to 1k+ Builders: The Story of Agentic Zero">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://0xpili.xyz/from-late-night-conversations-to-1k-builders-the-story-of-agentic-zero">
+<link rel="canonical" href="https://0xpili.xyz/from-late-night-conversations-to-1k-builders-the-story-of-agentic-zero">
+<style>
+:root{
+  --ratio:1.618;
+  --base:1rem;
+  --scale-1:calc(var(--base)*0.875);
+  --scale0:var(--base);
+  --scale1:calc(var(--base)*1.25);
+  --scale2:calc(var(--base)*1.5);
+  --scale3:calc(var(--base)*2);
+  --ink:#1a1a1a;
+  --ink-muted:#666666;
+  --paper:#ffffff;
+  --paper-subtle:#fafafa;
+  --accent:#ec4899;
+  --border:#e5e5e5;
+  --space-xs:0.25rem;
+  --space-s:0.5rem;
+  --space:1rem;
+  --space-l:1.5rem;
+  --space-xl:2rem;
+  --space-2xl:3rem;
+  --space-3xl:4rem;
+  --reading-width:38rem;
+  --line-height:1.75;
+  --line-height-tight:1.3;
+  --toggle-bg:#f0f0f0;
+  --toggle-hover:#e0e0e0;
+}
+[data-theme="dark"]{
+  --ink:#e0e0e0;
+  --ink-muted:#999;
+  --paper:#111;
+  --paper-subtle:#1a1a1a;
+  --accent:#f472b6;
+  --border:#333;
+  --toggle-bg:#222;
+  --toggle-hover:#333;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#e0e0e0;
+    --ink-muted:#999;
+    --paper:#111;
+    --paper-subtle:#1a1a1a;
+    --accent:#f472b6;
+    --border:#333;
+    --toggle-bg:#222;
+    --toggle-hover:#333;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{
+  font-size:18px;
+  line-height:var(--line-height);
+  background:var(--paper);
+  transition:background 0.2s ease;
+}
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--paper);
+  text-rendering:optimizeLegibility;
+  position:relative;
+}
+article{
+  max-width:var(--reading-width);
+  margin:0 auto;
+  padding:var(--space-3xl) var(--space-xl);
+  background:var(--paper);
+  position:relative;
+}
+h1,h2,h3{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-weight:600;
+  line-height:var(--line-height-tight);
+  margin:var(--space-2xl) 0 var(--space-l);
+  color:var(--ink);
+}
+h1{
+  font-size:var(--scale3);
+  margin-top:0;
+  font-weight:700;
+}
+h2{
+  font-size:var(--scale2);
+  margin-top:var(--space-3xl);
+  padding-bottom:var(--space-s);
+  border-bottom:1px solid var(--border);
+}
+h3{
+  font-size:var(--scale1);
+  font-weight:500;
+  color:var(--ink-muted);
+}
+p{
+  margin:0 0 var(--space-l);
+  line-height:var(--line-height);
+}
+a{
+  color:var(--accent);
+  text-decoration:underline;
+  text-underline-offset:0.2em;
+  text-decoration-thickness:1px;
+}
+a:hover{
+  text-decoration:none;
+}
+a:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+ul,ol{margin:0 0 var(--space-l);padding-left:var(--space-l)}
+li{margin-bottom:var(--space-s)}
+blockquote{
+  margin:var(--space-xl) 0;
+  padding:var(--space-l);
+  border-left:3px solid var(--border);
+  font-style:italic;
+  color:var(--ink-muted);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,"SF Mono",Monaco,monospace;
+  font-size:var(--scale-1);
+  background:var(--paper-subtle);
+  padding:var(--space-xs) var(--space-s);
+  border-radius:3px;
+}
+pre{
+  overflow-x:auto;
+  padding:var(--space-l);
+  margin:var(--space-xl) 0;
+  background:var(--paper-subtle);
+  border-radius:6px;
+  font-size:var(--scale-1);
+}
+pre code{
+  background:none;
+  padding:0;
+}
+del,s{
+  text-decoration:line-through;
+  color:var(--ink-muted);
+}
+.meta{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  color:var(--ink-muted);
+  font-size:var(--scale-1);
+  margin:var(--space) 0 var(--space-2xl);
+  padding-bottom:var(--space-l);
+  border-bottom:1px solid var(--border);
+}
+nav{
+  text-align:center;
+  padding:var(--space-2xl) 0;
+  margin-top:var(--space-3xl);
+  border-top:1px solid var(--border);
+}
+nav a{
+  display:inline-block;
+  margin:0 var(--space-l);
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-size:var(--scale-1);
+  color:var(--accent);
+  text-decoration:none;
+}
+nav a:hover{
+  text-decoration:underline;
+}
+.theme-toggle{
+  position:fixed;
+  top:1rem;
+  right:1rem;
+  width:3.5rem;
+  height:2rem;
+  border:none;
+  border-radius:2rem;
+  background:#ccc;
+  cursor:pointer;
+  padding:0.25rem;
+  transition:background 0.3s ease;
+}
+[data-theme="dark"] .theme-toggle{
+  background:#444;
+}
+.theme-toggle-slider{
+  width:1.5rem;
+  height:1.5rem;
+  border-radius:50%;
+  background:#fff;
+  transition:transform 0.3s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.9rem;
+}
+[data-theme="dark"] .theme-toggle-slider{
+  transform:translateX(1.5rem);
+  background:#222;
+}
+.cover{
+  margin:calc(var(--space-3xl)*-1) calc(var(--space-xl)*-1) var(--space-3xl);
+  overflow:hidden;
+  aspect-ratio:16/9;
+  background:var(--paper-subtle);
+}
+.cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+article img{
+  max-width:100%;
+  height:auto;
+  margin:var(--space-xl) 0;
+  border-radius:6px;
+  display:block;
+}
+@media print{
+  body{font-size:11pt;line-height:1.4}
+  article{max-width:none;padding:0}
+  .cover,nav,.meta{display:none}
+  h1,h2,h3{page-break-after:avoid}
+  p{orphans:3;widows:3}
+}
+</style>
+</head>
+<body>
+<button class="theme-toggle" aria-label="Toggle theme">
+<div class="theme-toggle-slider">
+<span class="theme-icon">☾</span>
+</div>
+</button>
+<article>
+<h1>From Late-Night Conversations to 1k+ Builders: The Story of Agentic Zero</h1>
+<div class="meta">2025 Dec 03</div>
+<p><a href="https://agenticzero.xyz/">Agentic Zero</a> began as a handful of <a href="https://x.com/Beler/status/1980599460221894894?s=20">late-night conversations</a> about the future we're actually building. It grew into the main AI agents gathering for people who take this industry seriously.</p>
+
+<p>Tired of seeing crypto communities creating events that result in zero-sum and value extraction, Agentic Zero was created with a different mindset: create the meeting point where serious builders that treat AI and Ethereum as building blocks for durable, shared value, can stress-test ideas in public.</p>
+
+<p>We built Agentic Zero because the AI x crypto intersection matters, the builders tackling these specific problems deserve visibility, and the infrastructure, security, and coordination challenges are too important to ignore.</p>
+
+<p>The response speaks for itself: 1.8k+ registrations, 1k+ people onsite, 13k+ livestream views (and counting), and 98k+ social media views around the event.</p>
+
+<p>All Agentic Zero talks were recorded, you can watch them on our <a href="https://www.youtube.com/@agenticzeroxyz">YouTube channel</a>.</p>
+
+<p><img src="/images/agentic-zero1.jpg" alt="Agentic Zero" /></p>
+
+<h1 id="the-why-behind-agentic-zero">The Why Behind Agentic Zero</h1>
+
+<p><em>What happens when AI agents become the primary users of blockchains? When autonomous systems manage more assets than humans? When the rails we’re building today quietly become the foundation for a machine economy we can barely imagine?</em> These are some of the questions we started asking with a group of friends that have been participating in the Ethereum ecosystem for a long time. </p>
+
+<p>With the team that ended organizing Agentic Zero,first we started an AI study group trying to find some answers to these big questions. We started from the basics and invited people at the frontier of the space to share resources to learn together</p>
+
+<p>The outcome from these initial conversations was clear: <a href="https://every.to/thesis/the-race-is-on-to-redesign-everything-for-ai-agents/">agents are becoming the default consumer</a>, and regardless of whether or not you are working on AI, most of your users will be agents in the next few years.</p>
+
+<p>We went to a lot of AI x crypto events trying to understand how the crypto industry is adding value to AI. Most of them (not all of them) let us down... and if you've spent time at crypto conferences, you've probably seen it: pay huge amounts of money for a 5-minute slot on a panel, half-empty rooms, speakers talking to a handful of people, and stages treated as background noise for networking.</p>
+
+<p><img src="/images/agentic-zero2.jpg" alt="Agentic Zero" /></p>
+
+<p>That's how the idea of creating the AI x crypto conference we wished already exist started to take shape.</p>
+
+<h2 id="the-journey">The Journey</h2>
+
+<p>Putting the right people in the same room to start answering these questions is not easy. It’s even harder to get people to buy into an event when you’re creating a new brand from scratch.</p>
+
+<p>When we started drafting Agentic Zero nine months ago, we had a clear vision about delivering something different:
+- Put agents at the center, as standard consumers and major economic actors
+- A stage full of people watching the talks we wish existed when we started learning about this topic
+- Showcase everyone that Ethereum is ready to solve the hardest challenges that AI is facing
+- Create the place where builders making real progress can gather and discuss ideas in public</p>
+
+<p>So we did the obvious but hard thing: we invited almost everyone building on AI in the Ethereum ecosystem. If you’re working at that intersection, there’s a good chance you got a DM from Luka or from me and there is also a good chance you heard about Agentic Zero at the ERC-8004 community calls. We also reached out to web2 AI teams and asked them to join the conversation, not as outsiders, but as people who will have to interact with Ethereum as the financial and coordination layer, whether they like it or not.</p>
+
+<p>We set the bar really high: no shilling, no random sponsors, just top-quality participants that are working day and night to solve the hardest AI challenges.</p>
+
+<h2 id="how-we-made-it-possible">How We Made It Possible</h2>
+
+<p>Organizing events is not Agentic Zero's team full-time job. We're all involved at different crypto projects and organizing this event was something we WANTED to do. We wanted to give the Ethereum community a safe and curated place where they can discuss the most important matters in public. We strongly belive serious builders deserve a serious event to gather and discuss about the future. The future are agents transacting on behalf of humans, agents with identity, with reputation, agents that make payments, invest real money and have real-world impact.</p>
+
+<p>Bringing a live event to over 1,000 attendees for free is in no way straightforward. You need to secure sponsors and partners who support the idea and are willing to back a new brand before it’s proven.</p>
+
+<p>Fortunately, we had <a href="https://agenticzero.xyz/#sponsors">incredible sponsors</a> who trusted the team , believed in the values behind the event and helped us bring Agentic Zero to life. I am deeply grateful to all of them, this event couldn't be possible without you.</p>
+
+<p>We also had incredible partners like <a href="https://x.com/theonclub?s=21">O(n) Club</a>, <a href="https://crecimiento.build/">Crecimiento</a>, <a href="https://x.com/ethdaily?s=21">ETH Daily</a>, <a href="https://x.com/therollupco?s=21">The Rollup</a>, and <a href="https://x.com/ethbelgrade">ETH Belgrade</a> that helped us with distribution and feedback. Building community is hard work. They know how to do it, and they were willing to lend their reputation to share Agentic Zero with their people. Thank you!</p>
+
+<p>And then, there is the team behind Agentic Zero. They operated next level, and I couldn't be more thankful to them.</p>
+
+<h2 id="looking-ahead">Looking Ahead</h2>
+
+<p>Agentic Zero landed with real weight, we heard strong feedback from speakers, attendees, and sponsors. The natural next step is to turn Agentic Zero into a recurring event.</p>
+
+<p>We’re now exploring what a second edition should look like. Mumbai is high on our list, but it’s still too early to confirm anything. If you’re interested in supporting the next edition, we’d love to hear what you’d like to see more of and where you think Agentic Zero should be hosted.</p>
+
+<p>If you attended Agentic Zero, I would love to hear from you and get your honest feedback. Feel free to reach out to me by dm on X (@0xpili_) or send an email at pili@agenticzero.xyz.</p>
+
+<hr />
+
+<p>Thanks Euge, Luka, Angela, and Batman for reviewing this piece.</p>
+
+</article>
+<nav>
+<a href="/index.html">Index</a>
+<a href="https://twitter.com/0xpili_">Twitter</a>
+<a href="https://github.com/0xpili">GitHub</a>
+</nav>
+<script>
+(function(){
+  const toggle = document.querySelector('.theme-toggle');
+  const icon = document.querySelector('.theme-icon');
+  const root = document.documentElement;
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    root.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
+  }
+  
+  function updateIcon() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    icon.textContent = isDark ? '☀' : '☾';
+  }
+  
+  updateIcon();
+  
+  toggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    
+    root.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon();
+  });
+})();
+</script>
+</body>
+</html>
