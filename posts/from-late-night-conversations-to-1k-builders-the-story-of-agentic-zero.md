@@ -31,6 +31,7 @@ That's how the idea of creating the AI x crypto conference we wished already exi
 Putting the right people in the same room to start answering these questions is not easy. It’s even harder to get people to buy into an event when you’re creating a new brand from scratch.
 
 When we started drafting Agentic Zero nine months ago, we had a clear vision about delivering something different:
+
 - Put agents at the center, as standard consumers and major economic actors
 - A stage full of people watching the talks we wish existed when we started learning about this topic
 - Showcase everyone that Ethereum is ready to solve the hardest challenges that AI is facing
