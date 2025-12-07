@@ -1,9 +1,9 @@
 Date: 2025 Dec 07
 # In Defense of Attention
 
-*Attention* is a scarce resource (not time). Since every app started being optimized for engagement, humans' lives, and especially our *attention* was really affected, leading to cognitive deterioration and structural changes on how humans interact with each other and the world *outside*.
+*Attention* is a scarce resource. Since every app started being optimized for engagement, human's lives, and especially our *attention* was really affected, leading to cognitive deterioration and structural changes on how humans interact with each other and the world *outside*.
 
-> *For all its grandiose promises, modern tech often leaves us feeling alienated, ever more distant from who we want to be.* - Resonant Computing Manifesto
+> *For all its grandiose promises, modern tech often leaves us feeling alienated, ever more distant from who we want to be.* - [Resonant Computing Manifesto](https://resonantcomputing.org/)
 
 Most humans are *overstimulated*. It's like a kind of obesity for the brain: your mind is constantly processing junk input it never asked for. Hundreds of push notifications, endless scrolling, and the pressure to "keep up to date" on social media are some of the main drivers.
 
@@ -14,7 +14,7 @@ In defense of my attention, I did some changes on my daily routine to defend mys
 ### Digital boundaries
 
 - **Delete all social media from your phone**
-Social media apps are like smoking for your brain. They are *optimized for retention*. This means what I am sure you already know, you can't quit them. And even if you try, the anxiety is so high.
+Social media apps are like smoking for your brain. They are *optimized for retention*. That means what I am sure you already know, you can't quit them. And even if you try, the anxiety is so high.
 - **Disable all notifications**
 Imagine working with someone who interrupts you by tapping your shoulder to ask something every few minutes. These are push notifications, and I found them as one of the major factors of *distractions* in my daily life. I recommend removing ALL push notifications from your phone, even from your family. If they need something urgent, they will call you, and you also will develop an *habit* of checking their messages from time to time.
 - **Cleanup your email inbox**
