@@ -2,7 +2,6 @@ Date: 2025 Oct 26
 # Long-term games
 
 Long-term games are tough.
-The rent is due daily.
 
 I started running seven years ago. In my early twenties, lifting at the gym, I randomly joined a local running team. Three runs a week turned into a quiet obsession with the niche.
 
@@ -48,5 +47,3 @@ I'm nowhere near where I want to be. I always want to get better, and I know I c
 - You need a good team, even if on race day you run alone.
 - Take care of yourself. Listen to your body. We all have limits.
 - Limits are conversation starters. "I can't (yet)" is an invitation to renegotiate with yourself.
-
-Every training block introduces me to a new version of myself. I won't chase "arrival." I'll keep paying the rent, one quiet day at a time, and try to enjoy the fact that I get to run.
