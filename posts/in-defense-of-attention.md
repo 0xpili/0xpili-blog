@@ -37,8 +37,8 @@ This is just the list of things I implemented recently and had really great impa
 Attention is the only [currency](https://x.com/naval/status/1889248439827153209?s=20) we have in life. Thanks for gifting me yours.
 
 ---
-Resources:
-- https://fragmentsofcode.substack.com/p/the-quality-without-a-name
-- https://resonantcomputing.org/
-- https://substack.com/inbox/post/180851372
-- https://maraoz.com/texting-while-driving/
+## Resources
+- [The Quality Without a Name](https://fragmentsofcode.substack.com/p/the-quality-without-a-name) - Fragments of Code
+- [Resonant Computing Manifesto](https://resonantcomputing.org/)
+- [In Praise of Memorization](https://substack.com/inbox/post/180851372) - by Simon Sarris
+- [Texting While Driving](https://maraoz.com/texting-while-driving/) - by Manuel Araoz
