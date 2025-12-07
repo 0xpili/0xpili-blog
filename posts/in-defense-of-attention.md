@@ -13,7 +13,7 @@ In defense of my attention, I did some changes on my daily routine to avoid over
 
 ### Digital boundaries
 
-- **Delete all social media from your phone**. Social media apps are like smoking for your brain. They are *optimized for retention*. That means what I am sure you already know, you can't quit them. And even if you try, the anxiety is so high. I deleted all social media from my phone and keep usign them time-boxed in my computer.
+- **Delete all social media from your phone**. Social media apps are like smoking for your brain. They are *optimized for retention*. That means what I am sure you already know, you can't quit them. And even if you try, the anxiety is so high. I deleted all social media from my phone and keep using them time-boxed in my computer.
 - **Disable all notifications**. Imagine working with someone who interrupts you by tapping your shoulder to ask something every few minutes. These are push notifications, and I found them as one of the major factors of *distractions* in my daily life. I recommend removing ALL push notifications from your phone, even from your family. If they need something urgent, they will call you, and you also will develop an *habit* of checking their messages from time to time.
 - **Cleanup your email inbox**. Every time I entered my email inbox I had hundreds of emails waiting. For sure not all of them were important ones. Treat your email like your mailbox at home (you don't want to receive 50+ letters a day). Cleanup the newsletters you are subscribed to (I have a reminder to review them quarterly), also block any unnecessary emails you receive from unknown senders.
 
