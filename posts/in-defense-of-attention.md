@@ -9,7 +9,7 @@ Most humans are *overstimulated*. It's like a kind of obesity for the brain: you
 
 ## How I Defend Myself From Overstimulation Exposure
 
-In defense of my attention, I did some changes on my daily routine to defend myself from overstimulation exposure:
+In defense of my attention, I did some changes on my daily routine to avoid overstimulation exposure:
 
 ### Digital boundaries
 
