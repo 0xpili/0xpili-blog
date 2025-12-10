@@ -28,9 +28,9 @@ In defense of my attention, I did some changes on my daily routine to avoid over
 ### Inner signal
 
 - **Create a routine ensuring you have time for the important things**. Ensure you have time for the *important* things. You need to ensure your priorities get enough attention during the day. I use [Obsidian](https://obsidian.md/) to keep a simple routine tracker. I like it because I try to avoid complex apps (like Notion) to track my personal stuff while prioritizing local-first environments.
-- **Prioritize introspection**. Examining your feelings and thoughts is a very important piece to prioritize yourself. Personally, I dedicate at least 10-30 minutes every day to write about how I am feeling, what challenges I am faced what I am worried about and what I am grateful for.
+- **Prioritize introspection**. Examining your feelings and thoughts is a very important piece to prioritize yourself. Personally, I dedicate at least 10-30 minutes every day to write about how I am feeling, what challenges I faced what I am worried about and what I am grateful for.
 - **Apply the "right speech" concept to attention**. This is a Buddhist principle that we can summarize as being conscious before speaking: is this the right moment to speak? Is what I'm saying genuinely helpful? The same principle applies to any request for *attention*.
-- **Have healthy friendships!** There are many different forms of *friendship*, make sure to be surrounded by people that care about you
+- **Have healthy friendships!** There are many different forms of *friendship*, make sure to be surrounded by people that care about you.
 
 This is just the list of things I implemented recently and had really great impact on my life. Your recipe can just be different and that's perfectly good. If you want to be in touch, please email me at me@0xpili.xyz
 

@@ -1,5 +1,5 @@
 Date: 2025 Dec 03
-# The Story of Agentic Zero
+# From Late-Night Conversations to 1k+ Builders: The Story of Agentic Zero
 
 [Agentic Zero](https://agenticzero.xyz/) began as a handful of [late-night conversations](https://x.com/Beler/status/1980599460221894894?s=20) about the future we're actually building. It grew into the main AI agents gathering for people who take this industry seriously.
 
@@ -11,7 +11,7 @@ The response speaks for itself: 1.8k+ registrations, 1k+ people onsite, 13k+ liv
 
 All Agentic Zero talks were recorded, you can watch them on our [YouTube channel](https://www.youtube.com/@agenticzeroxyz).
 
-<img src="/images/agentic-zero1.jpg" alt="Agentic Zero" />
+<img src="/images/agentic-zero1.png" alt="Agentic Zero" />
 
 # The Why Behind Agentic Zero
 *What happens when AI agents become the primary users of blockchains? When autonomous systems manage more assets than humans? When the rails we’re building today quietly become the foundation for a machine economy we can barely imagine?* These are some of the questions we started asking with a group of friends that have been participating in the Ethereum ecosystem for a long time. 
@@ -20,9 +20,9 @@ With the team that ended organizing Agentic Zero, first we started an AI study g
 
 The outcome from these initial conversations was clear: [agents are becoming the default consumer](https://every.to/thesis/the-race-is-on-to-redesign-everything-for-ai-agents/), and regardless of whether or not you are working on AI, most of your users will be agents in the next few years.
 
-We went to a lot of AI x crypto events trying to understand how the crypto industry is adding value to AI. Most of them (not all of them) let us down... and if you've spent time at crypto conferences, you've probably seen it: pay huge amounts of money for a 5-minute slot on a panel, half-empty rooms, speakers talking to a handful of people, and stages treated as background noise for networking.
 
-<img src="/images/agentic-zero2.jpg" alt="Agentic Zero" />
+
+We went to a lot of AI x crypto events trying to understand how the crypto industry is adding value to AI. Most of them (not all of them) let us down... and if you’ve spent time at crypto conferences, you’ve probably seen it: pay huge amounts of money for a 5-minute slot on a panel, half-empty rooms, speakers talking to a handful of people, and stages treated as background noise for networking. 
 
 That's how the idea of creating the AI x crypto conference we wished already exist started to take shape.
 
@@ -31,7 +31,6 @@ That's how the idea of creating the AI x crypto conference we wished already exi
 Putting the right people in the same room to start answering these questions is not easy. It’s even harder to get people to buy into an event when you’re creating a new brand from scratch.
 
 When we started drafting Agentic Zero nine months ago, we had a clear vision about delivering something different:
-
 - Put agents at the center, as standard consumers and major economic actors
 - A stage full of people watching the talks we wish existed when we started learning about this topic
 - Showcase everyone that Ethereum is ready to solve the hardest challenges that AI is facing
