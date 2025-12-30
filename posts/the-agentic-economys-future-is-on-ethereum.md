@@ -72,8 +72,4 @@ At some point, the limiting factor isn't capital or ideas, it is attention.
 
 40+ agentic finance projects (in production-ready state) emerged this year, there are a bunch of others still in beta. We're just at the beginning of this Cambrian explosion. The basic infrastructure of an agentic economy needs to exist without asking permission.
 
-As [Sam Green](https://x.com/0xsamgreen) put it:
-
-> "Agentic Finance (AgentFi) is a rapidly growing crypto market segment that'll disrupt DeFi in the short run and redefine all of finance as we know it in the long run. It's not DeFAI (however you pronounce that). It's finance performed by agents with varying degrees of autonomy."
-
 For more than a decade, the Ethereum community has been building the rails for the internet to move onchain: smart accounts, stablecoins, and standards for identity, assets, and payments (ERC-721, ERC-8004, x402, and more). Now it's time to see what happens when agents become the primary users of blockchains and humans shift into the orchestrators role. When agents can hold money, prove intent, and settle actions on neutral, efficient rails that scale accordingly. Coordination no longer becomes a human bottleneck.
