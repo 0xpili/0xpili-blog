@@ -5,6 +5,8 @@ Traditional financial and identity rails were built around the core assumption t
 
 In practice, if you try to wire an agentic economy on top of credit cards and centralized banks, you are forcing non-human actors into a system that can't recognize them as first-class participants.
 
+![Agentic Economy](/images/agentic-economy-1.png)
+
 Here is where Ethereum's existing rails start to matter. Creating an agentic economy that treats agents as real economic actors isn't trivial, but the primitives are already here: programmable ownership, permissionless settlement, composable contracts, and a native way for software to hold value and prove intent without begging a platform for an exception.
 
 On [@bhorowitz](https://x.com/bhorowitz) words:
@@ -24,6 +26,8 @@ To achieve that goal, agents need to have some basic core competencies:
 - Money rails to make payments and hold value
 - Portable identity
 - Discovery plus shared understanding. Coordination rails for communicating, negotiating, and composing tasks with other agents.
+
+![Agentic Economy](/images/agentic-economy-2.png)
 
 ## Money Rails
 
