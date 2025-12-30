@@ -252,8 +252,6 @@ article img{
 
 <p>In practice, if you try to wire an agentic economy on top of credit cards and centralized banks, you are forcing non-human actors into a system that can't recognize them as first-class participants.</p>
 
-<p><img src="/images/agentic-economy-1.png" alt="Agentic Economy"></p>
-
 <p>Here is where Ethereum's existing rails start to matter. Creating an agentic economy that treats agents as real economic actors isn't trivial, but the primitives are already here: programmable ownership, permissionless settlement, composable contracts, and a native way for software to hold value and prove intent without begging a platform for an exception.</p>
 
 <p>On <a href="https://x.com/bhorowitz">@bhorowitz</a> words:</p>
@@ -266,9 +264,9 @@ article img{
 
 <h2 id="agentic-finance-needs-efficient-rails">Agentic Finance Needs Efficient Rails</h2>
 
-<p>Agents are becoming the default consumer. Regardless of whether or not you are working on AI, you have a really high chance that most of your users will become agents in the next few years.</p>
+<p>Agents are becoming the <a href="https://every.to/thesis/the-race-is-on-to-redesign-everything-for-ai-agents/">default consumer</a>. Regardless of whether or not you are working on AI, you have a really high chance that most of your users will become agents in the next few years.</p>
 
-<p>In an agentic economy, most flows of value and information are initiated, negotiated, and settled by agents rather than by humans clicking buttons. Redesigning the financial rails is needed to allow agents to participate in the economy, not as observers but as real players, unlocking Agentic Finance's full potential.</p>
+<p>In an agentic economy, most flows of value and information are initiated, negotiated, and settled by agents rather than by humans clicking buttons. Redesigning the financial rails is needed to allow agents to participate in the economy, not as observers but as real players, unlocking <a href="https://www.cambrian.org/blog/agentic-finance-landscape-q3-2025#what-is-agentic-finance">Agentic Finance</a>'s full potential.</p>
 
 <p>To achieve that goal, agents need to have some basic core competencies:</p>
 
@@ -278,13 +276,11 @@ article img{
 <li>Discovery plus shared understanding. Coordination rails for communicating, negotiating, and composing tasks with other agents.</li>
 </ul>
 
-<p><img src="/images/agentic-economy-2.png" alt="Agentic Economy"></p>
-
 <h2 id="money-rails">Money Rails</h2>
 
 <p>When agents start interacting with other agents, products, and services, they eventually hit actions that require transferring value. Giving agents safe access to money rails, so they can hold funds and settle transactions, is essential if we want them to operate in the real world.</p>
 
-<p>HTTP has had a 402 "Payment Required" status code for decades, but it sat unused until x402 gave it a real payment rail. Blockchains added the primitives that web2 payments didn't have to enable the agentic economy:</p>
+<p>HTTP has had a 402 "Payment Required" status code for decades, but it sat unused until <a href="https://www.x402.org/">x402</a> gave it a real payment rail. Blockchains added the primitives that web2 payments didn't have to enable the agentic economy:</p>
 
 <ul>
 <li>An agent or human can control a wallet and pay in stablecoins without a bank login</li>
@@ -307,17 +303,17 @@ article img{
 
 <p>These are some reasons agents need transparent identity and reputation records that are not controlled by a single company or centralized entity.</p>
 
-<p>The ERC-8004, developed by the Ethereum Foundation and contributors, solves this problem by enabling discovery and trust for agents. This ERC extends the A2A (agent-to-agent) protocol delivered by Google, introducing three onchain registries that allow discovery for agents (Identity registry, Reputation registry, and Validation registry).</p>
+<p>The <a href="https://eips.ethereum.org/EIPS/eip-8004">ERC-8004</a>, developed by the Ethereum Foundation and contributors, solves this problem by enabling discovery and trust for agents. This ERC extends the <a href="https://a2a-protocol.org/latest/">A2A (agent-to-agent)</a> protocol delivered by Google, introducing three onchain registries that allow discovery for agents (Identity registry, Reputation registry, and Validation registry).</p>
 
 <p>ERC-8004 also allows agents to play three roles: Server (offer services), Client, and Validator (perform independent checks).</p>
 
-<p>This new standard (heading to mainnet soon), enables portable identity for agents plus attested feedback on agents' work and composable validations, removing trust assumptions on agents' reputation and quality of service.</p>
+<p>This new standard (<a href="https://x.com/DavideCrapis/status/2001705924243972337?s=20">heading to mainnet soon</a>), enables portable identity for agents plus attested feedback on agents' work and composable validations, removing trust assumptions on agents' reputation and quality of service.</p>
 
 <h2 id="scalability-account-rails">Scalability &amp; Account Rails</h2>
 
 <p>An agentic economy is high-frequency by default. Ethereum's scaling strategy is rollup-centric: L2s execute transactions, and Ethereum provides neutral settlement plus data availability.</p>
 
-<p>Recent Ethereum upgrades (like Fusaka) were important steps toward making Ethereum and L2s a real home for agents. As examples, the Dencun upgrade introduced blob-carrying transactions ("proto-danksharding"), making rollup data posting dramatically cheaper; Pectra increased blob capacity and added EIP-7702, which lets EOAs (Externally Owned Accounts) set code as a practical bridge toward smart-account behavior for existing wallets; and Fusaka enabled higher blob throughput without overwhelming the network, plus a mechanism (BPOs) to increase blob target/max without waiting for an upgrade schedule.</p>
+<p>Recent Ethereum upgrades (like Fusaka) were important steps toward making Ethereum and L2s a real home for agents. As examples, the <a href="https://ethereum.org/roadmap/dencun/#dencun">Dencun</a> upgrade introduced blob-carrying transactions ("proto-danksharding"), making rollup data posting dramatically cheaper; <a href="https://ethereum.org/roadmap/pectra/#pectra">Pectra</a> increased blob capacity and added EIP-7702, which lets EOAs (Externally Owned Accounts) set code as a practical bridge toward smart-account behavior for existing wallets; and <a href="https://ethereum.org/roadmap/fusaka/">Fusaka</a> enabled higher blob throughput without overwhelming the network, plus a mechanism (BPOs) to increase blob target/max without waiting for an upgrade schedule.</p>
 
 <h2 id="ethereum-the-agentic-infinite-garden">Ethereum, The Agentic Infinite Garden</h2>
 
@@ -328,6 +324,8 @@ article img{
 <p>40+ agentic finance projects (in production-ready state) emerged this year, there are a bunch of others still in beta. We're just at the beginning of this Cambrian explosion. The basic infrastructure of an agentic economy needs to exist without asking permission.</p>
 
 <p>For more than a decade, the Ethereum community has been building the rails for the internet to move onchain: smart accounts, stablecoins, and standards for identity, assets, and payments (ERC-721, ERC-8004, x402, and more). Now it's time to see what happens when agents become the primary users of blockchains and humans shift into the orchestrators role. When agents can hold money, prove intent, and settle actions on neutral, efficient rails that scale accordingly. Coordination no longer becomes a human bottleneck.</p>
+
+<p>If you want to be in touch, please email me at me@0xpili.xyz</p>
 
 </article>
 <nav>
