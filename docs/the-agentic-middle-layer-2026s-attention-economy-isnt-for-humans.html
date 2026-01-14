@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Agentic Middle Layer: 2026&#39;s attention economy isn&#39;t for humans — 0xpili</title>
+<meta name="description" content="Thoughtful writings on technology, privacy, and the human condition.">
+<meta property="og:title" content="The Agentic Middle Layer: 2026&#39;s attention economy isn&#39;t for humans">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://0xpili.xyz/the-agentic-middle-layer-2026s-attention-economy-isnt-for-humans">
+<link rel="canonical" href="https://0xpili.xyz/the-agentic-middle-layer-2026s-attention-economy-isnt-for-humans">
+<style>
+:root{
+  --ratio:1.618;
+  --base:1rem;
+  --scale-1:calc(var(--base)*0.875);
+  --scale0:var(--base);
+  --scale1:calc(var(--base)*1.25);
+  --scale2:calc(var(--base)*1.5);
+  --scale3:calc(var(--base)*2);
+  --ink:#1a1a1a;
+  --ink-muted:#666666;
+  --paper:#ffffff;
+  --paper-subtle:#fafafa;
+  --accent:#ec4899;
+  --border:#e5e5e5;
+  --space-xs:0.25rem;
+  --space-s:0.5rem;
+  --space:1rem;
+  --space-l:1.5rem;
+  --space-xl:2rem;
+  --space-2xl:3rem;
+  --space-3xl:4rem;
+  --reading-width:38rem;
+  --line-height:1.75;
+  --line-height-tight:1.3;
+  --toggle-bg:#f0f0f0;
+  --toggle-hover:#e0e0e0;
+}
+[data-theme="dark"]{
+  --ink:#e0e0e0;
+  --ink-muted:#999;
+  --paper:#111;
+  --paper-subtle:#1a1a1a;
+  --accent:#f472b6;
+  --border:#333;
+  --toggle-bg:#222;
+  --toggle-hover:#333;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#e0e0e0;
+    --ink-muted:#999;
+    --paper:#111;
+    --paper-subtle:#1a1a1a;
+    --accent:#f472b6;
+    --border:#333;
+    --toggle-bg:#222;
+    --toggle-hover:#333;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{
+  font-size:18px;
+  line-height:var(--line-height);
+  background:var(--paper);
+  transition:background 0.2s ease;
+}
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--paper);
+  text-rendering:optimizeLegibility;
+  position:relative;
+}
+article{
+  max-width:var(--reading-width);
+  margin:0 auto;
+  padding:var(--space-3xl) var(--space-xl);
+  background:var(--paper);
+  position:relative;
+}
+h1,h2,h3{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-weight:600;
+  line-height:var(--line-height-tight);
+  margin:var(--space-2xl) 0 var(--space-l);
+  color:var(--ink);
+}
+h1{
+  font-size:var(--scale3);
+  margin-top:0;
+  font-weight:700;
+}
+h2{
+  font-size:var(--scale2);
+  margin-top:var(--space-3xl);
+  padding-bottom:var(--space-s);
+  border-bottom:1px solid var(--border);
+}
+h3{
+  font-size:var(--scale1);
+  font-weight:500;
+  color:var(--ink-muted);
+}
+p{
+  margin:0 0 var(--space-l);
+  line-height:var(--line-height);
+}
+a{
+  color:var(--accent);
+  text-decoration:underline;
+  text-underline-offset:0.2em;
+  text-decoration-thickness:1px;
+}
+a:hover{
+  text-decoration:none;
+}
+a:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+ul,ol{margin:0 0 var(--space-l);padding-left:var(--space-l)}
+li{margin-bottom:var(--space-s)}
+blockquote{
+  margin:var(--space-xl) 0;
+  padding:var(--space-l);
+  border-left:3px solid var(--border);
+  font-style:italic;
+  color:var(--ink-muted);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,"SF Mono",Monaco,monospace;
+  font-size:var(--scale-1);
+  background:var(--paper-subtle);
+  padding:var(--space-xs) var(--space-s);
+  border-radius:3px;
+}
+pre{
+  overflow-x:auto;
+  padding:var(--space-l);
+  margin:var(--space-xl) 0;
+  background:var(--paper-subtle);
+  border-radius:6px;
+  font-size:var(--scale-1);
+}
+pre code{
+  background:none;
+  padding:0;
+}
+del,s{
+  text-decoration:line-through;
+  color:var(--ink-muted);
+}
+.meta{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  color:var(--ink-muted);
+  font-size:var(--scale-1);
+  margin:var(--space) 0 var(--space-2xl);
+  padding-bottom:var(--space-l);
+  border-bottom:1px solid var(--border);
+}
+nav{
+  text-align:center;
+  padding:var(--space-2xl) 0;
+  margin-top:var(--space-3xl);
+  border-top:1px solid var(--border);
+}
+nav a{
+  display:inline-block;
+  margin:0 var(--space-l);
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-size:var(--scale-1);
+  color:var(--accent);
+  text-decoration:none;
+}
+nav a:hover{
+  text-decoration:underline;
+}
+.theme-toggle{
+  position:fixed;
+  top:1rem;
+  right:1rem;
+  width:3.5rem;
+  height:2rem;
+  border:none;
+  border-radius:2rem;
+  background:#ccc;
+  cursor:pointer;
+  padding:0.25rem;
+  transition:background 0.3s ease;
+}
+[data-theme="dark"] .theme-toggle{
+  background:#444;
+}
+.theme-toggle-slider{
+  width:1.5rem;
+  height:1.5rem;
+  border-radius:50%;
+  background:#fff;
+  transition:transform 0.3s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.9rem;
+}
+[data-theme="dark"] .theme-toggle-slider{
+  transform:translateX(1.5rem);
+  background:#222;
+}
+.cover{
+  margin:calc(var(--space-3xl)*-1) calc(var(--space-xl)*-1) var(--space-3xl);
+  overflow:hidden;
+  aspect-ratio:16/9;
+  background:var(--paper-subtle);
+}
+.cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+article img{
+  max-width:100%;
+  height:auto;
+  margin:var(--space-xl) 0;
+  border-radius:6px;
+  display:block;
+}
+@media print{
+  body{font-size:11pt;line-height:1.4}
+  article{max-width:none;padding:0}
+  .cover,nav,.meta{display:none}
+  h1,h2,h3{page-break-after:avoid}
+  p{orphans:3;widows:3}
+}
+</style>
+</head>
+<body>
+<button class="theme-toggle" aria-label="Toggle theme">
+<div class="theme-toggle-slider">
+<span class="theme-icon">☾</span>
+</div>
+</button>
+<article>
+<h1>The Agentic Middle Layer: 2026&#39;s attention economy isn&#39;t for humans</h1>
+<div class="meta">2026 Jan 14</div>
+<p>In 2026, you won’t compete for human attention. You’ll compete for an agent’s choice. Understanding this will transform how you work, how you organize your life, and how you prepare for the agentic future.</p>
+
+<p>I’ll start with a personal workflow anecdote to outline how much progress has been made with agents. Last week, I was doing my regular email cleanup, which I do every quarter (it’s part of a protocol designed to <a href="https://0xpili.xyz/in-defense-of-attention.html">defend against overstimulation exposure</a>). Then I thought to myself, how about I give the new Claude Chrome browser agent a try to complete this task.</p>
+
+<p>I installed the Brave extension, gave it a few directives, and watched it work. It scanned my unread emails, identified repeat senders I usually don't open, and generated a report. Then it asked me about next steps, I told it which ones to unsubscribe from and which ones to block.</p>
+
+<p>While I was watching the agent work, my mind was blown. I was able to have an agent do something other than coding, researching, or planning. I watched it take actions in my email inbox, click buttons, and interact with other websites reliably.</p>
+
+<p>Seeing an agent click on my browser, opening new tabs, and working in real time was a fantastic experience - it made me think, like many little things in these strange, wonderful times do, I really am living in the future!</p>
+
+<p>After the agent finished, something I had been thinking about for some time became much clearer: agents are much more than productivity enhancers. They’re going to become the interface layer between humans and software. In the short term, many experiences we are used to doing manually will be handled by agents.</p>
+
+<h2 id="agents-as-intermediaries">Agents as Intermediaries</h2>
+
+<p>It doesn't matter whether you are thinking about AI agents or ignoring them, because the future’s path has already been paved. Agents will become intermediaries across interfaces and redesign how humans use products and technology in general. Agents will be the layer that stands between you and most products you use. To me, that means that some things will fundamentally change, among them:</p>
+
+<ul>
+<li>UX barriers must be reduced. Agents will mediate almost all experiences, and we're already seeing early implementation of this with the emergence of agentic finance* in the crypto industry, which has long been recognized for delivering incredibly complex user experiences.</li>
+<li>Humans' role will evolve to <a href="https://0xpili.xyz/orchestrators.html">orchestrators</a>. Complex systems have always demanded coordination, whether in human societies, logistics networks, or financial markets. In the agentic era, that complexity compounds, and the ability to orchestrate multi-layered, interdependent systems becomes a critical skill.</li>
+<li>We will see a rise in security and privacy topics related to agents. If agents are going to act on our behalf and access personal sensitive data, we’ll need better primitives. Formal verification will be key to surface agentic development without massive hacks. As users, we need to be careful about what we grant each agent access to.</li>
+<li>Distribution flips: If an agent is filtering your inbox, choosing your flight, or picking your SaaS plan, the agent’s decision policy becomes a new customer. We will see more and more of the attention economy shift towards agent-first SEO, new agent-friendly branding trends, and growth loops designed for agents.</li>
+<li>Pricing shift to a pay-as-you-go model. So far, we have seen many 20 USD/month subscription models designed for humans. Agents will instead leverage stablecoins and micropayments like <a href="https://www.x402.org/">x402</a>. I spoke more about this in a recent <a href="https://x.com/i/broadcasts/1ZkKzZronvgKv">stream</a> with the <a href="https://cambrian.org">Cambrian</a> team.</li>
+<li>Data quality becomes existential: high-quality data is a gateway to high-quality results. We will see more and more work on deterministic responses, normalized data, and quality control.</li>
+<li>Identity + reputation (<a href="https://eips.ethereum.org/EIPS/eip-8004">check ERC-8004</a> becomes real economic infrastructure. If agents transact, negotiate, and sign, you need them to have identity, reputation, and accountability.</li>
+<li>Marketplaces everywhere. We’re going to replay old patterns (travel aggregators, ad networks, marketplaces), except that the buyer is automated.</li>
+</ul>
+
+<p>In 2026, you won’t compete for human attention. You’ll compete for an agent’s choice. That means the winners won’t be the loudest brands or the prettiest landing pages, they’ll be the brands with resources most legible to machines: easy to verify, easy to integrate, priced for autonomous consumption, and built on data that people (and agents) can trust. From here on out, your job is to be chosen.</p>
+
+<ul>
+<li>Learn more about agentic finance and watch some demos of ZyfAI and TrueNorth agents at this <a href="https://x.com/i/broadcasts/1ZkKzZronvgKv">link</a>.</li>
+</ul>
+
+</article>
+<nav>
+<a href="/index.html">Index</a>
+<a href="https://twitter.com/0xpili_">Twitter</a>
+<a href="https://github.com/0xpili">GitHub</a>
+</nav>
+<script>
+(function(){
+  const toggle = document.querySelector('.theme-toggle');
+  const icon = document.querySelector('.theme-icon');
+  const root = document.documentElement;
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    root.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
+  }
+  
+  function updateIcon() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    icon.textContent = isDark ? '☀' : '☾';
+  }
+  
+  updateIcon();
+  
+  toggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    
+    root.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon();
+  });
+})();
+</script>
+</body>
+</html>
