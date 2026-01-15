@@ -15,16 +15,15 @@ After the agent finished, something I had been thinking about for some time beca
 ## Agents as Intermediaries
 
 It doesn't matter whether you are thinking about AI agents or ignoring them, because the future’s path has already been paved. Agents will become intermediaries across interfaces and redesign how humans use products and technology in general. Agents will be the layer that stands between you and most products you use. To me, that means that some things will fundamentally change, among them:
-
 - UX barriers must be reduced. Agents will mediate almost all experiences, and we're already seeing early implementation of this with the emergence of agentic finance* in the crypto industry, which has long been recognized for delivering incredibly complex user experiences.
 - Humans' role will evolve to [orchestrators](https://0xpili.xyz/orchestrators.html). Complex systems have always demanded coordination, whether in human societies, logistics networks, or financial markets. In the agentic era, that complexity compounds, and the ability to orchestrate multi-layered, interdependent systems becomes a critical skill.
 - We will see a rise in security and privacy topics related to agents. If agents are going to act on our behalf and access personal sensitive data, we’ll need better primitives. Formal verification will be key to surface agentic development without massive hacks. As users, we need to be careful about what we grant each agent access to.
 - Distribution flips: If an agent is filtering your inbox, choosing your flight, or picking your SaaS plan, the agent’s decision policy becomes a new customer. We will see more and more of the attention economy shift towards agent-first SEO, new agent-friendly branding trends, and growth loops designed for agents.
 - Pricing shift to a pay-as-you-go model. So far, we have seen many 20 USD/month subscription models designed for humans. Agents will instead leverage stablecoins and micropayments like [x402](https://www.x402.org/). I spoke more about this in a recent [stream](https://x.com/i/broadcasts/1ZkKzZronvgKv) with the [Cambrian](https://cambrian.org) team.
 - Data quality becomes existential: high-quality data is a gateway to high-quality results. We will see more and more work on deterministic responses, normalized data, and quality control.
-- Identity + reputation ([check ERC-8004](https://eips.ethereum.org/EIPS/eip-8004) becomes real economic infrastructure. If agents transact, negotiate, and sign, you need them to have identity, reputation, and accountability.
+- Identity + reputation ([check ERC-8004])(https://eips.ethereum.org/EIPS/eip-8004) becomes real economic infrastructure. If agents transact, negotiate, and sign, you need them to have identity, reputation, and accountability.
 - Marketplaces everywhere. We’re going to replay old patterns (travel aggregators, ad networks, marketplaces), except that the buyer is automated.
 
 In 2026, you won’t compete for human attention. You’ll compete for an agent’s choice. That means the winners won’t be the loudest brands or the prettiest landing pages, they’ll be the brands with resources most legible to machines: easy to verify, easy to integrate, priced for autonomous consumption, and built on data that people (and agents) can trust. From here on out, your job is to be chosen.
 
-* Learn more about agentic finance and watch some demos of ZyfAI and TrueNorth agents at this [link](https://x.com/i/broadcasts/1ZkKzZronvgKv).
+Learn more about agentic finance and watch some demos of ZyfAI and TrueNorth agents at this [link](https://x.com/i/broadcasts/1ZkKzZronvgKv).
