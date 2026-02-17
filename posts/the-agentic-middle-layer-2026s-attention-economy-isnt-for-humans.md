@@ -15,6 +15,7 @@ After the agent finished, something I had been thinking about for some time beca
 ## Agents as Intermediaries
 
 It doesn't matter whether you are thinking about AI agents or ignoring them, because the future’s path has already been paved. Agents will become intermediaries across interfaces and redesign how humans use products and technology in general. Agents will be the layer that stands between you and most products you use. To me, that means that some things will fundamentally change, among them:
+
 - UX barriers must be reduced. Agents will mediate almost all experiences, and we're already seeing early implementation of this with the emergence of agentic finance* in the crypto industry, which has long been recognized for delivering incredibly complex user experiences.
 - Humans' role will evolve to [orchestrators](https://0xpili.xyz/orchestrators.html). Complex systems have always demanded coordination, whether in human societies, logistics networks, or financial markets. In the agentic era, that complexity compounds, and the ability to orchestrate multi-layered, interdependent systems becomes a critical skill.
 - We will see a rise in security and privacy topics related to agents. If agents are going to act on our behalf and access personal sensitive data, we’ll need better primitives. Formal verification will be key to surface agentic development without massive hacks. As users, we need to be careful about what we grant each agent access to.
