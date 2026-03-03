@@ -7,7 +7,7 @@ As AI eats the repetitive layers of work and open source commoditizes the once-p
 
 Complex systems have always demanded coordination, whether in human societies, logistics networks, or financial markets. In the AI era, that complexity compounds, and the ability to orchestrate multi-layered, interdependent systems becomes a critical skill.
 
-### What is an orchestrator?
+## What is an orchestrator?
 An *orchestrator* is the entity (human or software) that ensures all the moving parts of a process work together in the right sequence, at the right time, and under the right conditions.
 
 The term shows up in different domains, and the meaning adapts slightly:
@@ -19,7 +19,7 @@ The term shows up in different domains, and the meaning adapts slightly:
 
 So, in essence, an orchestrator doesn't do all the work. An orchestrator ensures that all the work happens in the right order, efficiently, and with minimal friction. And this is what I am seeing more and more with the rise of new AI tooling and agents.
 
-### Why orchestrators?
+## Why orchestrators?
 
 In the AI era, small teams are building and shipping at unprecedented speed. AI agents sit at the heart of this shift, transforming both business models and job functions.
 

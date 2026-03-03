@@ -12,3 +12,6 @@ venv/
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Claude Code (local settings are personal, commands could be shared)
+.claude/settings.local.json
