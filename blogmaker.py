@@ -5,6 +5,7 @@ import re
 import sys
 import json
 import hashlib
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple
@@ -233,6 +234,31 @@ class BlogBuilder:
             print(f"Error parsing page {filepath.name}: {e}")
             return None
 
+    def _generate_feed(self, published: List[Dict], output_path: Path):
+        """Generate RSS 2.0 feed.xml from published posts."""
+        rss = ET.Element("rss", version="2.0")
+        channel = ET.SubElement(rss, "channel")
+
+        ET.SubElement(channel, "title").text = self.config["site_title"]
+        ET.SubElement(channel, "link").text = self.config["site_url"]
+        ET.SubElement(channel, "description").text = self.config["site_description"]
+        if published:
+            ET.SubElement(channel, "lastBuildDate").text = published[0]['date_obj'].strftime('%a, %d %b %Y 00:00:00 +0000')
+
+        for post in published:
+            item = ET.SubElement(channel, "item")
+            ET.SubElement(item, "title").text = post['title']
+            post_url = f"{self.config['site_url']}/{post['slug']}.html"
+            ET.SubElement(item, "link").text = post_url
+            ET.SubElement(item, "description").text = post.get('description', '')
+            ET.SubElement(item, "pubDate").text = post['date_obj'].strftime('%a, %d %b %Y 00:00:00 +0000')
+            ET.SubElement(item, "guid").text = post_url
+
+        tree = ET.ElementTree(rss)
+        ET.indent(tree, space="  ")
+        tree.write(output_path / "feed.xml", encoding="unicode", xml_declaration=True)
+        print("  ✓ RSS feed")
+
     def _needs_rebuild(self, post: Dict) -> bool:
         cached_hash = self.cache.get(post['filepath'])
         output_file = Path(self.config["output_dir"]) / f"{post['slug']}.html"
@@ -360,6 +386,9 @@ class BlogBuilder:
                 print(f"  + Tag: {tag} ({len(tagged)} posts)")
             except Exception as e:
                 print(f"  ✗ Error building tag page {tag}: {e}")
+
+        # Generate RSS feed
+        self._generate_feed(published, output_path)
 
         self._save_cache()
         

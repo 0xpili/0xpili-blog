@@ -740,6 +740,71 @@ def test_tag_pages_sorted_newest_first():
         print("✓ Tag pages sorted newest-first!")
 
 
+# --- RSS Feed Tests (RSS-01) ---
+
+
+def test_rss_feed_generated():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "post1.md").write_text("Date: 2025 Jan 01\n# First Post\nSome content about the first post that is long enough to generate a proper description for the feed.")
+        (posts / "post2.md").write_text("Date: 2025 Feb 01\n# Second Post\nMore content about the second post that is also long enough to generate a proper description.")
+        BlogBuilder(config).build()
+        assert (output / "feed.xml").exists()
+        print("✓ RSS feed.xml generated!")
+
+
+def test_rss_feed_valid_xml():
+    import xml.etree.ElementTree as ET
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "post1.md").write_text("Date: 2025 Jan 01\n# XML Test Post\nContent that is long enough for description generation in the RSS feed items.")
+        BlogBuilder(config).build()
+        tree = ET.parse(output / "feed.xml")
+        root = tree.getroot()
+        assert root.tag == "rss"
+        assert root.get("version") == "2.0"
+        channel = root.find("channel")
+        assert channel is not None
+        assert channel.find("title").text == config["site_title"]
+        items = channel.findall("item")
+        assert len(items) == 1
+        assert items[0].find("title").text == "XML Test Post"
+        assert items[0].find("link") is not None
+        assert items[0].find("description") is not None
+        assert items[0].find("pubDate") is not None
+        print("✓ RSS feed is valid XML with correct structure!")
+
+
+def test_rss_feed_excludes_drafts():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "pub.md").write_text("Date: 2025 Jan 01\n# Published RSS\nContent for the RSS feed that is long enough for proper descriptions.")
+        (posts / "draft.md").write_text("Date: 2025 Feb 01\nDraft: true\n# Draft RSS\nSecret content that should not appear.")
+        BlogBuilder(config).build()
+        feed_content = (output / "feed.xml").read_text()
+        assert "Published RSS" in feed_content
+        assert "Draft RSS" not in feed_content
+        print("✓ RSS feed excludes drafts!")
+
+
+def test_rss_feed_has_rfc822_dates():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "dated.md").write_text("Date: 2025 Mar 15\n# Dated Post\nContent for testing RFC 822 date format in the RSS feed items.")
+        BlogBuilder(config).build()
+        feed_content = (output / "feed.xml").read_text()
+        assert "Sat, 15 Mar 2025" in feed_content
+        print("✓ RSS feed has RFC 822 dates!")
+
+
 if __name__ == "__main__":
     test_blog_builds_successfully()
     test_incremental_build()
@@ -797,4 +862,9 @@ if __name__ == "__main__":
     test_tag_pages_exclude_drafts()
     test_stale_tag_pages_cleaned()
     test_tag_pages_sorted_newest_first()
+    # RSS feed (RSS-01)
+    test_rss_feed_generated()
+    test_rss_feed_valid_xml()
+    test_rss_feed_excludes_drafts()
+    test_rss_feed_has_rfc822_dates()
     print("\n🏴‍☠️ All build tests passed! ARR!")
