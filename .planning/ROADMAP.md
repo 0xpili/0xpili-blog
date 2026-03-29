@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md — Refactor header parser, image regex, bare except fix, edge-case tests
-- [ ] 01-02-PLAN.md — Auto-generate meta descriptions from post content
+- [x] 01-02-PLAN.md — Auto-generate meta descriptions from post content
 
 ### Phase 2: Drafts and Tags
 **Goal**: Authors can mark posts as drafts to exclude them from the live site, and can categorize posts with tags displayed on post pages and browsable via tag index pages

@@ -7,7 +7,7 @@
 
 ### Meta Descriptions
 
-- [ ] **META-01**: Auto-generate description from first ~160 chars of post markdown content
+- [x] **META-01**: Auto-generate description from first ~160 chars of post markdown content
 
 ### RSS Feed
 
@@ -67,7 +67,7 @@
 | QUAL-03 | Phase 1 | Complete |
 | QUAL-04 | Phase 1 | Complete |
 | QUAL-05 | Phase 1 | Complete |
-| META-01 | Phase 1 | Pending |
+| META-01 | Phase 1 | Complete |
 | DRFT-01 | Phase 2 | Pending |
 | DRFT-02 | Phase 2 | Pending |
 | TAGS-01 | Phase 2 | Pending |
