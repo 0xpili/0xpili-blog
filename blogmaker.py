@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import re
 import sys
 import json
 import hashlib
@@ -28,6 +29,8 @@ CONFIG = {
     "date_format": "%Y %b %d",
 }
 
+_IMAGE_RE = re.compile(r'^!\[([^\]]*)\]\(([^)]+)\)\s*$')
+
 class BlogBuilder:
     
     def __init__(self, config: Dict[str, str]):
@@ -46,7 +49,7 @@ class BlogBuilder:
             try:
                 with open(cache_path, 'r') as f:
                     return json.load(f)
-            except:
+            except (json.JSONDecodeError, IOError):
                 return {}
         return {}
     
@@ -62,43 +65,67 @@ class BlogBuilder:
         try:
             content = filepath.read_text(encoding='utf-8')
             lines = content.strip().split('\n')
-            
-            if not lines or not lines[0].startswith('Date:'):
+
+            # Parse header block: Key: Value lines until blank line or heading
+            headers = {}
+            i = 0
+            known_headers = {'date', 'draft', 'tags'}
+            while i < len(lines):
+                line = lines[i].strip()
+                if not line or line.startswith('#'):
+                    break
+                if ':' in line:
+                    key, _, value = line.partition(':')
+                    key_lower = key.strip().lower()
+                    if key_lower in known_headers:
+                        headers[key_lower] = value.strip()
+                        i += 1
+                    else:
+                        break
+                else:
+                    break
+
+            # Extract date
+            date_str = headers.get('date')
+            if not date_str:
                 print(f"Warning: {filepath.name} missing date header")
                 return None
-                
-            date_str = lines[0].replace('Date:', '').strip()
-            
+
             try:
                 clean_date = date_str
                 for suffix in ['st', 'nd', 'rd', 'th']:
                     clean_date = clean_date.replace(suffix, '')
-                
                 date_obj = datetime.strptime(clean_date, self.config["date_format"])
             except ValueError:
                 print(f"Warning: Invalid date format in {filepath.name}: {date_str}")
                 return None
-            
+
             slug = filepath.stem.lower().replace(' ', '-')
-            
+
+            # Skip blank lines between headers and title/content
+            while i < len(lines) and not lines[i].strip():
+                i += 1
+
+            # Parse title from first # heading (if present)
             title = filepath.stem.replace('-', ' ').title()
-            start_line = 1
-            if lines and lines[1].startswith('# '):
-                title = lines[1][2:].strip()
-                start_line = 2
-            
+            if i < len(lines) and lines[i].strip().startswith('# '):
+                title = lines[i].strip()[2:].strip()
+                i += 1
+
+            start_line = i
+
             cover_image, filtered_lines = self._extract_cover_image(lines, slug)
-            
+
             if cover_image:
                 content_text = '\n'.join(filtered_lines[start_line:]).strip()
             else:
                 content_text = '\n'.join(lines[start_line:]).strip()
-            
+
             html_content = markdown2.markdown(
                 content_text,
                 extras=['fenced-code-blocks', 'header-ids', 'tables', 'strike']
             )
-            
+
             return {
                 'title': title,
                 'slug': slug,
@@ -110,8 +137,10 @@ class BlogBuilder:
                 'cover_image': cover_image,
                 'filepath': str(filepath),
                 'hash': self._file_hash(filepath),
+                'draft': False,
+                'tags': [],
             }
-            
+
         except Exception as e:
             print(f"Error parsing {filepath.name}: {e}")
             return None
@@ -119,24 +148,20 @@ class BlogBuilder:
     def _extract_cover_image(self, lines: List[str], slug: str) -> Tuple[Optional[str], List[str]]:
         cover_image = None
         filtered_lines = []
-        
+
         for line in lines:
-            stripped = line.strip()
-            if stripped.startswith('![') and '](' in stripped and stripped.endswith(')'):
-                if cover_image is None:
-                    start = stripped.find('](') + 2
-                    end = stripped.rfind(')')
-                    image_path = stripped[start:end]
-                    
-                    if image_path.startswith('http'):
-                        cover_image = image_path
-                    elif image_path.startswith('/'):
-                        cover_image = image_path
-                    else:
-                        cover_image = f"/{image_path}"
-                    continue
+            match = _IMAGE_RE.match(line.strip())
+            if match and cover_image is None:
+                image_path = match.group(2)
+                if image_path.startswith('http'):
+                    cover_image = image_path
+                elif image_path.startswith('/'):
+                    cover_image = image_path
+                else:
+                    cover_image = f"/{image_path}"
+                continue
             filtered_lines.append(line)
-        
+
         return cover_image, filtered_lines
     
     def _needs_rebuild(self, post: Dict) -> bool:
