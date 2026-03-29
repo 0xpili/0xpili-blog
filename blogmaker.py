@@ -61,6 +61,38 @@ class BlogBuilder:
         with open(filepath, 'rb') as f:
             return hashlib.sha256(f.read()).hexdigest()[:16]
     
+    def _extract_description(self, markdown_text: str) -> str:
+        """Extract plain text description from markdown, ~160 chars."""
+        text = markdown_text
+        # Remove fenced code blocks first (before inline code)
+        text = re.sub(r'```[\s\S]*?```', '', text)
+        # Remove images: ![alt](url)
+        text = re.sub(r'!\[[^\]]*\]\([^)]+\)', '', text)
+        # Remove links but keep text: [text](url) -> text
+        text = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', text)
+        # Remove bold/italic markers
+        text = re.sub(r'[*_]{1,3}', '', text)
+        # Remove strikethrough
+        text = re.sub(r'~~', '', text)
+        # Remove heading markers
+        text = re.sub(r'^#{1,6}\s+', '', text, flags=re.MULTILINE)
+        # Remove blockquote markers
+        text = re.sub(r'^>\s*', '', text, flags=re.MULTILINE)
+        # Remove inline code
+        text = re.sub(r'`[^`]+`', '', text)
+        # Collapse whitespace
+        text = re.sub(r'\s+', ' ', text).strip()
+
+        # Fallback for empty/very short descriptions
+        if len(text) < 50:
+            return self.config["site_description"]
+
+        # Truncate at ~160 chars on word boundary
+        if len(text) <= 160:
+            return text
+        truncated = text[:160].rsplit(' ', 1)[0]
+        return truncated.rstrip('.,;:!? ') + '...'
+
     def _parse_post(self, filepath: Path) -> Optional[Dict]:
         try:
             content = filepath.read_text(encoding='utf-8')
@@ -126,6 +158,8 @@ class BlogBuilder:
                 extras=['fenced-code-blocks', 'header-ids', 'tables', 'strike']
             )
 
+            description = self._extract_description(content_text)
+
             return {
                 'title': title,
                 'slug': slug,
@@ -134,6 +168,7 @@ class BlogBuilder:
                 'iso_date': date_obj.isoformat(),
                 'date_obj': date_obj,
                 'content': html_content,
+                'description': description,
                 'cover_image': cover_image,
                 'filepath': str(filepath),
                 'hash': self._file_hash(filepath),
@@ -203,7 +238,7 @@ class BlogBuilder:
                             content=post['content'],
                             cover_image=post['cover_image'],
                             slug=post['slug'],
-                            description=None,
+                            description=post['description'],
                         )
                         
                         output_file = output_path / f"{post['slug']}.html"

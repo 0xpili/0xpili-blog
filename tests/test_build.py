@@ -434,6 +434,122 @@ def test_header_parser_unknown_key_stops_parsing():
         print("✓ Unknown header key stops parsing!")
 
 
+# --- Description Extraction Tests (META-01) ---
+
+
+def test_description_strips_images():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        result = builder._extract_description("![photo](img.jpg) Some text here that is long enough to not trigger the fallback threshold for short content")
+        assert "img.jpg" not in result
+        assert "Some text here" in result
+        print("✓ Description strips images!")
+
+
+def test_description_strips_links_keeps_text():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        result = builder._extract_description("Check out [this link](https://example.com) for more details about the topic we are discussing in this paragraph")
+        assert "https://example.com" not in result
+        assert "this link" in result
+        print("✓ Description strips links, keeps text!")
+
+
+def test_description_strips_bold_italic():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        result = builder._extract_description("This is **bold** and *italic* and ~~struck~~ text in a paragraph that is long enough to pass the threshold")
+        assert "**" not in result
+        assert "~~" not in result
+        assert "bold" in result and "italic" in result and "struck" in result
+        print("✓ Description strips bold/italic/strikethrough!")
+
+
+def test_description_strips_headings_blockquotes():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        result = builder._extract_description("## Heading\n> A quote from someone notable\nNormal text that continues the paragraph with enough content to pass threshold")
+        assert "#" not in result
+        assert ">" not in result
+        assert "Heading" in result and "A quote" in result
+        print("✓ Description strips headings and blockquotes!")
+
+
+def test_description_strips_code():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        result = builder._extract_description("Use `print()` or:\n```python\ncode\n```\nMore text follows here with enough content to pass the minimum threshold for descriptions")
+        assert "```" not in result
+        assert "`" not in result
+        assert "More text" in result
+        print("✓ Description strips code!")
+
+
+def test_description_truncates_at_word_boundary():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        long_text = "word " * 50
+        result = builder._extract_description(long_text)
+        assert result.endswith("...")
+        assert len(result) <= 165
+        print("✓ Description truncates at word boundary!")
+
+
+def test_description_short_text_no_truncation():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        text = "Short text here that is meaningful enough to use and passes the minimum threshold easily."
+        result = builder._extract_description(text)
+        assert not result.endswith("...")
+        assert "Short text here" in result
+        print("✓ Short description not truncated!")
+
+
+def test_description_empty_falls_back():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        result = builder._extract_description("")
+        assert result == builder.config["site_description"]
+        print("✓ Empty content falls back to site description!")
+
+
+def test_description_real_post_content():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        text = """## The Future of Agents
+
+> "The most important thing is to have smart people."
+
+Building **autonomous agents** requires understanding [orchestration](https://example.com/orch) patterns.
+
+```python
+def run_agent():
+    pass
+```
+
+The key insight is that agents need both ~~simple~~ *sophisticated* tooling and clear goals."""
+        result = builder._extract_description(text)
+        assert "#" not in result
+        assert "**" not in result
+        assert "```" not in result
+        assert "example.com" not in result
+        assert "orchestration" in result
+        print("✓ Description handles real post content!")
+
+
+def test_built_post_has_meta_description():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "desc-test.md").write_text("Date: 2025 Jan 01\n# Description Test Post\nThis is my test post about interesting topics that should appear in the meta description tag.")
+        BlogBuilder(config).build()
+        post_html = (output / "desc-test.html").read_text()
+        assert 'meta name="description"' in post_html
+        assert "interesting topics" in post_html
+        print("✓ Built post has meta description!")
+
+
 if __name__ == "__main__":
     test_blog_builds_successfully()
     test_incremental_build()
@@ -464,4 +580,15 @@ if __name__ == "__main__":
     test_date_invalid_returns_none()
     # Header parser edge cases
     test_header_parser_unknown_key_stops_parsing()
+    # Description extraction (META-01)
+    test_description_strips_images()
+    test_description_strips_links_keeps_text()
+    test_description_strips_bold_italic()
+    test_description_strips_headings_blockquotes()
+    test_description_strips_code()
+    test_description_truncates_at_word_boundary()
+    test_description_short_text_no_truncation()
+    test_description_empty_falls_back()
+    test_description_real_post_content()
+    test_built_post_has_meta_description()
     print("\n🏴‍☠️ All build tests passed! ARR!")
