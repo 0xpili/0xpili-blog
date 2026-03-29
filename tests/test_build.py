@@ -141,9 +141,122 @@ New content.""")
         print("✓ Posts are sorted newest-first!")
 
 
+def test_header_parser_extracts_date():
+    """Header parser extracts Date from 'Date: 2025 Jan 01' line."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "date-test.md").write_text("Date: 2025 Jan 01\n# Date Test\nContent.")
+        builder = BlogBuilder(config)
+        post = builder._parse_post(posts / "date-test.md")
+        assert post is not None, "Post should parse successfully"
+        assert post['date'] == "2025 Jan 01", f"Date should be '2025 Jan 01', got '{post['date']}'"
+        print("✓ Header parser extracts date correctly!")
+
+
+def test_header_parser_extracts_title():
+    """Header parser extracts Title from '# My Title' line after headers."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "title-test.md").write_text("Date: 2025 Jan 01\n# My Custom Title\nContent.")
+        builder = BlogBuilder(config)
+        post = builder._parse_post(posts / "title-test.md")
+        assert post is not None, "Post should parse successfully"
+        assert post['title'] == "My Custom Title", f"Title should be 'My Custom Title', got '{post['title']}'"
+        print("✓ Header parser extracts title correctly!")
+
+
+def test_header_parser_no_title_uses_filename():
+    """Header parser uses filename as title when no # heading present."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "my-post-name.md").write_text("Date: 2025 Jan 01\n\nContent without title heading.")
+        builder = BlogBuilder(config)
+        post = builder._parse_post(posts / "my-post-name.md")
+        assert post is not None, "Post should parse successfully"
+        assert post['title'] == "My Post Name", f"Title should be 'My Post Name', got '{post['title']}'"
+        print("✓ Header parser uses filename as title when no heading!")
+
+
+def test_header_parser_stops_at_blank_line():
+    """Header parser stops at blank line between headers and content."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "blank-line.md").write_text("Date: 2025 Jan 01\n\n# Title After Blank\nContent.")
+        builder = BlogBuilder(config)
+        post = builder._parse_post(posts / "blank-line.md")
+        assert post is not None, "Post should parse successfully"
+        assert post['title'] == "Title After Blank", f"Title should be 'Title After Blank', got '{post['title']}'"
+        print("✓ Header parser stops at blank line!")
+
+
+def test_header_parser_stops_at_heading():
+    """Header parser stops at '# ' heading line."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "heading-stop.md").write_text("Date: 2025 Jan 01\n# Direct Title\nContent here.")
+        builder = BlogBuilder(config)
+        post = builder._parse_post(posts / "heading-stop.md")
+        assert post is not None, "Post should parse successfully"
+        assert post['title'] == "Direct Title", f"Title should be 'Direct Title', got '{post['title']}'"
+        print("✓ Header parser stops at heading!")
+
+
+def test_post_dict_has_draft_and_tags():
+    """Post dict includes draft (False) and tags ([]) for forward compatibility."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "forward-compat.md").write_text("Date: 2025 Jan 01\n# Forward Compat\nContent.")
+        builder = BlogBuilder(config)
+        post = builder._parse_post(posts / "forward-compat.md")
+        assert post is not None, "Post should parse successfully"
+        assert 'draft' in post, "Post dict should have 'draft' key"
+        assert post['draft'] is False, f"draft should be False, got {post['draft']}"
+        assert 'tags' in post, "Post dict should have 'tags' key"
+        assert post['tags'] == [], f"tags should be [], got {post['tags']}"
+        print("✓ Post dict has draft and tags fields!")
+
+
+def test_all_existing_posts_parse():
+    """All 15 existing posts parse successfully."""
+    config = {
+        "site_url": "https://0xpili.xyz",
+        "site_title": "0xpili",
+        "site_description": "Test",
+        "author": "0xpili",
+        "templates_dir": "templates",
+        "posts_dir": "posts",
+        "output_dir": "docs",
+        "cache_file": ".build_cache.json",
+        "date_format": "%Y %b %d",
+    }
+    builder = BlogBuilder(config)
+    posts_path = Path(config["posts_dir"])
+    post_files = sorted(posts_path.glob("*.md"))
+    assert len(post_files) >= 15, f"Expected at least 15 posts, found {len(post_files)}"
+    for filepath in post_files:
+        post = builder._parse_post(filepath)
+        assert post is not None, f"{filepath.name} failed to parse"
+        assert post['title'], f"{filepath.name} has empty title"
+        assert post['date'], f"{filepath.name} has empty date"
+    print(f"✓ All {len(post_files)} existing posts parse successfully!")
+
+
 if __name__ == "__main__":
     test_blog_builds_successfully()
     test_incremental_build()
     test_missing_date_skipped()
     test_post_sorting()
+    test_header_parser_extracts_date()
+    test_header_parser_extracts_title()
+    test_header_parser_no_title_uses_filename()
+    test_header_parser_stops_at_blank_line()
+    test_header_parser_stops_at_heading()
+    test_post_dict_has_draft_and_tags()
+    test_all_existing_posts_parse()
     print("\n🏴‍☠️ All build tests passed! ARR!")
