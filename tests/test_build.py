@@ -247,6 +247,193 @@ def test_all_existing_posts_parse():
     print(f"✓ All {len(post_files)} existing posts parse successfully!")
 
 
+# --- Image Extraction Edge-Case Tests (QUAL-04) ---
+
+
+def _make_builder(tmpdir):
+    """Create a minimal BlogBuilder for unit testing methods directly."""
+    config = _make_config(tmpdir)
+    return BlogBuilder(config), config
+
+
+def test_cover_image_standard():
+    """Standard image ![alt](path/to/image.jpg) extracts as cover image."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        lines = ["Date: 2025 Jan 01", "# Title", "Some text", "![photo](images/photo.jpg)", "More text"]
+        cover, filtered = builder._extract_cover_image(lines, "test")
+        assert cover == "/images/photo.jpg", f"Expected '/images/photo.jpg', got '{cover}'"
+        assert "![photo](images/photo.jpg)" not in [l.strip() for l in filtered], "Cover image line should be removed"
+        print("✓ Cover image standard extraction works!")
+
+
+def test_cover_image_empty_alt():
+    """Image with empty alt text ![](image.jpg) extracts correctly."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        lines = ["![](image.jpg)"]
+        cover, filtered = builder._extract_cover_image(lines, "test")
+        assert cover is not None, "Cover image should be extracted even with empty alt"
+        assert cover == "/image.jpg", f"Expected '/image.jpg', got '{cover}'"
+        print("✓ Cover image with empty alt works!")
+
+
+def test_cover_image_inline_not_extracted():
+    """Inline image within text (not standalone line) is NOT extracted."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        lines = ["Check this ![img](url.jpg) in text"]
+        cover, filtered = builder._extract_cover_image(lines, "test")
+        assert cover is None, "Inline image should NOT be extracted as cover"
+        assert len(filtered) == 1, "Line should be preserved"
+        print("✓ Inline image not extracted as cover!")
+
+
+def test_cover_image_multiple_first_wins():
+    """Multiple standalone images -- first becomes cover, rest stay in content."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        lines = ["![first](first.jpg)", "Some text", "![second](second.jpg)"]
+        cover, filtered = builder._extract_cover_image(lines, "test")
+        assert cover == "/first.jpg", f"First image should be cover, got '{cover}'"
+        # Second image should remain in filtered lines
+        remaining = [l.strip() for l in filtered]
+        assert "![second](second.jpg)" in remaining, "Second image should stay in content"
+        assert "![first](first.jpg)" not in remaining, "First image should be removed"
+        print("✓ Multiple images: first wins, rest preserved!")
+
+
+def test_cover_image_none_when_no_images():
+    """No images -- returns None, all lines preserved."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        lines = ["Line one", "Line two", "Line three"]
+        cover, filtered = builder._extract_cover_image(lines, "test")
+        assert cover is None, "Should be None when no images"
+        assert len(filtered) == 3, f"All lines should be preserved, got {len(filtered)}"
+        print("✓ No images returns None!")
+
+
+def test_cover_image_http_url():
+    """HTTP URL image uses URL as-is (no / prefix)."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        lines = ["![alt](https://example.com/img.jpg)"]
+        cover, filtered = builder._extract_cover_image(lines, "test")
+        assert cover == "https://example.com/img.jpg", f"Expected full URL, got '{cover}'"
+        print("✓ HTTP URL image preserved as-is!")
+
+
+def test_cover_image_relative_path_prefixed():
+    """Relative image path gets '/' prefix."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        lines = ["![alt](images/photo.jpg)"]
+        cover, filtered = builder._extract_cover_image(lines, "test")
+        assert cover.startswith("/"), f"Relative path should start with '/', got '{cover}'"
+        assert cover == "/images/photo.jpg", f"Expected '/images/photo.jpg', got '{cover}'"
+        print("✓ Relative path gets / prefix!")
+
+
+# --- Date Parsing Edge-Case Tests (QUAL-05) ---
+
+
+def test_date_parsing_standard():
+    """Standard date 'Date: 2025 Oct 12' parses correctly."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "standard-date.md").write_text("Date: 2025 Oct 12\n# Standard Date\nContent.")
+        post = builder._parse_post(posts / "standard-date.md")
+        assert post is not None, "Standard date should parse"
+        assert post['date'] == "2025 Oct 12", f"Expected '2025 Oct 12', got '{post['date']}'"
+        print("✓ Standard date parses correctly!")
+
+
+def test_date_parsing_ordinal_th():
+    """Ordinal suffix 'Date: 2025 May 11th' parses correctly."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "ordinal-th.md").write_text("Date: 2025 May 11th\n# Ordinal Test\nContent.")
+        post = builder._parse_post(posts / "ordinal-th.md")
+        assert post is not None, "Ordinal th should parse"
+        assert post['date'] == "2025 May 11", f"Expected '2025 May 11', got '{post['date']}'"
+        print("✓ Ordinal th parses correctly!")
+
+
+def test_date_parsing_ordinal_st():
+    """Ordinal suffix 'Date: 2025 Jan 1st' parses correctly."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "ordinal-st.md").write_text("Date: 2025 Jan 1st\n# Ordinal St\nContent.")
+        post = builder._parse_post(posts / "ordinal-st.md")
+        assert post is not None, "Ordinal st should parse"
+        assert post['date'] == "2025 Jan 01", f"Expected '2025 Jan 01', got '{post['date']}'"
+        print("✓ Ordinal st parses correctly!")
+
+
+def test_date_parsing_ordinal_nd():
+    """Ordinal suffix 'Date: 2025 Feb 2nd' parses correctly."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "ordinal-nd.md").write_text("Date: 2025 Feb 2nd\n# Ordinal Nd\nContent.")
+        post = builder._parse_post(posts / "ordinal-nd.md")
+        assert post is not None, "Ordinal nd should parse"
+        assert post['date'] == "2025 Feb 02", f"Expected '2025 Feb 02', got '{post['date']}'"
+        print("✓ Ordinal nd parses correctly!")
+
+
+def test_date_parsing_ordinal_rd():
+    """Ordinal suffix 'Date: 2025 Mar 3rd' parses correctly."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "ordinal-rd.md").write_text("Date: 2025 Mar 3rd\n# Ordinal Rd\nContent.")
+        post = builder._parse_post(posts / "ordinal-rd.md")
+        assert post is not None, "Ordinal rd should parse"
+        assert post['date'] == "2025 Mar 03", f"Expected '2025 Mar 03', got '{post['date']}'"
+        print("✓ Ordinal rd parses correctly!")
+
+
+def test_date_missing_returns_none():
+    """Post without Date: header returns None."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "no-date.md").write_text("# No Date Here\nJust content.")
+        post = builder._parse_post(posts / "no-date.md")
+        assert post is None, "Missing date should return None"
+        print("✓ Missing date returns None!")
+
+
+def test_date_invalid_returns_none():
+    """Invalid date format 'Date: not-a-date' returns None."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "bad-date.md").write_text("Date: not-a-date\n# Bad Date\nContent.")
+        post = builder._parse_post(posts / "bad-date.md")
+        assert post is None, "Invalid date should return None"
+        print("✓ Invalid date returns None!")
+
+
+# --- Header Parser Edge-Case Tests ---
+
+
+def test_header_parser_unknown_key_stops_parsing():
+    """Unknown header key stops header parsing -- date after it is not found."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "unknown-key.md").write_text("Note: something\nDate: 2025 Jan 01\n# Title\nContent.")
+        post = builder._parse_post(posts / "unknown-key.md")
+        assert post is None, "Unknown key before Date should stop parsing, returning None"
+        print("✓ Unknown header key stops parsing!")
+
+
 if __name__ == "__main__":
     test_blog_builds_successfully()
     test_incremental_build()
@@ -259,4 +446,22 @@ if __name__ == "__main__":
     test_header_parser_stops_at_heading()
     test_post_dict_has_draft_and_tags()
     test_all_existing_posts_parse()
+    # Image extraction edge cases (QUAL-04)
+    test_cover_image_standard()
+    test_cover_image_empty_alt()
+    test_cover_image_inline_not_extracted()
+    test_cover_image_multiple_first_wins()
+    test_cover_image_none_when_no_images()
+    test_cover_image_http_url()
+    test_cover_image_relative_path_prefixed()
+    # Date parsing edge cases (QUAL-05)
+    test_date_parsing_standard()
+    test_date_parsing_ordinal_th()
+    test_date_parsing_ordinal_st()
+    test_date_parsing_ordinal_nd()
+    test_date_parsing_ordinal_rd()
+    test_date_missing_returns_none()
+    test_date_invalid_returns_none()
+    # Header parser edge cases
+    test_header_parser_unknown_key_stops_parsing()
     print("\n🏴‍☠️ All build tests passed! ARR!")
