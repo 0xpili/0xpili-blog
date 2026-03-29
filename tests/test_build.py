@@ -565,6 +565,71 @@ def test_built_page_has_meta_description():
         print("✓ Built page has meta description!")
 
 
+# --- Draft Support Tests (DRFT-01, DRFT-02) ---
+
+
+def test_draft_post_excluded_from_output():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "secret-draft.md").write_text("Date: 2025 Mar 01\nDraft: true\n# Secret Draft\nThis should not be published.")
+        BlogBuilder(config).build()
+        assert not (output / "secret-draft.html").exists()
+        print("✓ Draft post excluded from output!")
+
+
+def test_draft_case_insensitive():
+    for value in ["true", "True", "TRUE"]:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            config = _make_config(tmpdir)
+            posts = Path(config["posts_dir"])
+            output = Path(config["output_dir"])
+            (posts / "draft-post.md").write_text(f"Date: 2025 Mar 01\nDraft: {value}\n# Draft {value}\nContent.")
+            BlogBuilder(config).build()
+            assert not (output / "draft-post.html").exists()
+    print("✓ Draft case-insensitive parsing works!")
+
+
+def test_draft_excluded_from_index():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "published.md").write_text("Date: 2025 Mar 01\n# Published Post\nVisible content.")
+        (posts / "hidden-draft.md").write_text("Date: 2025 Mar 02\nDraft: true\n# Hidden Draft\nSecret content.")
+        BlogBuilder(config).build()
+        index_content = (output / "index.html").read_text()
+        assert "Published Post" in index_content
+        assert "Hidden Draft" not in index_content
+        print("✓ Draft post excluded from index!")
+
+
+def test_non_draft_builds_normally():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "normal-post.md").write_text("Date: 2025 Mar 01\n# Normal Post\nRegular content.")
+        BlogBuilder(config).build()
+        assert (output / "normal-post.html").exists()
+        print("✓ Non-draft post builds normally!")
+
+
+def test_stale_draft_cleanup():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "evolving-post.md").write_text("Date: 2025 Mar 01\n# Evolving Post\nPublished content.")
+        BlogBuilder(config).build()
+        assert (output / "evolving-post.html").exists()
+        (posts / "evolving-post.md").write_text("Date: 2025 Mar 01\nDraft: true\n# Evolving Post\nNow a draft.")
+        BlogBuilder(config).build()
+        assert not (output / "evolving-post.html").exists()
+        print("✓ Stale draft cleanup works!")
+
+
 if __name__ == "__main__":
     test_blog_builds_successfully()
     test_incremental_build()
@@ -607,4 +672,10 @@ if __name__ == "__main__":
     test_description_real_post_content()
     test_built_post_has_meta_description()
     test_built_page_has_meta_description()
+    # Draft support (DRFT-01, DRFT-02)
+    test_draft_post_excluded_from_output()
+    test_draft_case_insensitive()
+    test_draft_excluded_from_index()
+    test_non_draft_builds_normally()
+    test_stale_draft_cleanup()
     print("\n🏴‍☠️ All build tests passed! ARR!")

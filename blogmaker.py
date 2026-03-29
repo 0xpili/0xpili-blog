@@ -172,7 +172,7 @@ class BlogBuilder:
                 'cover_image': cover_image,
                 'filepath': str(filepath),
                 'hash': self._file_hash(filepath),
-                'draft': False,
+                'draft': headers.get('draft', '').lower() == 'true',
                 'tags': [],
             }
 
@@ -264,28 +264,45 @@ class BlogBuilder:
             post = self._parse_post(filepath)
             if post:
                 posts.append(post)
-                
-                if self._needs_rebuild(post):
-                    try:
-                        html = post_template.render(
-                            title=post['title'],
-                            date=post['date'],
-                            content=post['content'],
-                            cover_image=post['cover_image'],
-                            slug=post['slug'],
-                            description=post['description'],
-                        )
-                        
-                        output_file = output_path / f"{post['slug']}.html"
-                        output_file.write_text(html, encoding='utf-8')
-                        
-                        self.cache[post['filepath']] = post['hash']
-                        print(f"  ✓ {post['title']}")
-                        
-                    except Exception as e:
-                        print(f"  ✗ Error building {post['title']}: {e}")
+
+        # Clean up stale HTML for draft posts
+        for post in posts:
+            if post['draft']:
+                stale = output_path / f"{post['slug']}.html"
+                if stale.exists():
+                    stale.unlink()
+                    print(f"  x {post['title']} (draft, removed)")
                 else:
-                    print(f"  - {post['title']} (unchanged)")
+                    print(f"  - {post['title']} (draft, skipped)")
+
+        # Build only non-draft posts
+        for post in posts:
+            if post['draft']:
+                continue
+
+            if self._needs_rebuild(post):
+                try:
+                    html = post_template.render(
+                        title=post['title'],
+                        date=post['date'],
+                        content=post['content'],
+                        cover_image=post['cover_image'],
+                        slug=post['slug'],
+                        description=post['description'],
+                    )
+
+                    output_file = output_path / f"{post['slug']}.html"
+                    output_file.write_text(html, encoding='utf-8')
+
+                    self.cache[post['filepath']] = post['hash']
+                    print(f"  ✓ {post['title']}")
+
+                except Exception as e:
+                    print(f"  ✗ Error building {post['title']}: {e}")
+            else:
+                print(f"  - {post['title']} (unchanged)")
+
+        published = [p for p in posts if not p['draft']]
         
         # Build static pages
         pages_path = Path(self.config.get("pages_dir", "pages"))
@@ -309,10 +326,10 @@ class BlogBuilder:
                 elif page:
                     print(f"  - {page['title']} (page, unchanged)")
 
-        posts.sort(key=lambda x: x['date_obj'], reverse=True)
-        
+        published.sort(key=lambda x: x['date_obj'], reverse=True)
+
         try:
-            index_html = index_template.render(posts=posts)
+            index_html = index_template.render(posts=published)
             (output_path / "index.html").write_text(index_html, encoding='utf-8')
             print("  ✓ Index page")
         except Exception as e:
