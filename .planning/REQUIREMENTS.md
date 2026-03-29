@@ -26,11 +26,11 @@
 
 ### Code Quality
 
-- [ ] **QUAL-01**: Fix bare `except:` to specific exception types
-- [ ] **QUAL-02**: Replace string-based image extraction with regex
-- [ ] **QUAL-03**: Refactor header parser from index-based to loop-based
-- [ ] **QUAL-04**: Add tests for cover image extraction edge cases
-- [ ] **QUAL-05**: Add tests for date parsing edge cases
+- [x] **QUAL-01**: Fix bare `except:` to specific exception types
+- [x] **QUAL-02**: Replace string-based image extraction with regex
+- [x] **QUAL-03**: Refactor header parser from index-based to loop-based
+- [x] **QUAL-04**: Add tests for cover image extraction edge cases
+- [x] **QUAL-05**: Add tests for date parsing edge cases
 
 ## v2 Requirements
 
@@ -62,11 +62,11 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| QUAL-01 | Phase 1 | Pending |
-| QUAL-02 | Phase 1 | Pending |
-| QUAL-03 | Phase 1 | Pending |
-| QUAL-04 | Phase 1 | Pending |
-| QUAL-05 | Phase 1 | Pending |
+| QUAL-01 | Phase 1 | Complete |
+| QUAL-02 | Phase 1 | Complete |
+| QUAL-03 | Phase 1 | Complete |
+| QUAL-04 | Phase 1 | Complete |
+| QUAL-05 | Phase 1 | Complete |
 | META-01 | Phase 1 | Pending |
 | DRFT-01 | Phase 2 | Pending |
 | DRFT-02 | Phase 2 | Pending |

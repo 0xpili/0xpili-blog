@@ -31,7 +31,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Refactor header parser, image regex, bare except fix, edge-case tests
+- [x] 01-01-PLAN.md — Refactor header parser, image regex, bare except fix, edge-case tests
 - [ ] 01-02-PLAN.md — Auto-generate meta descriptions from post content
 
 ### Phase 2: Drafts and Tags
