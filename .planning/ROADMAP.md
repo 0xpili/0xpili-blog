@@ -46,7 +46,7 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Draft post support (parsing, filtering, stale cleanup)
+- [x] 02-01-PLAN.md — Draft post support (parsing, filtering, stale cleanup)
 - [ ] 02-02-PLAN.md — Tag system (parsing, display, per-tag index pages)
 
 ### Phase 3: RSS Feed

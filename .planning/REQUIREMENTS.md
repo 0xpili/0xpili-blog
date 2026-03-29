@@ -15,8 +15,8 @@
 
 ### Draft Support
 
-- [ ] **DRFT-01**: Support `Draft: true` header field to exclude posts from build output
-- [ ] **DRFT-02**: Draft posts excluded from index page, RSS feed, and HTML generation
+- [x] **DRFT-01**: Support `Draft: true` header field to exclude posts from build output
+- [x] **DRFT-02**: Draft posts excluded from index page, RSS feed, and HTML generation
 
 ### Tags
 
@@ -68,8 +68,8 @@
 | QUAL-04 | Phase 1 | Complete |
 | QUAL-05 | Phase 1 | Complete |
 | META-01 | Phase 1 | Complete |
-| DRFT-01 | Phase 2 | Pending |
-| DRFT-02 | Phase 2 | Pending |
+| DRFT-01 | Phase 2 | Complete |
+| DRFT-02 | Phase 2 | Complete |
 | TAGS-01 | Phase 2 | Pending |
 | TAGS-02 | Phase 2 | Pending |
 | TAGS-03 | Phase 2 | Pending |
