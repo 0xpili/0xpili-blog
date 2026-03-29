@@ -28,7 +28,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Every generated post HTML contains a meta description tag with content derived from the post body
   4. No bare except clauses remain in the codebase; image extraction uses regex
   5. Tests exist and pass for cover image extraction edge cases and date parsing edge cases
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Refactor header parser, image regex, bare except fix, edge-case tests
+- [ ] 01-02-PLAN.md — Auto-generate meta descriptions from post content
 
 ### Phase 2: Drafts and Tags
 **Goal**: Authors can mark posts as drafts to exclude them from the live site, and can categorize posts with tags displayed on post pages and browsable via tag index pages
@@ -59,6 +63,6 @@ Phases execute in numeric order: 1 -> 2 -> 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation and Meta | 0/TBD | Not started | - |
+| 1. Foundation and Meta | 0/2 | Planned | - |
 | 2. Drafts and Tags | 0/TBD | Not started | - |
 | 3. RSS Feed | 0/TBD | Not started | - |
