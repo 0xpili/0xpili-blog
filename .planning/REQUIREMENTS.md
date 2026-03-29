@@ -62,24 +62,24 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| META-01 | Pending | Pending |
-| RSS-01 | Pending | Pending |
-| DRFT-01 | Pending | Pending |
-| DRFT-02 | Pending | Pending |
-| TAGS-01 | Pending | Pending |
-| TAGS-02 | Pending | Pending |
-| TAGS-03 | Pending | Pending |
-| QUAL-01 | Pending | Pending |
-| QUAL-02 | Pending | Pending |
-| QUAL-03 | Pending | Pending |
-| QUAL-04 | Pending | Pending |
-| QUAL-05 | Pending | Pending |
+| QUAL-01 | Phase 1 | Pending |
+| QUAL-02 | Phase 1 | Pending |
+| QUAL-03 | Phase 1 | Pending |
+| QUAL-04 | Phase 1 | Pending |
+| QUAL-05 | Phase 1 | Pending |
+| META-01 | Phase 1 | Pending |
+| DRFT-01 | Phase 2 | Pending |
+| DRFT-02 | Phase 2 | Pending |
+| TAGS-01 | Phase 2 | Pending |
+| TAGS-02 | Phase 2 | Pending |
+| TAGS-03 | Phase 2 | Pending |
+| RSS-01 | Phase 3 | Pending |
 
 **Coverage:**
 - v1 requirements: 12 total
-- Mapped to phases: 0
-- Unmapped: 12
+- Mapped to phases: 12
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-29*
-*Last updated: 2026-03-29 after initial definition*
+*Last updated: 2026-03-29 after roadmap creation*
