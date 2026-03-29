@@ -20,7 +20,7 @@ def _make_config(tmpdir):
     test_posts.mkdir(exist_ok=True)
     test_templates.mkdir(exist_ok=True)
 
-    for template in ["base.html", "index.html", "404.html"]:
+    for template in ["base.html", "page.html", "index.html", "404.html"]:
         src = Path("templates") / template
         if src.exists():
             shutil.copy(src, test_templates / template)
@@ -550,6 +550,21 @@ def test_built_post_has_meta_description():
         print("✓ Built post has meta description!")
 
 
+def test_built_page_has_meta_description():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        config["pages_dir"] = str(Path(tmpdir) / "pages")
+        pages = Path(config["pages_dir"])
+        pages.mkdir()
+        output = Path(config["output_dir"])
+        (pages / "about.md").write_text("# About Me\nI write about technology, privacy, and the human condition. This is my personal blog where I share thoughts.")
+        BlogBuilder(config).build()
+        page_html = (output / "about.html").read_text()
+        assert 'meta name="description"' in page_html
+        assert "technology" in page_html
+        print("✓ Built page has meta description!")
+
+
 if __name__ == "__main__":
     test_blog_builds_successfully()
     test_incremental_build()
@@ -591,4 +606,5 @@ if __name__ == "__main__":
     test_description_empty_falls_back()
     test_description_real_post_content()
     test_built_post_has_meta_description()
+    test_built_page_has_meta_description()
     print("\n🏴‍☠️ All build tests passed! ARR!")

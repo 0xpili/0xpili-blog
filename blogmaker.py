@@ -199,6 +199,40 @@ class BlogBuilder:
 
         return cover_image, filtered_lines
     
+    def _parse_page(self, filepath: Path) -> Optional[Dict]:
+        try:
+            content = filepath.read_text(encoding='utf-8')
+            lines = content.strip().split('\n')
+
+            slug = filepath.stem.lower().replace(' ', '-')
+
+            title = filepath.stem.replace('-', ' ').title()
+            start_line = 0
+            if lines and lines[0].startswith('# '):
+                title = lines[0][2:].strip()
+                start_line = 1
+
+            content_text = '\n'.join(lines[start_line:]).strip()
+
+            html_content = markdown2.markdown(
+                content_text,
+                extras=['fenced-code-blocks', 'header-ids', 'tables', 'strike']
+            )
+
+            description = self._extract_description(content_text)
+
+            return {
+                'title': title,
+                'slug': slug,
+                'content': html_content,
+                'description': description,
+                'filepath': str(filepath),
+                'hash': self._file_hash(filepath),
+            }
+        except Exception as e:
+            print(f"Error parsing page {filepath.name}: {e}")
+            return None
+
     def _needs_rebuild(self, post: Dict) -> bool:
         cached_hash = self.cache.get(post['filepath'])
         output_file = Path(self.config["output_dir"]) / f"{post['slug']}.html"
@@ -212,6 +246,7 @@ class BlogBuilder:
         
         try:
             post_template = self.env.get_template("base.html")
+            page_template = self.env.get_template("page.html")
             index_template = self.env.get_template("index.html")
             error_template = self.env.get_template("404.html")
         except Exception as e:
@@ -252,6 +287,28 @@ class BlogBuilder:
                 else:
                     print(f"  - {post['title']} (unchanged)")
         
+        # Build static pages
+        pages_path = Path(self.config.get("pages_dir", "pages"))
+        if pages_path.exists():
+            for filepath in pages_path.glob("*.md"):
+                page = self._parse_page(filepath)
+                if page and self._needs_rebuild(page):
+                    try:
+                        html = page_template.render(
+                            title=page['title'],
+                            content=page['content'],
+                            slug=page['slug'],
+                            description=page['description'],
+                        )
+                        output_file = output_path / f"{page['slug']}.html"
+                        output_file.write_text(html, encoding='utf-8')
+                        self.cache[page['filepath']] = page['hash']
+                        print(f"  ✓ {page['title']} (page)")
+                    except Exception as e:
+                        print(f"  ✗ Error building page {page['title']}: {e}")
+                elif page:
+                    print(f"  - {page['title']} (page, unchanged)")
+
         posts.sort(key=lambda x: x['date_obj'], reverse=True)
         
         try:
