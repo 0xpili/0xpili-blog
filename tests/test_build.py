@@ -630,6 +630,116 @@ def test_stale_draft_cleanup():
         print("✓ Stale draft cleanup works!")
 
 
+# --- Tag System Tests (TAGS-01, TAGS-02, TAGS-03) ---
+
+
+def test_tag_parsing_from_header():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "tagged.md").write_text("Date: 2025 Jan 01\nTags: crypto, ai\n# Tagged Post\nContent.")
+        post = builder._parse_post(posts / "tagged.md")
+        assert post['tags'] == ['crypto', 'ai']
+        print("✓ Tags parsed from header!")
+
+
+def test_tag_whitespace_and_case():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "messy-tags.md").write_text("Date: 2025 Jan 01\nTags:  Crypto , AI , Philosophy \n# Messy Tags\nContent.")
+        post = builder._parse_post(posts / "messy-tags.md")
+        assert post['tags'] == ['crypto', 'ai', 'philosophy']
+        print("✓ Tags whitespace-trimmed and lowercased!")
+
+
+def test_no_tags_empty_list():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        posts = Path(config["posts_dir"])
+        (posts / "no-tags.md").write_text("Date: 2025 Jan 01\n# No Tags\nContent.")
+        post = builder._parse_post(posts / "no-tags.md")
+        assert post['tags'] == []
+        print("✓ No tags header gives empty list!")
+
+
+def test_tags_displayed_on_post():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "tagged-post.md").write_text("Date: 2025 Jan 01\nTags: crypto, ai\n# Tagged Post\nSome content here.")
+        BlogBuilder(config).build()
+        post_html = (output / "tagged-post.html").read_text()
+        assert "tag-crypto.html" in post_html
+        assert "tag-ai.html" in post_html
+        print("✓ Tags displayed on post page!")
+
+
+def test_tag_index_pages_generated():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "post1.md").write_text("Date: 2025 Jan 01\nTags: crypto\n# Crypto Post\nAbout crypto.")
+        (posts / "post2.md").write_text("Date: 2025 Feb 01\nTags: crypto, ai\n# Both Post\nAbout both.")
+        BlogBuilder(config).build()
+        assert (output / "tag-crypto.html").exists()
+        assert (output / "tag-ai.html").exists()
+        crypto_page = (output / "tag-crypto.html").read_text()
+        assert "Posts tagged: crypto" in crypto_page
+        assert "Crypto Post" in crypto_page
+        assert "Both Post" in crypto_page
+        ai_page = (output / "tag-ai.html").read_text()
+        assert "Both Post" in ai_page
+        assert "Crypto Post" not in ai_page
+        print("✓ Tag index pages generated correctly!")
+
+
+def test_tag_pages_exclude_drafts():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "pub.md").write_text("Date: 2025 Jan 01\nTags: crypto\n# Published\nContent.")
+        (posts / "draft.md").write_text("Date: 2025 Feb 01\nTags: crypto\nDraft: true\n# Draft\nSecret.")
+        BlogBuilder(config).build()
+        crypto_page = (output / "tag-crypto.html").read_text()
+        assert "Published" in crypto_page
+        assert "Draft" not in crypto_page
+        print("✓ Tag pages exclude drafts!")
+
+
+def test_stale_tag_pages_cleaned():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "post.md").write_text("Date: 2025 Jan 01\nTags: crypto\n# Post\nContent.")
+        BlogBuilder(config).build()
+        assert (output / "tag-crypto.html").exists()
+        (posts / "post.md").write_text("Date: 2025 Jan 01\nTags: ai\n# Post\nContent.")
+        BlogBuilder(config).build()
+        assert not (output / "tag-crypto.html").exists()
+        assert (output / "tag-ai.html").exists()
+        print("✓ Stale tag pages cleaned up!")
+
+
+def test_tag_pages_sorted_newest_first():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        config = _make_config(tmpdir)
+        posts = Path(config["posts_dir"])
+        output = Path(config["output_dir"])
+        (posts / "older.md").write_text("Date: 2025 Jan 01\nTags: crypto\n# Older Post\nContent.")
+        (posts / "newer.md").write_text("Date: 2025 Mar 01\nTags: crypto\n# Newer Post\nContent.")
+        BlogBuilder(config).build()
+        crypto_page = (output / "tag-crypto.html").read_text()
+        newer_pos = crypto_page.find("Newer Post")
+        older_pos = crypto_page.find("Older Post")
+        assert newer_pos < older_pos
+        print("✓ Tag pages sorted newest-first!")
+
+
 if __name__ == "__main__":
     test_blog_builds_successfully()
     test_incremental_build()
@@ -678,4 +788,13 @@ if __name__ == "__main__":
     test_draft_excluded_from_index()
     test_non_draft_builds_normally()
     test_stale_draft_cleanup()
+    # Tag system (TAGS-01, TAGS-02, TAGS-03)
+    test_tag_parsing_from_header()
+    test_tag_whitespace_and_case()
+    test_no_tags_empty_list()
+    test_tags_displayed_on_post()
+    test_tag_index_pages_generated()
+    test_tag_pages_exclude_drafts()
+    test_stale_tag_pages_cleaned()
+    test_tag_pages_sorted_newest_first()
     print("\n🏴‍☠️ All build tests passed! ARR!")

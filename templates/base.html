@@ -252,7 +252,12 @@ article img{
 </div>
 {% endif %}
 <h1>{{ title }}</h1>
-<div class="meta">{{ date }}</div>
+<div class="meta">
+  {{ date }}
+  {% if tags %}
+  <span class="tags"> · {% for tag in tags %}<a href="/tag-{{ tag }}.html">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
+  {% endif %}
+</div>
 {{ content|safe }}
 </article>
 <nav>

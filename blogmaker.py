@@ -173,7 +173,7 @@ class BlogBuilder:
                 'filepath': str(filepath),
                 'hash': self._file_hash(filepath),
                 'draft': headers.get('draft', '').lower() == 'true',
-                'tags': [],
+                'tags': [t.strip().lower() for t in headers.get('tags', '').split(',') if t.strip()] if headers.get('tags') else [],
             }
 
         except Exception as e:
@@ -289,6 +289,7 @@ class BlogBuilder:
                         cover_image=post['cover_image'],
                         slug=post['slug'],
                         description=post['description'],
+                        tags=post['tags'],
                     )
 
                     output_file = output_path / f"{post['slug']}.html"
@@ -341,7 +342,25 @@ class BlogBuilder:
             print("  ✓ 404 page")
         except Exception as e:
             print(f"  ✗ Error building 404: {e}")
-        
+
+        # Clean stale tag pages and generate new ones
+        for old_tag_page in output_path.glob("tag-*.html"):
+            old_tag_page.unlink()
+
+        tag_posts = {}
+        for post in published:
+            for tag in post['tags']:
+                tag_posts.setdefault(tag, []).append(post)
+
+        for tag, tagged in tag_posts.items():
+            tagged.sort(key=lambda x: x['date_obj'], reverse=True)
+            try:
+                tag_html = index_template.render(posts=tagged, tag=tag)
+                (output_path / f"tag-{tag}.html").write_text(tag_html, encoding='utf-8')
+                print(f"  + Tag: {tag} ({len(tagged)} posts)")
+            except Exception as e:
+                print(f"  ✗ Error building tag page {tag}: {e}")
+
         self._save_cache()
         
         print(f"\nBlog built successfully!")

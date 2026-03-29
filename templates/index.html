@@ -132,8 +132,12 @@ h1{
 <span class="theme-icon">☾</span>
 </div>
 </button>
+{% if tag %}
+<h1>Posts tagged: {{ tag }}</h1>
+{% else %}
 <h1>0xpili</h1>
 <p class="tagline">On crypto, AI, and being human</p>
+{% endif %}
 
 <ul class="posts">
 {% for post in posts %}
