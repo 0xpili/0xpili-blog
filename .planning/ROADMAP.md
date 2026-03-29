@@ -43,8 +43,11 @@ Plans:
   2. Tags specified via `Tags: crypto, ai` header appear on the rendered post page
   3. Per-tag index pages are generated listing only posts with that tag
   4. Existing posts without Draft or Tags headers build without any changes needed
-**Plans**: TBD
-**UI hint**: yes
+**Plans:** 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Draft post support (parsing, filtering, stale cleanup)
+- [ ] 02-02-PLAN.md — Tag system (parsing, display, per-tag index pages)
 
 ### Phase 3: RSS Feed
 **Goal**: The blog publishes a valid RSS 2.0 feed that readers can subscribe to
@@ -64,5 +67,5 @@ Phases execute in numeric order: 1 -> 2 -> 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation and Meta | 0/2 | Planned | - |
-| 2. Drafts and Tags | 0/TBD | Not started | - |
+| 2. Drafts and Tags | 0/2 | Planned | - |
 | 3. RSS Feed | 0/TBD | Not started | - |
