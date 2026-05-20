@@ -81,6 +81,8 @@ class BlogBuilder:
         text = re.sub(r'^>\s*', '', text, flags=re.MULTILINE)
         # Remove inline code
         text = re.sub(r'`[^`]+`', '', text)
+        # Remove raw HTML tags (e.g. inline <img> covers)
+        text = re.sub(r'<[^>]+>', '', text)
         # Collapse whitespace
         text = re.sub(r'\s+', ' ', text).strip()
 

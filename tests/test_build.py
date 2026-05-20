@@ -485,6 +485,17 @@ def test_description_strips_code():
         print("✓ Description strips code!")
 
 
+def test_description_strips_html_tags():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        builder, config = _make_builder(tmpdir)
+        result = builder._extract_description('<img src="/images/cover.png" alt="Cover" /> The article text begins here with enough content to comfortably pass the minimum threshold')
+        assert "<img" not in result
+        assert "img" not in result
+        assert "/images/cover.png" not in result
+        assert "The article text begins here" in result
+        print("✓ Description strips HTML tags!")
+
+
 def test_description_truncates_at_word_boundary():
     with tempfile.TemporaryDirectory() as tmpdir:
         builder, config = _make_builder(tmpdir)
@@ -841,6 +852,7 @@ if __name__ == "__main__":
     test_description_strips_bold_italic()
     test_description_strips_headings_blockquotes()
     test_description_strips_code()
+    test_description_strips_html_tags()
     test_description_truncates_at_word_boundary()
     test_description_short_text_no_truncation()
     test_description_empty_falls_back()
