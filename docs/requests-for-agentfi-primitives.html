@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Requests for AgentFi primitives: Building a better stack — 0xpili</title>
+<meta name="description" content="There&#39;s a multi-million dollar opportunity in the answer to this question: how can you actually trust an AI agent to manage your money? Every conversation...">
+<meta property="og:title" content="Requests for AgentFi primitives: Building a better stack">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://0xpili.xyz/requests-for-agentfi-primitives">
+<link rel="canonical" href="https://0xpili.xyz/requests-for-agentfi-primitives">
+<style>
+:root{
+  --ratio:1.618;
+  --base:1rem;
+  --scale-1:calc(var(--base)*0.875);
+  --scale0:var(--base);
+  --scale1:calc(var(--base)*1.25);
+  --scale2:calc(var(--base)*1.5);
+  --scale3:calc(var(--base)*2);
+  --ink:#1a1a1a;
+  --ink-muted:#666666;
+  --paper:#ffffff;
+  --paper-subtle:#fafafa;
+  --accent:#ec4899;
+  --border:#e5e5e5;
+  --space-xs:0.25rem;
+  --space-s:0.5rem;
+  --space:1rem;
+  --space-l:1.5rem;
+  --space-xl:2rem;
+  --space-2xl:3rem;
+  --space-3xl:4rem;
+  --reading-width:38rem;
+  --line-height:1.75;
+  --line-height-tight:1.3;
+  --toggle-bg:#f0f0f0;
+  --toggle-hover:#e0e0e0;
+}
+[data-theme="dark"]{
+  --ink:#e0e0e0;
+  --ink-muted:#999;
+  --paper:#111;
+  --paper-subtle:#1a1a1a;
+  --accent:#f472b6;
+  --border:#333;
+  --toggle-bg:#222;
+  --toggle-hover:#333;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#e0e0e0;
+    --ink-muted:#999;
+    --paper:#111;
+    --paper-subtle:#1a1a1a;
+    --accent:#f472b6;
+    --border:#333;
+    --toggle-bg:#222;
+    --toggle-hover:#333;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{
+  font-size:18px;
+  line-height:var(--line-height);
+  background:var(--paper);
+  transition:background 0.2s ease;
+}
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--paper);
+  text-rendering:optimizeLegibility;
+  position:relative;
+}
+article{
+  max-width:var(--reading-width);
+  margin:0 auto;
+  padding:var(--space-3xl) var(--space-xl);
+  background:var(--paper);
+  position:relative;
+}
+h1,h2,h3{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-weight:600;
+  line-height:var(--line-height-tight);
+  margin:var(--space-2xl) 0 var(--space-l);
+  color:var(--ink);
+}
+h1{
+  font-size:var(--scale3);
+  margin-top:0;
+  font-weight:700;
+}
+h2{
+  font-size:var(--scale2);
+  margin-top:var(--space-3xl);
+  padding-bottom:var(--space-s);
+  border-bottom:1px solid var(--border);
+}
+h3{
+  font-size:var(--scale1);
+  font-weight:500;
+  color:var(--ink-muted);
+}
+p{
+  margin:0 0 var(--space-l);
+  line-height:var(--line-height);
+}
+a{
+  color:var(--accent);
+  text-decoration:underline;
+  text-underline-offset:0.2em;
+  text-decoration-thickness:1px;
+}
+a:hover{
+  text-decoration:none;
+}
+a:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+ul,ol{margin:0 0 var(--space-l);padding-left:var(--space-l)}
+li{margin-bottom:var(--space-s)}
+blockquote{
+  margin:var(--space-xl) 0;
+  padding:var(--space-l);
+  border-left:3px solid var(--border);
+  font-style:italic;
+  color:var(--ink-muted);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,"SF Mono",Monaco,monospace;
+  font-size:var(--scale-1);
+  background:var(--paper-subtle);
+  padding:var(--space-xs) var(--space-s);
+  border-radius:3px;
+}
+pre{
+  overflow-x:auto;
+  padding:var(--space-l);
+  margin:var(--space-xl) 0;
+  background:var(--paper-subtle);
+  border-radius:6px;
+  font-size:var(--scale-1);
+}
+pre code{
+  background:none;
+  padding:0;
+}
+del,s{
+  text-decoration:line-through;
+  color:var(--ink-muted);
+}
+.meta{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  color:var(--ink-muted);
+  font-size:var(--scale-1);
+  margin:var(--space) 0 var(--space-2xl);
+  padding-bottom:var(--space-l);
+  border-bottom:1px solid var(--border);
+}
+nav{
+  text-align:center;
+  padding:var(--space-2xl) 0;
+  margin-top:var(--space-3xl);
+  border-top:1px solid var(--border);
+}
+nav a{
+  display:inline-block;
+  margin:0 var(--space-l);
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-size:var(--scale-1);
+  color:var(--accent);
+  text-decoration:none;
+}
+nav a:hover{
+  text-decoration:underline;
+}
+.theme-toggle{
+  position:fixed;
+  top:1rem;
+  right:1rem;
+  width:3.5rem;
+  height:2rem;
+  border:none;
+  border-radius:2rem;
+  background:#ccc;
+  cursor:pointer;
+  padding:0.25rem;
+  transition:background 0.3s ease;
+}
+[data-theme="dark"] .theme-toggle{
+  background:#444;
+}
+.theme-toggle-slider{
+  width:1.5rem;
+  height:1.5rem;
+  border-radius:50%;
+  background:#fff;
+  transition:transform 0.3s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.9rem;
+}
+[data-theme="dark"] .theme-toggle-slider{
+  transform:translateX(1.5rem);
+  background:#222;
+}
+.cover{
+  margin:calc(var(--space-3xl)*-1) calc(var(--space-xl)*-1) var(--space-3xl);
+  overflow:hidden;
+  aspect-ratio:16/9;
+  background:var(--paper-subtle);
+}
+.cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+article img{
+  max-width:100%;
+  height:auto;
+  margin:var(--space-xl) 0;
+  border-radius:6px;
+  display:block;
+}
+@media print{
+  body{font-size:11pt;line-height:1.4}
+  article{max-width:none;padding:0}
+  .cover,nav,.meta{display:none}
+  h1,h2,h3{page-break-after:avoid}
+  p{orphans:3;widows:3}
+}
+</style>
+</head>
+<body>
+<button class="theme-toggle" aria-label="Toggle theme">
+<div class="theme-toggle-slider">
+<span class="theme-icon">☾</span>
+</div>
+</button>
+<article>
+<h1>Requests for AgentFi primitives: Building a better stack</h1>
+<div class="meta">
+  2026 May 20
+</div>
+<p><img src="/images/agentfi-primitives-cover.png" alt="Requests for AgentFi primitives" /></p>
+
+<p>There's a multi-million dollar opportunity in the answer to this question: how can you actually trust an AI agent to manage your money? Every conversation about agentic finance (AgentFi) covers the same topics: wallets, stablecoins, and payment rails. But there's a glaring problem: decision makers still don't have the tools they need to <em>trust</em> agents.</p>
+
+<p>I noticed this problem most clearly a couple of weeks ago, when I went to the AI &amp; Blockchain Redefining Markets event at Cornell Tech in NYC. More than a hundred people attended, among them wealth managers, corporate finance leaders, founders, and researchers. The main topic was the convergence of AI and blockchain. Crypto OGs were the minority in the room, something that would've been hard to imagine at a crypto event 10 years ago.</p>
+
+<p>In what I can only describe as a far cry from crypto's highly scrutinized "shady" origins, I watched every executive on stage agree that crypto rails are the inevitable future of finance, and predict that agents moving money is the end state. That said, nobody complained about capital or TVL; each institutional question circled about UX, identity, regulation, standards, and compliance.</p>
+
+<h2 id="what-institutions-actually-ask-for">What institutions actually ask for</h2>
+
+<p>The initial <a href="https://www.cambrian.org/blog/agentic-finance-landscape-q1-2026#growth-metrics">adoption phase</a> of agentic finance products, particularly those focused on yield-seeking agents like <a href="https://x.com/SaildotMoney">Sail</a> and <a href="https://x.com/Zyfai_">Zyfai</a>, has been driven by early retail customers, those Innovators with small amounts of capital. These users are typically the first wave, characterized by a higher tolerance for risk and the inherent issues of being early adopters.</p>
+
+<p><img src="/images/product-adoption-curve.png" alt="Product adoption curve for agentic finance" /></p>
+
+<p>However, institutional investors operate under different considerations and risk frames, and significant progress is still required to achieve widespread adoption within the AgentFi segment. Institutions have spent 50+ years answering the following question: Should I trust this counterparty with capital? This question won't go away when the counterparty is an agent. We need to build the stack that helps answer that question.</p>
+
+<p>There are still big structural issues we need to address to make AgentFi safe for institutions and welcome big waves of capital. Among them are identity, permissioned execution by agents, and a verifiable track record. We need to build a trust layer for agents that scales without intermediaries. Alongside regulation clarity that will come, marked by the GENIUS Act and CLARITY Act combo, bootstrapping innovation at scale in the US.</p>
+
+<h2 id="the-agentfi-primitives-every-agent-will-need">The AgentFi primitives every agent will need</h2>
+
+<p>I still remember my 18yo self going to the bank to ask for a credit card. The bank representative looked at me and almost laughed. That day, I learned that I needed to build a reputation before they would trust me to give me a credit card.</p>
+
+<p>The lesson for me came from this very early experience, but you probably know that every time someone wants to interact with the traditional finance world, there are three key questions every institution wants to answer before they trust you:</p>
+
+<ul>
+<li><em>Who are you?</em> (identity, beneficial ownership, jurisdiction)</li>
+<li><em>What do you (provably) do?</em> (audit trails, recordkeeping)</li>
+<li><em>What's your history with money?</em> (track record, references, ODD)</li>
+</ul>
+
+<p>The same questions we need to be able to answer for agents before we expect real-world adoption. Who is this agent? What did this agent do in the past? Does it have a good reputation? What is his history and stack? How does this agent custody users' funds?</p>
+
+<h3 id="identity">Identity</h3>
+
+<p>A traditional <a href="https://en.wikipedia.org/wiki/Know_your_customer">KYC</a> process in the US requires a named legal person or entity, verification using "reliable, independent source documents", adherence to specific data points, and continuous re-verification with 5-year recordkeeping. In the same way, <a href="https://stripe.com/en-pt/resources/more/know-your-business-kyb">KYB</a> requires a chain of beneficial ownership terminating in natural persons.</p>
+
+<p>Verifiable, portable, and persistent identity is a key challenge to be addressed in order to bootstrap AgentFi adoption. Here is where blockchain technology stops being optional and becomes the most rational alternative to build on top.</p>
+
+<h3 id="permissioned-execution">Permissioned execution</h3>
+
+<p>We have seen a lot of crazy stories about <a href="https://x.com/Osint613/status/2048888305874264484?s=20">agents deleting entire critical pieces of code</a>, and this won't be an exception in AgentFi if we don't have the right stack to scope their permissions. An agent should be able to execute some actions with scoped permissions.</p>
+
+<p>In traditional finance, fund managers operate under an investment mandate, a set of rules that lay out how a pool of assets should be invested. Mandates might include priorities, goals, benchmarks, risks, and types of funds to be either chosen or avoided. In AgentFi, we can leverage blockchain technology to enforce a mandate with code, enabling <em>permissioned execution</em>.</p>
+
+<p>Permissioned execution is the ability for an agent to act within a bounded authority that was explicitly granted by someone who has the right to grant it, and that can be verified, scoped, revoked, and audited. This can happen in two primary ways: offchain enforcement evaluates the mandate inside a vendor's infrastructure before signing, either through a policy engine like @privy_io or inside a hardware-isolated <a href="https://en.wikipedia.org/wiki/Trusted_execution_environment">TEE</a> like @turnkeyhq; onchain enforcement encodes the mandate directly in smart contracts via modular accounts (<a href="https://docs.erc4337.io/index.html">ERC-4337</a>, <a href="https://eips.ethereum.org/EIPS/eip-7579">ERC-7579</a>) and module providers like @rhinestonewtf, meaning the policy is verifiable by any counterparty, on every transaction, without trusting an intermediary.</p>
+
+<p>There should also be a verifiable chain of authority. The user should be able to prove who delegated the capital, what was delegated exactly, when it happened, and the scope within which the agent can operate. Auditability should be a key feature of any agentic system that manages capital.</p>
+
+<h3 id="verifiable-track-record">Verifiable track record</h3>
+
+<p>Following <a href="https://rzeckhauser.scholars.harvard.edu/sites/g/files/omnuum4441/files/rzeckhauser/files/reputation_systems.pdf">Resnick &amp; Zeckhauser's framework</a>, a well-designed reputation system should be able to collect, distribute, and aggregate feedback about participants' past behavior. It should have three key properties:</p>
+
+<ol>
+<li>Persistence that it is tied to a stable identity</li>
+<li>Observability among counterparties</li>
+<li>Predictability of future behaviors based on previous ones</li>
+</ol>
+
+<p>Track record is where traditional finance (TradFi) has the most complete and mature stack to triangulate different pieces of information to predict future behavior. If we want institutions to trust agents, we need to provide them with the information needed to answer similar questions and predict agents' trust levels based on past behavior. This includes, but is not limited to, policy adherence, volatility behavior, tail-risk exposure, operational consistency, and performance during stressed markets.</p>
+
+<p>The good news is that every action an agent takes onchain is already auditable in a way no fund manager's track record is. The problem to solve isn't in recording the data, it's in building the system on top of it that packages this information for trustworthiness.</p>
+
+<h2 id="the-emerging-stack">The emerging stack</h2>
+
+<p>Onchain activity is already more auditable than most fund managers, but it's not yet packaged in a way compliance teams can use. Closing this gap is what the next wave of AgentFi infrastructure is being built to do. New standards, primitives, and tools are constantly being developed. I will just cover a few in this section.</p>
+
+<h3 id="erc-8004-identity-and-reputation">ERC-8004 — Identity and reputation</h3>
+
+<p>Co-authored by Coinbase, Metamask, Google, and the Ethereum Foundation, the <a href="https://www.8004.org/learn">ERC-8004</a> is one of the most solid identity and reputation standards released to date and serves as an agent discovery and trust protocol.</p>
+
+<p>This open protocol lets participants register agents and APIs, making them visible and portable, enabling others (either humans or agents) to discover them and decide which ones to use based on feedback from previous clients and third-party validation.</p>
+
+<p><a href="https://agentscan.info/agents">AgentScan</a> reports 140k+ registered agents on the ERC-8004 protocol (72.2k active ones) and 200k+ total feedback submissions that happened onchain. For example, <a href="https://agentscan.info/agents/aeec9610-029c-49fc-b702-a88ce8532512">Dackie</a> is one of the most used agents on Base. If you enter this agent's profile, you can see the owner's address, 1.5k+ reviews of this agent, a trust score derived from the available information, and more.</p>
+
+<h3 id="erc-4337">ERC-4337</h3>
+
+<p>The key introduction behind the <a href="https://docs.erc4337.io/index.html">ERC-4337</a> is account abstraction (AA). This Ethereum standard allows traditional wallets (EOAs) to behave like smart contracts, with enforced rules that allow wallets to run arbitrary logic.</p>
+
+<p>EOAs can't enforce mandates because they can't run arbitrary code. ERC-4337 is what makes "the wallet refuses to sign anything that violates the policy" technically possible, enabling a whole new world of innovation with policy enforcement happening fully onchain.</p>
+
+<p>An interesting point to note is that a companion standard, <a href="https://eip7702.io/">ERC-7702</a>, extends this further by allowing existing EOAs to temporarily adopt smart contract behavior.</p>
+
+<h3 id="ens-naming-layer">ENS — Naming layer</h3>
+
+<p>With ~3.5 million .eth domains, ENS (Ethereum Name Service) is the most popular and established naming layer for crypto. It maps human-readable names to addresses, content hashes, text records, and now agents' identities.</p>
+
+<p>Integrated into PayPal, Venmo, Gemini, Coinbase, and the Coinbase Base App for payments, ENS is now extending its naming infrastructure to agents via <a href="https://ens.domains/blog/post/ensip-25">ENSIP-25</a> and <a href="https://discuss.ens.domains/t/ensip-26-ens-native-ai-identity/21968">ENSIP-26</a>. ENSIP-25 introduces a standardized way to verify that an agent registered in an onchain registry like ERC-8004 is genuinely associated with an ENS name. ENSIP-26 standardizes agent context and endpoint discovery, making it composable and resolvable across different chains, enabling identity support for multichain agents.</p>
+
+<h3 id="agentic-wallets">Agentic wallets</h3>
+
+<p>Acquired by Stripe in June 2025, Privy launched <a href="https://docs.privy.io/recipes/agent-integrations/agentic-wallets">Agentic wallets</a> designed to enable developers to create wallets for agents with strict policy controls and security guardrails.</p>
+
+<p>Agentic Wallets are promising for use cases where agents need to have the ability to transact without human intervention but under permissioned execution. Clear use cases are trading agents, portfolio managers, and automated market makers.</p>
+
+<p>Under the most common policies applied to agents, we can find the following ones: transfer limits, allowlisted contracts, time-based controls, and action-specific rules.</p>
+
+<p>Privy supports two primary models for agentic wallets: 1) agent-controlled, developer-owned wallets and; 2) user-owned wallets with agent signers.</p>
+
+<h3 id="virtuals-acp">Virtuals' ACP</h3>
+
+<p>@virtuals_io is the largest production agent platform with onchain commerce and reputation enabled by blockchain technology. Virtuals is best known for its <a href="https://app.virtuals.io/acp/scan">Agent Commerce Protocol</a> (ACP), which enables agent-to-agent commerce on Base and Solana.</p>
+
+<p>With more than 400M USDC processed, ACP serves as a blockchain-enabled protocol to enable collaboration of interconnected and specialized agent clusters. Composed by an agent registry that lets developers register specialized agents plus standardized APIs and contracts that define how agents collaborate, ACP was designed to enable agents to coordinate, transact and negotiate at scale.</p>
+
+<h2 id="the-bridge-is-data">The bridge is data</h2>
+
+<p><em>Every layer of the stack we walked through together in this article depends on one thing: structured, machine-readable data that accurately captures what is happening onchain.</em></p>
+
+<p>The agents that get to operate with institutional scale will be the ones whose identity and track record are exposed in a language compliance teams can read. Capital was never the bottleneck, reputation and identity were, and they run on data.</p>
+
+<p>Once agents have identity, permissions, and history, the missing layer is normalized data.</p>
+
+<p>Fast, accurate, comprehensive, institutional-grade data that can be used by humans and agents to make accurate decisions is the foundation that will serve as the bridge to deploy capital in AgentFi at scale.</p>
+
+<p>I'm proud to be working on a new data layer for humans and agents alike at @CambrianNetwork. If you want to connect, please don't hesitate to email me at <a href="mailto:me@0xpili.xyz">me@0xpili.xyz</a>.</p>
+
+<hr />
+
+<p><em>Special thanks to @aadopico (<a href="https://x.com/SaildotMoney">@SaildotMoney</a>), @Beler, @bermchain (<a href="https://x.com/CambrianNetwork">@CambrianNetwork</a>), @0xEulersID (<a href="https://x.com/gizatechxyz">@gizatechxyz</a>), @0xrhota (<a href="https://x.com/CambrianNetwork">@CambrianNetwork</a>) for the feedback and discussions.</em></p>
+
+</article>
+<nav>
+<a href="/index.html">Index</a>
+<a href="https://twitter.com/0xpili_">Twitter</a>
+<a href="https://github.com/0xpili">GitHub</a>
+</nav>
+<script>
+(function(){
+  const toggle = document.querySelector('.theme-toggle');
+  const icon = document.querySelector('.theme-icon');
+  const root = document.documentElement;
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    root.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
+  }
+  
+  function updateIcon() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    icon.textContent = isDark ? '☀' : '☾';
+  }
+  
+  updateIcon();
+  
+  toggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    
+    root.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon();
+  });
+})();
+</script>
+</body>
+</html>
