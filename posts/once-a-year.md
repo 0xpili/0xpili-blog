@@ -24,5 +24,3 @@ The world has ~8.3 billion people. It's too hard to find good friends you can tr
 My birthday parties are not usually crowded. The people who share my birthday with me should have a very special place in my life.
 
 I'm not saying you cannot have a crowded birthday party. I'm saying you should have time to celebrate in an intimate space with the few people who really make your life better, easier, or simply more enjoyable.
-
-I hope this helps you to be more intentional.
