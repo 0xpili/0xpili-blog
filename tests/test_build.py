@@ -20,10 +20,8 @@ def _make_config(tmpdir):
     test_posts.mkdir(exist_ok=True)
     test_templates.mkdir(exist_ok=True)
 
-    for template in ["base.html", "page.html", "index.html", "404.html"]:
-        src = Path("templates") / template
-        if src.exists():
-            shutil.copy(src, test_templates / template)
+    for src in Path("templates").glob("*.html"):
+        shutil.copy(src, test_templates / src.name)
 
     return {
         "site_url": "https://example.com",
@@ -223,7 +221,7 @@ def test_post_dict_has_draft_and_tags():
 
 
 def test_all_existing_posts_parse():
-    """All 15 existing posts parse successfully."""
+    """All existing posts parse successfully."""
     config = {
         "site_url": "https://0xpili.xyz",
         "site_title": "0xpili",
@@ -682,8 +680,8 @@ def test_tags_displayed_on_post():
         (posts / "tagged-post.md").write_text("Date: 2025 Jan 01\nTags: crypto, ai\n# Tagged Post\nSome content here.")
         BlogBuilder(config).build()
         post_html = (output / "tagged-post.html").read_text()
-        assert "tag-crypto.html" in post_html
-        assert "tag-ai.html" in post_html
+        assert 'href="/tag-crypto"' in post_html
+        assert 'href="/tag-ai"' in post_html
         print("✓ Tags displayed on post page!")
 
 

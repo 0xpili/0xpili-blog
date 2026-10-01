@@ -37,6 +37,7 @@ class BlogBuilder:
     def __init__(self, config: Dict[str, str]):
         self.config = config
         self.cache = self._load_cache()
+        self.templates_hash = self._templates_hash()
         self.env = Environment(
             loader=FileSystemLoader(config["templates_dir"]),
             autoescape=select_autoescape(["html"]),
@@ -62,6 +63,15 @@ class BlogBuilder:
         with open(filepath, 'rb') as f:
             return hashlib.sha256(f.read()).hexdigest()[:16]
     
+    def _templates_hash(self) -> str:
+        digest = hashlib.sha256()
+        for template in sorted(Path(self.config["templates_dir"]).glob("*.html")):
+            digest.update(template.read_bytes())
+        return digest.hexdigest()[:16]
+
+    def _cache_key(self, item: Dict) -> str:
+        return f"{item['hash']}:{self.templates_hash}"
+
     def _extract_description(self, markdown_text: str) -> str:
         """Extract plain text description from markdown, ~160 chars."""
         text = markdown_text
@@ -166,7 +176,6 @@ class BlogBuilder:
             return {
                 'title': title,
                 'slug': slug,
-                'filename': slug,
                 'date': date_obj.strftime(self.config["date_format"]),
                 'iso_date': date_obj.isoformat(),
                 'date_obj': date_obj,
@@ -264,7 +273,7 @@ class BlogBuilder:
     def _needs_rebuild(self, post: Dict) -> bool:
         cached_hash = self.cache.get(post['filepath'])
         output_file = Path(self.config["output_dir"]) / f"{post['slug']}.html"
-        return cached_hash != post['hash'] or not output_file.exists()
+        return cached_hash != self._cache_key(post) or not output_file.exists()
     
     def build(self):
         print("Building blog...")
@@ -273,7 +282,7 @@ class BlogBuilder:
         output_path.mkdir(exist_ok=True)
         
         try:
-            post_template = self.env.get_template("base.html")
+            post_template = self.env.get_template("post.html")
             page_template = self.env.get_template("page.html")
             index_template = self.env.get_template("index.html")
             error_template = self.env.get_template("404.html")
@@ -323,7 +332,7 @@ class BlogBuilder:
                     output_file = output_path / f"{post['slug']}.html"
                     output_file.write_text(html, encoding='utf-8')
 
-                    self.cache[post['filepath']] = post['hash']
+                    self.cache[post['filepath']] = self._cache_key(post)
                     print(f"  ✓ {post['title']}")
 
                 except Exception as e:
@@ -348,7 +357,7 @@ class BlogBuilder:
                         )
                         output_file = output_path / f"{page['slug']}.html"
                         output_file.write_text(html, encoding='utf-8')
-                        self.cache[page['filepath']] = page['hash']
+                        self.cache[page['filepath']] = self._cache_key(page)
                         print(f"  ✓ {page['title']} (page)")
                     except Exception as e:
                         print(f"  ✗ Error building page {page['title']}: {e}")

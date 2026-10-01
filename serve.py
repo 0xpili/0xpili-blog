@@ -12,6 +12,12 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
     
+    def translate_path(self, path):
+        translated = super().translate_path(path)
+        if not os.path.splitext(translated)[1] and os.path.isfile(translated + ".html"):
+            return translated + ".html"
+        return translated
+
     def end_headers(self):
         self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
         super().end_headers()

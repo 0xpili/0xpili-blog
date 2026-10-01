@@ -26,5 +26,8 @@ jobs:
       - name: Run build tests
         run: python3 tests/test_build.py
 
+      - name: Run layout tests
+        run: python3 tests/test_layout.py
+
       - name: Run quality tests
         run: python3 tests/test_quality.py

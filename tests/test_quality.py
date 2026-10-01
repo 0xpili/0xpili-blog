@@ -7,11 +7,7 @@ import re
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# The inline theme-toggle script is intentional — match it so we can allow it
-_THEME_TOGGLE_RE = re.compile(
-    r"<script>\s*\(function\(\)\{\s*const toggle",
-    re.DOTALL,
-)
+_RETIRED_PINK = ("#ec4899", "#f472b6")
 
 
 def test_html_quality():
@@ -28,16 +24,16 @@ def test_html_quality():
         if "fonts.googleapis.com" in content:
             errors.append(f"{html_file.name}: External font dependency")
 
-        # Allow the inline theme-toggle, flag anything else
         if "<script" in content:
-            without_toggle = _THEME_TOGGLE_RE.sub("", content)
-            if "<script" in without_toggle:
-                errors.append(f"{html_file.name}: Disallowed JavaScript found")
+            errors.append(f"{html_file.name}: JavaScript found")
+
+        if any(color in content for color in _RETIRED_PINK):
+            errors.append(f"{html_file.name}: Pink accent found")
 
         if 'style="' in content:
             errors.append(f"{html_file.name}: Inline styles found")
 
-        # Size budgets account for ~8KB of inlined CSS per page
+        # Size budgets include the inlined CSS on every page
         size_kb = html_file.stat().st_size / 1024
         if html_file.name == "index.html" and size_kb > 10:
             errors.append(f"{html_file.name}: Too large ({size_kb:.1f}KB, limit 10KB)")
