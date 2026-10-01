@@ -1,4 +1,5 @@
 Date: 2025 Dec 07
+Tags: attention, design
 # In Defense of Attention
 
 *Attention* is a scarce resource. Since every app started being optimized for engagement, human's lives, and especially our *attention* was really affected, leading to cognitive deterioration and structural changes on how humans interact with each other and the world *outside*.

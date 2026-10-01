@@ -1,4 +1,5 @@
 Date: 2025 Oct 12
+Tags: agents, defi, crypto
 # AgentFi
 
 Since AI agents emerged, the crypto industry has been at the frontier of innovation by creating agents that deploy capital, execute multiple-step strategies, and adapt in real time without gatekeepers or jurisdictional barriers.

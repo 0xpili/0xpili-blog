@@ -1,4 +1,5 @@
 Date: 2025 Oct 26
+Tags: running, life
 # Long-term games
 
 Long-term games are tough.

@@ -1,4 +1,5 @@
 Date: 2025 Aug 29
+Tags: work, design
 # The Complexity Tax
 
 The most underestimated skill in ~~business~~ life is _making things simple_. Not dumbed down. Simple.

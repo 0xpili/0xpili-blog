@@ -1,4 +1,5 @@
 Date: 2025 May 14
+Tags: crypto, privacy
 # Crypto Without Privacy Is Half Finished
 
 Crypto without privacy is half-finished. The tools exist; our job now is to weave them into every layer of the stack so users never have to trade sovereignty for exposure.

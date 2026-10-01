@@ -1,4 +1,5 @@
 Date: 2025 Aug 17
+Tags: ai, work
 # Orchestrators
 
 > *"The most important thing is to have smart people. As technology becomes more generic and less expensive, the leverage point becomes the people."* - Mark Zuckerberg

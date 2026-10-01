@@ -221,7 +221,7 @@ def test_post_dict_has_draft_and_tags():
 
 
 def test_all_existing_posts_parse():
-    """All existing posts parse successfully."""
+    """All existing posts parse and have tags."""
     config = {
         "site_url": "https://0xpili.xyz",
         "site_title": "0xpili",
@@ -242,7 +242,8 @@ def test_all_existing_posts_parse():
         assert post is not None, f"{filepath.name} failed to parse"
         assert post['title'], f"{filepath.name} has empty title"
         assert post['date'], f"{filepath.name} has empty date"
-    print(f"✓ All {len(post_files)} existing posts parse successfully!")
+        assert post['tags'], f"{filepath.name} has no tags"
+    print(f"✓ All {len(post_files)} existing posts parse and have tags!")
 
 
 # --- Image Extraction Edge-Case Tests (QUAL-04) ---

@@ -9,277 +9,190 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://0xpili.xyz/">
 <link rel="canonical" href="https://0xpili.xyz/">
+<link rel="alternate" type="application/rss+xml" title="0xpili" href="/feed.xml">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --text:#111;
-  --text-muted:#666;
-  --bg:#fff;
-  --accent:#ec4899;
-  --toggle-bg:#f0f0f0;
-  --toggle-hover:#e0e0e0;
-}
-[data-theme="dark"]{
-  --text:#e0e0e0;
-  --text-muted:#999;
-  --bg:#111;
-  --accent:#f472b6;
-  --toggle-bg:#222;
-  --toggle-hover:#333;
+  color-scheme:light dark;
+  --ink:#1a1a1a;
+  --muted:#6b6b6b;
+  --paper:#fff;
+  --subtle:#f5f5f5;
+  --border:#e5e5e5;
+  --accent:#2563eb;
 }
 @media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --text:#e0e0e0;
-    --text-muted:#999;
-    --bg:#111;
-    --accent:#f472b6;
-    --toggle-bg:#222;
-    --toggle-hover:#333;
+  :root{
+    --ink:#e0e0e0;
+    --muted:#999;
+    --paper:#111;
+    --subtle:#1c1c1c;
+    --border:#2a2a2a;
+    --accent:#60a5fa;
   }
 }
-html{
-  font:18px/1.7 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  background:var(--bg);
-  transition:background 0.2s ease;
-}
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:18px;background:var(--paper)}
 body{
-  color:var(--text);
   max-width:38rem;
   margin:0 auto;
-  padding:4rem 1.5rem;
-  position:relative;
+  padding:2rem 1.5rem 3rem;
+  font:400 1rem/1.75 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
 }
-.theme-toggle{
-  position:fixed;
-  top:1rem;
-  right:1rem;
-  width:3.5rem;
-  height:2rem;
-  border:none;
-  border-radius:2rem;
-  background:#ccc;
-  cursor:pointer;
-  padding:0.25rem;
-  transition:background 0.3s ease;
-}
-[data-theme="dark"] .theme-toggle{
-  background:#444;
-}
-.theme-toggle-slider{
-  width:1.5rem;
-  height:1.5rem;
-  border-radius:50%;
-  background:#fff;
-  transition:transform 0.3s ease;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:0.9rem;
-}
-[data-theme="dark"] .theme-toggle-slider{
-  transform:translateX(1.5rem);
-  background:#222;
-}
-h1{
-  font:700 2rem/1.2 ui-sans-serif,system-ui,sans-serif;
-  margin-bottom:0.5rem;
-}
-.tagline{
-  color:var(--text-muted);
-  margin-bottom:4rem;
-}
-.posts{
-  list-style:none;
-  margin-bottom:4rem;
-}
-.posts li{
-  margin-bottom:2rem;
-}
-.posts a{
-  color:inherit;
-  text-decoration:none;
-}
-.posts a:hover h2{
-  color:var(--accent);
-  transition:color 0.2s ease;
-}
-.posts h2{
-  font:600 1.25rem/1.3 ui-sans-serif,system-ui,sans-serif;
-  margin-bottom:0.25rem;
-  transition:color 0.2s ease;
-}
-.posts time{
-  color:var(--text-muted);
-  font-size:0.875rem;
-}
-.links{
-  display:flex;
-  gap:1.5rem;
-}
-.links a{
-  color:var(--accent);
-  text-decoration:none;
-  font-size:0.875rem;
-}
-.links a:hover{
-  text-decoration:underline;
+a{color:var(--accent);text-underline-offset:0.2em;text-decoration-thickness:1px}
+a:hover{text-decoration:none}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+header,footer{display:flex;gap:1.5rem;font-size:0.875rem}
+header{justify-content:space-between;margin-bottom:4rem}
+header a,footer a{color:var(--muted);text-decoration:none}
+header a:hover,footer a:hover{color:var(--ink)}
+header a:first-child{color:var(--ink);font-weight:600}
+footer{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border)}
+h1,h2,h3{line-height:1.3;font-weight:600;margin:3rem 0 1rem}
+h1{font-size:2rem;font-weight:700;margin-top:0}
+h2{font-size:1.5rem}
+h3{font-size:1.25rem}
+p,ul,ol{margin:0 0 1.5rem}
+ul,ol{padding-left:1.5rem}
+li{margin-bottom:0.5rem}
+.tagline{color:var(--muted);margin:-0.5rem 0 3rem}
+.posts{list-style:none;padding:0;margin:0}
+.posts li{margin-bottom:2rem}
+.posts a{display:block;color:inherit;text-decoration:none}
+.posts h2{font-size:1.25rem;margin:0 0 0.25rem}
+.posts a:hover h2{color:var(--accent)}
+.posts time{color:var(--muted);font-size:0.875rem}
+@media print{
+  header,footer{display:none}
+  body{max-width:none;padding:0;font-size:11pt;line-height:1.4}
 }
 </style>
 </head>
 <body>
-<button class="theme-toggle" aria-label="Toggle theme">
-<div class="theme-toggle-slider">
-<span class="theme-icon">☾</span>
-</div>
-</button>
+<header>
+<a href="/">0xpili</a>
+<a href="/about">About</a>
+</header>
+<main>
 <h1>0xpili</h1>
 <p class="tagline">On crypto, AI, and being human</p>
-
 <ul class="posts">
 <li>
-<a href="/once-a-year.html">
+<a href="/once-a-year">
 <h2>Once a Year</h2>
 <time datetime="2026-10-01T00:00:00">2026 Oct 01</time>
 </a>
 </li>
 <li>
-<a href="/requests-for-agentfi-primitives.html">
+<a href="/requests-for-agentfi-primitives">
 <h2>Requests for AgentFi primitives: Building a better stack</h2>
 <time datetime="2026-05-20T00:00:00">2026 May 20</time>
 </a>
 </li>
 <li>
-<a href="/become-antifragile.html">
+<a href="/become-antifragile">
 <h2>Become Antifragile</h2>
 <time datetime="2026-04-06T00:00:00">2026 Apr 06</time>
 </a>
 </li>
 <li>
-<a href="/hiring-is-broken.html">
+<a href="/hiring-is-broken">
 <h2>Hiring is broken (for those who keep making this mistake)</h2>
 <time datetime="2026-02-13T00:00:00">2026 Feb 13</time>
 </a>
 </li>
 <li>
-<a href="/the-agentic-middle-layer-2026s-attention-economy-isnt-for-humans.html">
+<a href="/the-agentic-middle-layer-2026s-attention-economy-isnt-for-humans">
 <h2>The Agentic Middle Layer: 2026&#39;s attention economy isn&#39;t for humans</h2>
 <time datetime="2026-01-14T00:00:00">2026 Jan 14</time>
 </a>
 </li>
 <li>
-<a href="/the-agentic-economys-future-is-on-ethereum.html">
+<a href="/the-agentic-economys-future-is-on-ethereum">
 <h2>The Agentic Economy&#39;s Future is on Ethereum</h2>
 <time datetime="2025-12-30T00:00:00">2025 Dec 30</time>
 </a>
 </li>
 <li>
-<a href="/in-defense-of-attention.html">
+<a href="/in-defense-of-attention">
 <h2>In Defense of Attention</h2>
 <time datetime="2025-12-07T00:00:00">2025 Dec 07</time>
 </a>
 </li>
 <li>
-<a href="/from-late-night-conversations-to-1k-builders-the-story-of-agentic-zero.html">
+<a href="/from-late-night-conversations-to-1k-builders-the-story-of-agentic-zero">
 <h2>From Late-Night Conversations to 1k+ Builders: The Story of Agentic Zero</h2>
 <time datetime="2025-12-03T00:00:00">2025 Dec 03</time>
 </a>
 </li>
 <li>
-<a href="/long-term-games.html">
+<a href="/long-term-games">
 <h2>Long-term games</h2>
 <time datetime="2025-10-26T00:00:00">2025 Oct 26</time>
 </a>
 </li>
 <li>
-<a href="/agentfi.html">
+<a href="/agentfi">
 <h2>AgentFi</h2>
 <time datetime="2025-10-12T00:00:00">2025 Oct 12</time>
 </a>
 </li>
 <li>
-<a href="/the-complexity-tax.html">
+<a href="/the-complexity-tax">
 <h2>The Complexity Tax</h2>
 <time datetime="2025-08-29T00:00:00">2025 Aug 29</time>
 </a>
 </li>
 <li>
-<a href="/orchestrators.html">
+<a href="/orchestrators">
 <h2>Orchestrators</h2>
 <time datetime="2025-08-17T00:00:00">2025 Aug 17</time>
 </a>
 </li>
 <li>
-<a href="/the-art-of-being-a-safe-place.html">
+<a href="/the-art-of-being-a-safe-place">
 <h2>The Art of Being a Safe Place</h2>
 <time datetime="2025-08-09T00:00:00">2025 Aug 09</time>
 </a>
 </li>
 <li>
-<a href="/humanity-deserves-better-humans-and-better-products.html">
+<a href="/humanity-deserves-better-humans-and-better-products">
 <h2>Humanity Deserves Better Humans and Better Products</h2>
 <time datetime="2025-07-22T00:00:00">2025 Jul 22</time>
 </a>
 </li>
 <li>
-<a href="/the-state-of-the-art-of-defi-agents.html">
+<a href="/the-state-of-the-art-of-defi-agents">
 <h2>The State of The Art of DeFi Agents</h2>
 <time datetime="2025-07-20T00:00:00">2025 Jul 20</time>
 </a>
 </li>
 <li>
-<a href="/crypto-without-privacy-is-half-finished.html">
+<a href="/crypto-without-privacy-is-half-finished">
 <h2>Crypto Without Privacy Is Half Finished</h2>
 <time datetime="2025-05-14T00:00:00">2025 May 14</time>
 </a>
 </li>
 <li>
-<a href="/how-athletics-shape-your-best-self.html">
+<a href="/how-athletics-shape-your-best-self">
 <h2>How Athletics Shape Your Best Self</h2>
 <time datetime="2025-05-11T00:00:00">2025 May 11</time>
 </a>
 </li>
 <li>
-<a href="/lessons-from-my-non-linear-journey.html">
+<a href="/lessons-from-my-non-linear-journey">
 <h2>Lessons From My Non Linear Journey</h2>
 <time datetime="2024-12-27T00:00:00">2024 Dec 27</time>
 </a>
 </li>
 </ul>
-
-<div class="links">
+</main>
+<footer>
 <a href="https://twitter.com/0xpili_">Twitter</a>
 <a href="https://github.com/0xpili">GitHub</a>
 <a href="mailto:hola@0xpili.xyz">Email</a>
-</div>
-<script>
-(function(){
-  const toggle = document.querySelector('.theme-toggle');
-  const icon = document.querySelector('.theme-icon');
-  const root = document.documentElement;
-  
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    root.setAttribute('data-theme', savedTheme);
-  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    root.setAttribute('data-theme', 'dark');
-  }
-  
-  function updateIcon() {
-    const isDark = root.getAttribute('data-theme') === 'dark';
-    icon.textContent = isDark ? '☀' : '☾';
-  }
-  
-  updateIcon();
-  
-  toggle.addEventListener('click', () => {
-    const isDark = root.getAttribute('data-theme') === 'dark';
-    const newTheme = isDark ? 'light' : 'dark';
-    
-    root.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateIcon();
-  });
-})();
-</script>
+<a href="/feed.xml">RSS</a>
+</footer>
 </body>
 </html>

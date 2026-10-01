@@ -1,4 +1,5 @@
 Date: 2026 Apr 06
+Tags: life, routines
 
 # Become Antifragile
 

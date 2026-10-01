@@ -1,4 +1,5 @@
 Date: 2026 May 20
+Tags: agents, defi, crypto
 # Requests for AgentFi primitives: Building a better stack
 
 <img src="/images/agentfi-primitives-cover.png" alt="Requests for AgentFi primitives" />
