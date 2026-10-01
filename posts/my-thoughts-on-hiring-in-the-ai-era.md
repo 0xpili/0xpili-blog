@@ -1,6 +1,6 @@
 Date: 2026 Feb 13
 Tags: work, ai
-# Hiring is broken (for those who keep making this mistake)
+# My thoughts on hiring in the AI era
 
 Hiring in the AI era is a mess. You're interviewing, and you keep getting rejection emails. Or, you're trying to grow your team, and the hires don't land. The hiring process is broken, and I learned that the hard way.
 
