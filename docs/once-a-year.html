@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Once a Year — 0xpili</title>
+<meta name="description" content="Once a year, another trip around the sun happens since you were born, and you celebrate your birthday. At least that is what I do since I was born, and I...">
+<meta property="og:title" content="Once a Year">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://0xpili.xyz/once-a-year">
+<link rel="canonical" href="https://0xpili.xyz/once-a-year">
+<style>
+:root{
+  --ratio:1.618;
+  --base:1rem;
+  --scale-1:calc(var(--base)*0.875);
+  --scale0:var(--base);
+  --scale1:calc(var(--base)*1.25);
+  --scale2:calc(var(--base)*1.5);
+  --scale3:calc(var(--base)*2);
+  --ink:#1a1a1a;
+  --ink-muted:#666666;
+  --paper:#ffffff;
+  --paper-subtle:#fafafa;
+  --accent:#ec4899;
+  --border:#e5e5e5;
+  --space-xs:0.25rem;
+  --space-s:0.5rem;
+  --space:1rem;
+  --space-l:1.5rem;
+  --space-xl:2rem;
+  --space-2xl:3rem;
+  --space-3xl:4rem;
+  --reading-width:38rem;
+  --line-height:1.75;
+  --line-height-tight:1.3;
+  --toggle-bg:#f0f0f0;
+  --toggle-hover:#e0e0e0;
+}
+[data-theme="dark"]{
+  --ink:#e0e0e0;
+  --ink-muted:#999;
+  --paper:#111;
+  --paper-subtle:#1a1a1a;
+  --accent:#f472b6;
+  --border:#333;
+  --toggle-bg:#222;
+  --toggle-hover:#333;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#e0e0e0;
+    --ink-muted:#999;
+    --paper:#111;
+    --paper-subtle:#1a1a1a;
+    --accent:#f472b6;
+    --border:#333;
+    --toggle-bg:#222;
+    --toggle-hover:#333;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{
+  font-size:18px;
+  line-height:var(--line-height);
+  background:var(--paper);
+  transition:background 0.2s ease;
+}
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--paper);
+  text-rendering:optimizeLegibility;
+  position:relative;
+}
+article{
+  max-width:var(--reading-width);
+  margin:0 auto;
+  padding:var(--space-3xl) var(--space-xl);
+  background:var(--paper);
+  position:relative;
+}
+h1,h2,h3{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-weight:600;
+  line-height:var(--line-height-tight);
+  margin:var(--space-2xl) 0 var(--space-l);
+  color:var(--ink);
+}
+h1{
+  font-size:var(--scale3);
+  margin-top:0;
+  font-weight:700;
+}
+h2{
+  font-size:var(--scale2);
+  margin-top:var(--space-3xl);
+  padding-bottom:var(--space-s);
+  border-bottom:1px solid var(--border);
+}
+h3{
+  font-size:var(--scale1);
+  font-weight:500;
+  color:var(--ink-muted);
+}
+p{
+  margin:0 0 var(--space-l);
+  line-height:var(--line-height);
+}
+a{
+  color:var(--accent);
+  text-decoration:underline;
+  text-underline-offset:0.2em;
+  text-decoration-thickness:1px;
+}
+a:hover{
+  text-decoration:none;
+}
+a:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+ul,ol{margin:0 0 var(--space-l);padding-left:var(--space-l)}
+li{margin-bottom:var(--space-s)}
+blockquote{
+  margin:var(--space-xl) 0;
+  padding:var(--space-l);
+  border-left:3px solid var(--border);
+  font-style:italic;
+  color:var(--ink-muted);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,"SF Mono",Monaco,monospace;
+  font-size:var(--scale-1);
+  background:var(--paper-subtle);
+  padding:var(--space-xs) var(--space-s);
+  border-radius:3px;
+}
+pre{
+  overflow-x:auto;
+  padding:var(--space-l);
+  margin:var(--space-xl) 0;
+  background:var(--paper-subtle);
+  border-radius:6px;
+  font-size:var(--scale-1);
+}
+pre code{
+  background:none;
+  padding:0;
+}
+del,s{
+  text-decoration:line-through;
+  color:var(--ink-muted);
+}
+.meta{
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  color:var(--ink-muted);
+  font-size:var(--scale-1);
+  margin:var(--space) 0 var(--space-2xl);
+  padding-bottom:var(--space-l);
+  border-bottom:1px solid var(--border);
+}
+nav{
+  text-align:center;
+  padding:var(--space-2xl) 0;
+  margin-top:var(--space-3xl);
+  border-top:1px solid var(--border);
+}
+nav a{
+  display:inline-block;
+  margin:0 var(--space-l);
+  font-family:ui-sans-serif,system-ui,sans-serif;
+  font-size:var(--scale-1);
+  color:var(--accent);
+  text-decoration:none;
+}
+nav a:hover{
+  text-decoration:underline;
+}
+.theme-toggle{
+  position:fixed;
+  top:1rem;
+  right:1rem;
+  width:3.5rem;
+  height:2rem;
+  border:none;
+  border-radius:2rem;
+  background:#ccc;
+  cursor:pointer;
+  padding:0.25rem;
+  transition:background 0.3s ease;
+}
+[data-theme="dark"] .theme-toggle{
+  background:#444;
+}
+.theme-toggle-slider{
+  width:1.5rem;
+  height:1.5rem;
+  border-radius:50%;
+  background:#fff;
+  transition:transform 0.3s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.9rem;
+}
+[data-theme="dark"] .theme-toggle-slider{
+  transform:translateX(1.5rem);
+  background:#222;
+}
+.cover{
+  margin:calc(var(--space-3xl)*-1) calc(var(--space-xl)*-1) var(--space-3xl);
+  overflow:hidden;
+  aspect-ratio:16/9;
+  background:var(--paper-subtle);
+}
+.cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+article img{
+  max-width:100%;
+  height:auto;
+  margin:var(--space-xl) 0;
+  border-radius:6px;
+  display:block;
+}
+@media print{
+  body{font-size:11pt;line-height:1.4}
+  article{max-width:none;padding:0}
+  .cover,nav,.meta{display:none}
+  h1,h2,h3{page-break-after:avoid}
+  p{orphans:3;widows:3}
+}
+</style>
+</head>
+<body>
+<button class="theme-toggle" aria-label="Toggle theme">
+<div class="theme-toggle-slider">
+<span class="theme-icon">☾</span>
+</div>
+</button>
+<article>
+<h1>Once a Year</h1>
+<div class="meta">
+  2026 Oct 01
+  <span class="tags"> · <a href="/tag-life.html">life</a>, <a href="/tag-routines.html">routines</a></span>
+</div>
+<p>Once a year, another trip around the sun happens since you were born, and you celebrate your birthday. At least that is what I do since I was born, and I assume most humans do the same.</p>
+
+<p>That day is special, but it can become noisy and tiring pretty easily. That's why a few years ago, I started a birthday routine.</p>
+
+<p>I love the compounding effects that I get from repeating small things every day. You probably already got it: I'm definitely a routine person. My premise for my birthday routine is simple and has two main parts:</p>
+
+<h2 id="1-do-more-of-what-you-wanna-be-doing">1. Do more of what you wanna be doing</h2>
+
+<p>This special day should reflect what you wanna be doing over your next year. Do you wanna finish a marathon next year? Go for a run on your birthday. Do you want to work super hard? Enjoy that day doing your best with your workmates!</p>
+
+<p>This looks pretty easy, but you need to plan in advance. It's too easy to let the noise and others dictate your plans.</p>
+
+<h2 id="2-thank-the-people-who-have-made-your-time-special">2. Thank the people who have made your time special</h2>
+
+<p>The world has ~8.3 billion people. It's too hard to find good friends you can trust and enjoy spending your time with. Just to put some numbers to it: if you have 20 close friends, they're 0.000000241% of the world population.</p>
+
+<p>My birthday parties are not usually crowded. The people who share my birthday with me should have a very special place in my life.</p>
+
+<p>I'm not saying you cannot have a crowded birthday party. I'm saying you should have time to celebrate in an intimate space with the few people who really make your life better, easier, or simply more enjoyable.</p>
+
+<p>I hope this helps you to be more intentional.</p>
+
+</article>
+<nav>
+<a href="/index.html">Index</a>
+<a href="https://twitter.com/0xpili_">Twitter</a>
+<a href="https://github.com/0xpili">GitHub</a>
+</nav>
+<script>
+(function(){
+  const toggle = document.querySelector('.theme-toggle');
+  const icon = document.querySelector('.theme-icon');
+  const root = document.documentElement;
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    root.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
+  }
+  
+  function updateIcon() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    icon.textContent = isDark ? '☀' : '☾';
+  }
+  
+  updateIcon();
+  
+  toggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    
+    root.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon();
+  });
+})();
+</script>
+</body>
+</html>
