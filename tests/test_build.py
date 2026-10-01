@@ -174,7 +174,7 @@ def test_header_parser_no_title_uses_filename():
         builder = BlogBuilder(config)
         post = builder._parse_post(posts / "my-post-name.md")
         assert post is not None, "Post should parse successfully"
-        assert post['title'] == "My Post Name", f"Title should be 'My Post Name', got '{post['title']}'"
+        assert post['title'] == "My post name", f"Title should be 'My post name', got '{post['title']}'"
         print("✓ Header parser uses filename as title when no heading!")
 
 

@@ -1,6 +1,6 @@
 Date: 2025 May 11th
 Tags: running, life
-# How Athletics Shape Your Best Self
+# How athletics shape your best self
 
 I've always been fascinated by how people think, feel, and interact with the world. My studies in philosophy and psychology gave me a framework to explore big questions about the human mind and spirit. But I never expected to find the most practical life lessons on the track.
 

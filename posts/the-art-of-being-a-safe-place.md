@@ -1,6 +1,6 @@
 Date: 2025 Aug 09
 Tags: life
-# The Art of Being a Safe Place
+# The art of being a safe place
 
 Someone sighs and lets their shoulders drop the moment they walk into the room.
 A friend tells you something they've never said out loud before.

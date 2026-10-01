@@ -1,6 +1,6 @@
 Date: 2025 Dec 30
 Tags: agents, crypto
-# The Agentic Economy's Future is on Ethereum
+# The agentic economy's future is on Ethereum
 
 Traditional financial and identity rails were built around the core assumption that there is always a human account holder on one side, and a centralized platform acting as a referee. Autonomous agents break that assumption in all directions.
 

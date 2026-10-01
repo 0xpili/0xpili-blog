@@ -1,7 +1,7 @@
 Date: 2026 Apr 06
 Tags: life, routines
 
-# Become Antifragile
+# Become antifragile
 
 If you don't learn to swim against the current of instant gratification and seductive comfort, you will be consumed by discomfort before you even stand a chance at combating it.
 

@@ -1,6 +1,6 @@
 Date: 2025 Dec 03
 Tags: agents, crypto
-# From Late-Night Conversations to 1k+ Builders: The Story of Agentic Zero
+# From late-night conversations to 1k+ builders: the story of Agentic Zero
 
 [Agentic Zero](https://agenticzero.xyz/) began as a handful of [late-night conversations](https://x.com/Beler/status/1980599460221894894?s=20) about the future we're actually building. It grew into the main AI agents gathering for people who take this industry seriously.
 

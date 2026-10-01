@@ -1,7 +1,7 @@
 Date: 2026 Oct 01
 Tags: life, routines
 
-# Once a Year
+# Once a year
 
 Once a year, another trip around the sun happens since you were born, and you celebrate your birthday. At least that is what I do since I was born, and I assume most humans do the same.
 

@@ -1,6 +1,6 @@
 Date: 2025 Jul 22
 Tags: design, life
-# Humanity Deserves Better Humans and Better Products
+# Humanity deserves better humans and better products
 
 I truly believe that humanity deserves better humans.
 

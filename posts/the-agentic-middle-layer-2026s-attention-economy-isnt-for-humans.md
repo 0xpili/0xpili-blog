@@ -1,6 +1,6 @@
 Date: 2026 Jan 14
 Tags: agents, ai, attention
-# The Agentic Middle Layer: 2026's attention economy isn't for humans
+# The agentic middle layer: 2026's attention economy isn't for humans
 In 2026, you won’t compete for human attention. You’ll compete for an agent’s choice. Understanding this will transform how you work, how you organize your life, and how you prepare for the agentic future.
 
 I’ll start with a personal workflow anecdote to outline how much progress has been made with agents. Last week, I was doing my regular email cleanup, which I do every quarter (it’s part of a protocol designed to [defend against overstimulation exposure](https://0xpili.xyz/in-defense-of-attention.html)). Then I thought to myself, how about I give the new Claude Chrome browser agent a try to complete this task.

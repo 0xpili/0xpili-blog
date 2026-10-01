@@ -152,7 +152,7 @@ class BlogBuilder:
                 i += 1
 
             # Parse title from first # heading (if present)
-            title = filepath.stem.replace('-', ' ').title()
+            title = filepath.stem.replace('-', ' ').capitalize()
             if i < len(lines) and lines[i].strip().startswith('# '):
                 title = lines[i].strip()[2:].strip()
                 i += 1
@@ -218,7 +218,7 @@ class BlogBuilder:
 
             slug = filepath.stem.lower().replace(' ', '-')
 
-            title = filepath.stem.replace('-', ' ').title()
+            title = filepath.stem.replace('-', ' ').capitalize()
             start_line = 0
             if lines and lines[0].startswith('# '):
                 title = lines[0][2:].strip()
