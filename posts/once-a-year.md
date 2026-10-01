@@ -7,7 +7,9 @@ Once a year, another trip around the sun happens since you were born, and you ce
 
 That day is special, but it can become noisy and tiring pretty easily. That's why a few years ago, I started a birthday routine.
 
-I love the compounding effects that I get from repeating small things every day. You probably already got it: I'm definitely a routine person. My premise for my birthday routine is simple and has two main parts:
+I love the compounding effects that I get from repeating small things every day. You probably already got it: I'm definitely a routine person.
+
+My premise for my birthday routine is simple and has two main parts:
 
 ## 1. Do more of what you wanna be doing
 
