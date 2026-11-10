@@ -9,6 +9,11 @@
  *   audioSrc : path or URL to an audio file, e.g. "audio/el-libro.mp3".
  *              When set, the built-in player appears on the lecture page.
  *
+ *   links    : authorized places to read or listen (lending, publisher,
+ *              official audio). Never add unauthorized copies.
+ *   excerpt  : one short quotation with its citation, checked word for
+ *              word against a published source.
+ *
  * Nothing else needs to change. Dates use ISO format (YYYY-MM-DD) when the
  * exact day is documented; otherwise "date" is "" and "dateLabel" is shown.
  */
@@ -43,8 +48,7 @@ window.COLLECTIONS = [
     },
     sources: [
       { label: "Internet Archive — Siete noches (FCE, 1980), préstamo digital / digital lending", url: "https://archive.org/details/sietenoches0000borg", kind: "texto" },
-      { label: "Fondo de Cultura Económica — Siete noches (editorial / publisher)", url: "https://fcede.es/site/es/libros/detalles.aspx?id_libro=1143", kind: "editorial" },
-      { label: "Internet Archive — grabaciones de 1977 (subida de un usuario / user upload)", url: "https://archive.org/details/Borges-LasSieteNoches-1977", kind: "audio" },
+      { label: "Fondo de Cultura Económica — Siete noches (editorial / publisher)", url: "https://www.fcede.es/site/es/libros/detalles.aspx?id_libro=1143", kind: "editorial" },
       { label: "Borges Center (Univ. of Pittsburgh) — Bibliografía 1977", url: "https://www.borges.pitt.edu/bibliography/1977-1", kind: "referencia" }
     ]
   },
@@ -82,8 +86,32 @@ window.THEMES = {
   dante:      { es: "Dante",           en: "Dante" }
 };
 
-const IA_SN = "https://archive.org/details/Borges-LasSieteNoches-1977/";
+const IA_BO = "https://archive.org/details/borgesoral0000borg";
+const IA_SN = "https://archive.org/details/sietenoches0000borg";
+const FCE_SN = "https://www.fcede.es/site/es/libros/detalles.aspx?id_libro=1143";
 const HARVARD_LB = "https://library.harvard.edu/sites/default/files/static/poetry/listeningbooth/poets/borges.html";
+const HARVARD_MP3 = "https://library.harvard.edu/sites/default/files/static/poetry/audio/listeningbooth/borges/";
+const HUP_CV = "https://www.hup.harvard.edu/books/9780674302457";
+const HUP_SAMPLE = "https://www.hup.harvard.edu/file/feeds/PDF/9780674302457_sample.pdf";
+
+/* "links": authorized places to read or listen. Only official, publisher or
+   controlled-lending sources. Never add unauthorized copies. */
+const LINKS_BO = [
+  { kind: "prestamo", label: "Leer — Internet Archive, préstamo digital", en: "Read — borrow from Internet Archive", url: IA_BO }
+];
+const LINKS_SN = [
+  { kind: "prestamo", label: "Leer — Internet Archive, préstamo digital", en: "Read — borrow from Internet Archive", url: IA_SN },
+  { kind: "comprar", label: "Comprar — Fondo de Cultura Económica", en: "Buy — publisher page", url: FCE_SN }
+];
+const linksCV = mp3 => [
+  { kind: "audio", label: "Escuchar — audio oficial de Harvard (Woodberry Poetry Room)", en: "Listen — official Harvard recording", url: HARVARD_MP3 + mp3 },
+  { kind: "audio", label: "Escuchar — las seis conferencias en la página de Harvard", en: "Listen — all six on Harvard's Listening Booth", url: HARVARD_LB },
+  { kind: "muestra", label: "Leer una muestra — PDF de Harvard University Press", en: "Read a sample — HUP PDF", url: HUP_SAMPLE },
+  { kind: "comprar", label: "Comprar — Harvard University Press", en: "Buy — publisher page", url: HUP_CV }
+];
+
+/* "excerpt": one short quotation per lecture (citation right). Every text was
+   checked word for word against a published source; see README.md. */
 
 window.LECTURES = [
   /* ---------------- Borges oral (1978) ---------------- */
@@ -97,10 +125,9 @@ window.LECTURES = [
       es: "Borges hace del libro el más íntimo de los inventos humanos: no una herramienta del cuerpo, sino una prolongación de la memoria y la imaginación. Recorre la desconfianza de los antiguos hacia la escritura, el culto del libro sagrado y la idea de que releer vale más que leer.",
       en: "Borges presents the book as the most intimate human invention: not a tool of the body but an extension of memory and imagination. He moves from the ancients' distrust of writing to the cult of the sacred book and the idea that rereading matters more than reading."
     },
-    quote: { text: "De los diversos instrumentos del hombre, el más asombroso es, sin duda, el libro.", lang: "es" },
-    sources: [
-      { label: "Internet Archive — Borges, oral (1979)", url: "https://archive.org/details/borgesoral0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "De los diversos instrumentos del hombre, el más asombroso es, sin duda, el libro. Los demás son extensiones de su cuerpo. El microscopio, el telescopio, son extensiones de su vista; el teléfono es extensión de la voz…", lang: "es", cite: "Borges oral (Emecé / Editorial de Belgrano, 1979)" },
+    links: LINKS_BO,
+    sources: [],
     image: "img/el-libro.jpg", imageAlt: "Un libro abierto cuyas páginas se vuelven pájaros · An open book whose pages turn into birds",
     fullText: "", audioSrc: ""
   },
@@ -114,10 +141,9 @@ window.LECTURES = [
       es: "A partir de William James, Platón y Schopenhauer, Borges examina la vieja esperanza (o amenaza) de seguir existiendo después de la muerte. Rechaza la inmortalidad personal y propone otra, más humilde: la que sobrevive en la memoria y en los actos de los demás.",
       en: "Drawing on William James, Plato and Schopenhauer, Borges weighs the old hope (or threat) of living on after death. He rejects personal immortality and proposes a humbler kind: the one that survives in other people's memory and deeds."
     },
-    quote: { text: "Para concluir, diré que creo en la inmortalidad: no en la inmortalidad personal, pero sí en la cósmica.", lang: "es" },
-    sources: [
-      { label: "Internet Archive — Borges, oral (1979)", url: "https://archive.org/details/borgesoral0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "…creo en la inmortalidad: no en la inmortalidad personal, pero sí en la cósmica. Seguiremos siendo inmortales; más allá de nuestra muerte corporal queda nuestra memoria, y más allá de nuestra memoria quedan nuestros actos…", lang: "es", cite: "Borges oral (Emecé / Editorial de Belgrano, 1979)" },
+    links: LINKS_BO,
+    sources: [],
     image: "img/la-inmortalidad.jpg", imageAlt: "Un reloj de arena con la arena suspendida · An hourglass with the sand suspended",
     fullText: "", audioSrc: ""
   },
@@ -131,10 +157,9 @@ window.LECTURES = [
       es: "Un retrato del sabio sueco, hombre de ciencia antes que visionario, que dijo haber recorrido el cielo y el infierno. Borges se detiene en su idea más singular: nadie es condenado por un tribunal, cada muerto elige libremente el lugar que le corresponde.",
       en: "A portrait of the Swedish scholar, a man of science before he was a visionary, who claimed to have walked through heaven and hell. Borges dwells on his most striking idea: no tribunal condemns anyone; each of the dead freely chooses where they belong."
     },
-    quote: { text: "Nos dice que cuando un hombre muere no se da cuenta de que ha muerto, ya que todo lo que lo rodea es igual.", lang: "es" },
-    sources: [
-      { label: "Internet Archive — Borges, oral (1979)", url: "https://archive.org/details/borgesoral0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "Nos dice que cuando un hombre muere no se da cuenta de que ha muerto, ya que todo lo que lo rodea es igual. Se encuentra en su casa, lo visitan sus amigos, recorre las calles de su ciudad, no piensa que ha muerto…", lang: "es", cite: "Borges oral (Emecé / Editorial de Belgrano, 1979)" },
+    links: LINKS_BO,
+    sources: [],
     image: "img/emanuel-swedenborg.jpg", imageAlt: "Un hombre en una escalera entre dos mundos, con ángeles · A man on a stair between two worlds, with angels",
     fullText: "", audioSrc: ""
   },
@@ -148,10 +173,9 @@ window.LECTURES = [
       es: "Borges cuenta cómo Edgar Allan Poe inventó el género policial y, con él, un nuevo tipo de lector, desconfiado y atento. Defiende el policial como una de las pocas formas que conservan el orden clásico de principio, medio y fin.",
       en: "Borges tells how Edgar Allan Poe invented the detective story and, with it, a new kind of reader, suspicious and alert. He defends the genre as one of the few forms that still keeps the classical order of beginning, middle and end."
     },
-    quote: { text: "En esta época nuestra, tan caótica, hay algo que, humildemente, ha mantenido las virtudes clásicas: el cuento policial.", lang: "es" },
-    sources: [
-      { label: "Internet Archive — Borges, oral (1979)", url: "https://archive.org/details/borgesoral0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "En esta época nuestra, tan caótica, hay algo que, humildemente, ha mantenido las virtudes clásicas: el cuento policial. Ya que no se entiende un cuento policial sin principio, sin medio y sin fin.", lang: "es", cite: "Borges oral (Emecé / Editorial de Belgrano, 1979)" },
+    links: LINKS_BO,
+    sources: [],
     image: "img/el-cuento-policial.jpg", imageAlt: "Una lupa sobre un laberinto · A magnifying glass over a labyrinth",
     fullText: "", audioSrc: ""
   },
@@ -165,10 +189,9 @@ window.LECTURES = [
       es: "Para Borges, el tiempo sigue siendo el problema esencial de la metafísica. Pasa del río de Heráclito a Platón y San Agustín, y se pregunta qué queda de nosotros si somos a la vez lo que cambia y lo que permanece.",
       en: "For Borges, time remains the essential problem of metaphysics. He moves from Heraclitus' river to Plato and Saint Augustine, and asks what is left of us if we are both what changes and what endures."
     },
-    quote: { text: "Es decir, somos algo cambiante y algo permanente. Somos algo, esencialmente misterioso.", lang: "es" },
-    sources: [
-      { label: "Internet Archive — Borges, oral (1979)", url: "https://archive.org/details/borgesoral0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "Es decir, somos algo cambiante y algo permanente. Somos algo, esencialmente misterioso.", lang: "es", cite: "Borges oral (Emecé / Editorial de Belgrano, 1979)" },
+    links: LINKS_BO,
+    sources: [],
     image: "img/el-tiempo.jpg", imageAlt: "Un uróboros que encierra un río y un reloj de arena · An ouroboros around a river and an hourglass",
     fullText: "", audioSrc: ""
   },
@@ -184,12 +207,9 @@ window.LECTURES = [
       es: "Borges invita a leer a Dante sin miedo a los comentarios, como quien entra en un relato. Se detiene en la intensidad de sus personajes, en Francesca, Ulises y Ugolino, y en la precisión de cada imagen.",
       en: "Borges invites us to read Dante without fear of the commentaries, as one enters a story. He lingers on the intensity of its characters, Francesca, Ulysses and Ugolino, and on the precision of every image."
     },
-    quote: { text: "Al principio debemos leer el libro con fe de niño, abandonarnos a él; después nos acompañará hasta el fin.", lang: "es" },
-    sources: [
-      { label: "Escuchar / Listen — Internet Archive (user upload)", url: IA_SN + "Borges01-Conf.LaDivinaComedia.mp3", kind: "audio" },
-      { label: "YouTube — grabación de 1977 (canal no oficial / unofficial channel)", url: "https://www.youtube.com/watch?v=FhEFFfVZHZU", kind: "audio" },
-      { label: "Internet Archive — Siete noches (FCE, 1980)", url: "https://archive.org/details/sietenoches0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "Al principio debemos leer el libro con fe de niño, abandonarnos a él; después nos acompañará hasta el fin. A mí me ha acompañado durante tantos años, y sé que apenas lo abra mañana encontraré cosas que no he encontrado hasta ahora.", lang: "es", cite: "Siete noches (Fondo de Cultura Económica, 1980)" },
+    links: LINKS_SN,
+    sources: [],
     image: "img/la-divina-comedia.jpg", imageAlt: "Los círculos del infierno vistos desde arriba · The circles of hell seen from above",
     fullText: "", audioSrc: ""
   },
@@ -203,11 +223,9 @@ window.LECTURES = [
       es: "Borges recorre los sueños de la literatura y la historia, y relata algunas de sus propias pesadillas: laberintos, espejos, máscaras. A través de las palabras incubus, nightmare y Alp, sospecha que la pesadilla tiene algo de sobrenatural.",
       en: "Borges surveys dreams in literature and history and recounts some of his own nightmares: labyrinths, mirrors, masks. Through the words incubus, nightmare and Alp, he suspects that the nightmare has something supernatural about it."
     },
-    quote: { text: "¿Y si las pesadillas fueran grietas del infierno? ¿Si en las pesadillas estuviéramos literalmente en el infierno?", lang: "es" },
-    sources: [
-      { label: "Escuchar / Listen — Internet Archive (user upload)", url: IA_SN + "Borges02-Conf.LaPesadilla.mp3", kind: "audio" },
-      { label: "Internet Archive — Siete noches (FCE, 1980)", url: "https://archive.org/details/sietenoches0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "¿Y si las pesadillas fueran estrictamente sobrenaturales? ¿Si las pesadillas fueran grietas del infierno? ¿Si en las pesadillas estuviéramos literalmente en el infierno?", lang: "es", cite: "Siete noches (Fondo de Cultura Económica, 1980)" },
+    links: LINKS_SN,
+    sources: [],
     image: "img/la-pesadilla.jpg", imageAlt: "Una cabeza dormida de la que surge un caballo oscuro · A sleeping head with a dark horse emerging",
     fullText: "", audioSrc: ""
   },
@@ -221,11 +239,9 @@ window.LECTURES = [
       es: "Una meditación sobre cómo Occidente descubrió el Oriente y sobre el libro que lo volvió imaginable. Borges compara las traducciones de Galland, Lane y Burton y celebra un libro tan vasto que parece infinito.",
       en: "A meditation on how the West discovered the East, and on the book that made it imaginable. Borges compares the translations of Galland, Lane and Burton and celebrates a book so vast it seems infinite."
     },
-    quote: { text: "Un acontecimiento capital de la historia de las naciones occidentales es el descubrimiento del Oriente.", lang: "es" },
-    sources: [
-      { label: "Escuchar / Listen — Internet Archive (user upload)", url: IA_SN + "Borges03-Conf.LasMilYUnaNoches.mp3", kind: "audio" },
-      { label: "Internet Archive — Siete noches (FCE, 1980)", url: "https://archive.org/details/sietenoches0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "Un acontecimiento capital de la historia de las naciones occidentales es el descubrimiento del Oriente. Sería más exacto hablar de una conciencia del Oriente, continua, comparable a la presencia de Persia en la historia griega.", lang: "es", cite: "Siete noches (Fondo de Cultura Económica, 1980)" },
+    links: LINKS_SN,
+    sources: [],
     image: "img/las-mil-y-una-noches.jpg", imageAlt: "Una lámpara cuyo humo dibuja un palacio · A lamp whose smoke draws a palace",
     fullText: "", audioSrc: ""
   },
@@ -239,11 +255,9 @@ window.LECTURES = [
       es: "Borges narra la leyenda del Buda y explica la doctrina de la transmigración, el karma y el nirvana. Termina en el zen, donde descubre una idea que lo fascina: que el yo es una ilusión.",
       en: "Borges retells the legend of the Buddha and explains transmigration, karma and nirvana. He ends with Zen, where he finds an idea that fascinates him: that the self is an illusion."
     },
-    quote: { text: "No la has encontrado porque no existe.", lang: "es" },
-    sources: [
-      { label: "Escuchar / Listen — Internet Archive (user upload)", url: IA_SN + "Borges04-Conf.ElBudismo.mp3", kind: "audio" },
-      { label: "Internet Archive — Siete noches (FCE, 1980)", url: "https://archive.org/details/sietenoches0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "Para mí, el budismo no es una pieza de museo: es un camino de salvación. No para mí, pero para millones de hombres.", lang: "es", cite: "Siete noches (Fondo de Cultura Económica, 1980)" },
+    links: LINKS_SN,
+    sources: [],
     image: "img/el-budismo.jpg", imageAlt: "Un tigre sereno bajo una higuera · A calm tiger under a fig tree",
     fullText: "", audioSrc: ""
   },
@@ -257,11 +271,9 @@ window.LECTURES = [
       es: "Borges sostiene que la poesía no se define: se siente, como tantas cosas que conocemos íntimamente sin poder definirlas. Recorre versos de varias lenguas y propone que la belleza es una experiencia física que nos espera en cualquier página.",
       en: "Borges argues that poetry cannot be defined, only felt, like so many things we know intimately but cannot define. He moves through verses in several languages and proposes that beauty is a physical experience waiting for us on any page."
     },
-    quote: { text: "Hay personas que sienten escasamente la poesía; generalmente se dedican a enseñarla.", lang: "es" },
-    sources: [
-      { label: "Escuchar / Listen — Internet Archive (user upload)", url: IA_SN + "Borges05-Conf.QueEsLaPoesia.mp3", kind: "audio" },
-      { label: "Internet Archive — Siete noches (FCE, 1980)", url: "https://archive.org/details/sietenoches0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "Hay personas que sienten escasamente la poesía; generalmente se dedican a enseñarla. Yo creo sentir la poesía y creo no haberla enseñado…", lang: "es", cite: "Siete noches (Fondo de Cultura Económica, 1980)" },
+    links: LINKS_SN,
+    sources: [],
     image: "img/la-poesia.jpg", imageAlt: "Una rosa dibujada con una sola línea · A rose drawn with one line",
     fullText: "", audioSrc: ""
   },
@@ -275,11 +287,9 @@ window.LECTURES = [
       es: "Borges eligió este tema la víspera, en lugar de los gnósticos anunciados. Explica la idea cabalística de un texto sagrado donde nada es casual, ni una letra, y la leyenda del Golem, para cerrar con la esperanza de que en cada uno haya una partícula de divinidad.",
       en: "Borges chose this subject the day before, instead of the announced talk on the Gnostics. He explains the Kabbalistic idea of a sacred text where nothing, not even a letter, is accidental, and the legend of the Golem, ending with the hope that each of us holds a particle of the divine."
     },
-    quote: { text: "En cada uno de nosotros hay una partícula de divinidad.", lang: "es" },
-    sources: [
-      { label: "Escuchar / Listen — Internet Archive (user upload)", url: IA_SN + "Borges06-Conf.LaCabala.mp3", kind: "audio" },
-      { label: "Internet Archive — Siete noches (FCE, 1980)", url: "https://archive.org/details/sietenoches0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "En cada uno de nosotros hay una partícula de divinidad. Este mundo, evidentemente, no puede ser la obra de un Dios todopoderoso y justo, pero depende de nosotros.", lang: "es", cite: "Siete noches (Fondo de Cultura Económica, 1980)" },
+    links: LINKS_SN,
+    sources: [],
     image: "img/la-cabala.jpg", imageAlt: "Un gólem de barro rodeado de signos · A clay golem surrounded by signs",
     fullText: "", audioSrc: ""
   },
@@ -293,11 +303,9 @@ window.LECTURES = [
       es: "Borges habla de su propia ceguera, lenta y sin dramatismo, y de los colores que todavía ve. Evoca a Homero, Milton y Groussac, y convierte la pérdida en un modo de vida y en material para el arte.",
       en: "Borges speaks of his own blindness, slow and undramatic, and of the colours he can still see. He invokes Homer, Milton and Groussac and turns loss into a way of life and raw material for art."
     },
-    quote: { text: "Un escritor, o todo hombre, debe pensar que cuanto le ocurre es un instrumento; todas las cosas le han sido dadas para un fin.", lang: "es" },
-    sources: [
-      { label: "Escuchar / Listen — Internet Archive (user upload)", url: IA_SN + "Borges07-Conf.LaCeguera.mp3", kind: "audio" },
-      { label: "Internet Archive — Siete noches (FCE, 1980)", url: "https://archive.org/details/sietenoches0000borg", kind: "texto" }
-    ],
+    excerpt: { text: "Un escritor, o todo hombre, debe pensar que cuanto le ocurre es un instrumento; todas las cosas le han sido dadas para un fin y esto tiene que ser más fuerte en el caso de un artista.", lang: "es", cite: "Siete noches (Fondo de Cultura Económica, 1980)" },
+    links: LINKS_SN,
+    sources: [],
     image: "img/la-ceguera.jpg", imageAlt: "Borges de perfil, con los ojos cerrados, sobre un halo amarillo · Borges in profile, eyes closed, in a yellow glow",
     fullText: "", audioSrc: ""
   },
@@ -313,11 +321,9 @@ window.LECTURES = [
       es: "Borges abre el ciclo confesando que no tiene revelaciones que ofrecer, solo perplejidades. Recuerda a su padre leyéndole a Keats y sostiene que la poesía se vive antes de entenderse, como una pasión y una alegría.",
       en: "Borges opens the series admitting he has no revelations to offer, only perplexities. He recalls his father reading Keats to him and argues that poetry is lived before it is understood, as a passion and a joy."
     },
-    quote: { text: "I do not think I understood the words, but I felt that something was happening to me.", lang: "en" },
-    sources: [
-      { label: "Escuchar / Listen — Harvard Woodberry Poetry Room", url: HARVARD_LB, kind: "audio" },
-      { label: "Harvard University Press — sample PDF (chapter 1)", url: "https://www.hup.harvard.edu/file/feeds/PDF/9780674302457_sample.pdf", kind: "texto" }
-    ],
+    excerpt: { text: "I do not think I understood the words, but I felt that something was happening to me. It was happening not to my mere intelligence but to my whole being, to my flesh and blood.", lang: "en", cite: "This Craft of Verse (Harvard University Press, ed. 2025), p. 4" },
+    links: linksCV("borges_Norton_riddle1/Lecture1_RiddlePoetry.mp3"),
+    sources: [],
     image: "img/the-riddle-of-poetry.jpg", imageAlt: "Una esfinge con un libro abierto · A sphinx with an open book",
     fullText: "", audioSrc: ""
   },
@@ -331,11 +337,9 @@ window.LECTURES = [
       es: "Borges sugiere que las grandes metáforas son pocas y vuelven siempre: el tiempo como río, la vida como sueño, la muerte como sueño. Las compara con las kenningar nórdicas, metáforas fijas que muestran tanto el ingenio como sus límites.",
       en: "Borges suggests that the great metaphors are few and keep returning: time as a river, life as a dream, death as sleep. He sets them beside the Norse kenningar, fixed figures that show both the wit and the limits of the form."
     },
-    quote: null,
-    sources: [
-      { label: "Escuchar / Listen — Harvard Woodberry Poetry Room", url: HARVARD_LB, kind: "audio" },
-      { label: "Harvard University Press — This Craft of Verse", url: "https://www.hup.harvard.edu/books/9780674302457", kind: "editorial" }
-    ],
+    excerpt: { text: "The metaphors will strike the imagination. But it may also be given to us—and why not hope for this as well?—it may also be given to us to invent metaphors that do not belong, or that do not yet belong, to accepted patterns.", lang: "en", cite: "This Craft of Verse (Harvard University Press, 2000, p. 41)" },
+    links: linksCV("borges_Norton_metaphor2/Lecture2_Metaphor.mp3"),
+    sources: [],
     image: "img/the-metaphor.jpg", imageAlt: "La luna reflejada en un espejo de mano · The moon reflected in a hand mirror",
     fullText: "", audioSrc: ""
   },
@@ -349,11 +353,9 @@ window.LECTURES = [
       es: "Borges recuerda que el poeta fue alguna vez un narrador y que la épica unía canto y relato. Lamenta que la novela los haya separado y se pregunta si la épica volverá a nacer.",
       en: "Borges recalls that the poet was once a storyteller and that the epic joined song and tale. He regrets that the novel split them apart and wonders whether the epic will be born again."
     },
-    quote: null,
-    sources: [
-      { label: "Escuchar / Listen — Harvard Woodberry Poetry Room", url: HARVARD_LB, kind: "audio" },
-      { label: "Harvard University Press — This Craft of Verse", url: "https://www.hup.harvard.edu/books/9780674302457", kind: "editorial" }
-    ],
+    excerpt: { text: "…we cannot really believe in happiness and success. And this may be one of the poverties of our time.", lang: "en", cite: "This Craft of Verse (Harvard University Press, 2000)" },
+    links: linksCV("borges_Norton_telling3/Lecture_TellingTale.mp3"),
+    sources: [],
     image: "img/the-telling-of-the-tale.jpg", imageAlt: "Un velero sobre un mar de líneas · A sailing ship on a sea of lines",
     fullText: "", audioSrc: ""
   },
@@ -367,11 +369,9 @@ window.LECTURES = [
       es: "Contra la idea de que la poesía es intraducible, Borges defiende las traducciones que se convierten en obras propias. Habla de las versiones de Homero, de la Biblia inglesa y del Rubáiyát de FitzGerald, y de la música de las palabras que sobrevive al cambio de lengua.",
       en: "Against the idea that poetry is untranslatable, Borges defends translations that become works in their own right. He discusses versions of Homer, the English Bible and FitzGerald's Rubáiyát, and the word-music that survives a change of language."
     },
-    quote: null,
-    sources: [
-      { label: "Escuchar / Listen — Harvard Woodberry Poetry Room", url: HARVARD_LB, kind: "audio" },
-      { label: "Harvard University Press — This Craft of Verse", url: "https://www.hup.harvard.edu/books/9780674302457", kind: "editorial" }
-    ],
+    excerpt: { text: "…men will care for beauty, not for the circumstances of beauty. Then we will have translations not only as good (we have them already) but as famous as Chapman’s Homer, as Urquhart’s Rabelais, as Pope’s Odyssey.", lang: "en", cite: "This Craft of Verse (Harvard University Press, 2000)" },
+    links: linksCV("borges_Norton_music4/Lecture4_WordMusic.mp3"),
+    sources: [],
     image: "img/word-music-and-translation.jpg", imageAlt: "Una lira cuyas cuerdas se vuelven líneas · A lyre whose strings become lines",
     fullText: "", audioSrc: ""
   },
@@ -385,11 +385,9 @@ window.LECTURES = [
       es: "Borges se pregunta si el sentido de un poema importa tanto como su sonido. Con ejemplos de muchas lenguas, sugiere que en un verso la emoción llega antes que el significado.",
       en: "Borges asks whether a poem's meaning matters as much as its sound. With examples from many languages, he suggests that in verse emotion arrives before meaning."
     },
-    quote: null,
-    sources: [
-      { label: "Escuchar / Listen — Harvard Woodberry Poetry Room", url: HARVARD_LB, kind: "audio" },
-      { label: "Harvard University Press — This Craft of Verse", url: "https://www.hup.harvard.edu/books/9780674302457", kind: "editorial" }
-    ],
+    excerpt: { text: "I have suspected many a time that meaning is really something added to verse. I know for a fact that we feel the beauty of a poem before we even begin to think of a meaning.", lang: "en", cite: "This Craft of Verse (Harvard University Press, 2000)" },
+    links: linksCV("borges_Norton_thought5/Lecture5_ThoughtPoetry.mp3"),
+    sources: [],
     image: "img/thought-and-poetry.jpg", imageAlt: "Piezas de ajedrez que se disuelven en tinta · Chess pieces dissolving into ink",
     fullText: "", audioSrc: ""
   },
@@ -403,11 +401,9 @@ window.LECTURES = [
       es: "En la última conferencia, Borges habla de sí mismo: de la biblioteca de su padre, de sus primeros libros y de lo que aprendió escribiendo. Confiesa que se considera ante todo un lector.",
       en: "In the final lecture Borges speaks about himself: his father's library, his first books and what writing taught him. He admits he thinks of himself above all as a reader."
     },
-    quote: null,
-    sources: [
-      { label: "Escuchar / Listen — Harvard Woodberry Poetry Room", url: HARVARD_LB, kind: "audio" },
-      { label: "Harvard University Press — This Craft of Verse", url: "https://www.hup.harvard.edu/books/9780674302457", kind: "editorial" }
-    ],
+    excerpt: { text: "I think of myself as being essentially a reader. As you are aware, I have ventured into writing; but I think that what I have read is far more important than what I have written.", lang: "en", cite: "This Craft of Verse (Harvard University Press, 2000)" },
+    links: linksCV("borges_Norton_creed6/Lecture6_poetCreed.mp3"),
+    sources: [],
     image: "img/a-poets-creed.jpg", imageAlt: "Un anciano con bastón camina por un largo camino · An old man with a cane walks a long road",
     fullText: "", audioSrc: ""
   }

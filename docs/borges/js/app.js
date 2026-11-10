@@ -42,7 +42,7 @@
   sel.addEventListener("change", () => { state.theme = sel.value; renderCards(); });
   $("#q").addEventListener("input", e => { state.q = norm(e.target.value.trim()); renderCards(); });
 
-  const haystack = l => norm([l.title, l.titleEn, l.dateLabel, l.venue, coll(l.collection).title, l.summary?.es, l.summary?.en, l.quote?.text,
+  const haystack = l => norm([l.title, l.titleEn, l.dateLabel, l.venue, coll(l.collection).title, l.summary?.es, l.summary?.en, l.excerpt?.text,
     ...(l.themes || []).flatMap(t => [T[t]?.es, T[t]?.en])].join(" "));
 
   function renderCards() {
@@ -52,7 +52,7 @@
       (!state.q || haystack(l).includes(state.q)));
     $("#cards").innerHTML = list.map(l => {
       const c = coll(l.collection);
-      const extras = [l.audioSrc ? "♪ audio" : "", l.fullText ? "texto" : ""].filter(Boolean).join(" · ");
+      const extras = [(l.audioSrc || (l.links || []).some(k => k.kind === "audio")) ? "♪ audio" : "", l.fullText ? "texto" : ""].filter(Boolean).join(" · ");
       return `<li class="card"><a href="#/conferencia/${l.id}">
         ${l.image ? `<div class="card-art"><img class="illus" src="${esc(l.image)}" alt="" loading="lazy" decoding="async" width="900" height="675"></div>` : ""}
         <div class="callno"><span>${esc(callNo(l))}</span><span>${esc(c.title)}</span></div>
@@ -113,14 +113,14 @@
         </dl>
         ${l.image ? `<figure class="lecture-art"><img class="illus" src="${esc(l.image)}" alt="${esc(l.imageAlt || "Ilustración a tinta · Ink illustration")}" width="900" height="675"></figure>` : ""}
       </header>
-      ${l.quote ? `<figure class="pull"><blockquote lang="${esc(l.quote.lang)}">${esc(l.quote.text)}</blockquote><figcaption>Borges, «${esc(l.title)}»</figcaption></figure>` : ""}
+      ${l.excerpt ? `<figure class="pull excerpt"><blockquote lang="${esc(l.excerpt.lang)}">${esc(l.excerpt.text)}</blockquote><figcaption>Borges, «${esc(l.title)}»<cite>${esc(l.excerpt.cite)}</cite></figcaption></figure>` : ""}
       <div class="section-label">Resumen <span class="en">Summary</span></div>
       <div class="summary"><p>${esc(l.summary.es)}</p><p class="en-p" lang="en">${esc(l.summary.en)}</p></div>
-      <div class="section-label">Escuchar <span class="en">Listen</span></div>
-      ${l.audioSrc ? playerHTML(l) : `<p class="placeholder">Audio no alojado aquí. Puede escucharse en las fuentes de abajo, o agregarse en <code>audioSrc</code>.<span class="en">Audio is not hosted here. Listen via the sources below, or add a file in <code>audioSrc</code>.</span></p>`}
-      <div class="section-label">Texto <span class="en">Text</span></div>
-      ${paras.length ? `<div class="fulltext">${paras.map(p => `<p>${esc(p)}</p>`).join("")}</div>`
-        : `<p class="placeholder">El texto completo está protegido por derechos de autor. Puede leerse en la edición citada en las fuentes; si tenés los derechos, agregalo en <code>fullText</code>.<span class="en">The full text is under copyright. Read it in the edition listed below; if you hold the rights, add it in <code>fullText</code>.</span></p>`}
+      <div class="section-label">Leer · Escuchar <span class="en">Read · Listen</span></div>
+      ${linksHTML(l.links)}
+      ${l.audioSrc ? playerHTML(l) : ""}
+      ${paras.length ? `<div class="section-label">Texto <span class="en">Text</span></div><div class="fulltext">${paras.map(p => `<p>${esc(p)}</p>`).join("")}</div>`
+        : `<p class="placeholder">El texto completo está protegido por derechos de autor hasta 2056. Este sitio no lo aloja: enlaza solo fuentes autorizadas y cita fragmentos breves.<span class="en">The full text is under copyright until 2056. This site does not host it: it links only to authorized sources and quotes short fragments.</span></p>`}
       <div class="section-label">Fuentes <span class="en">Sources</span></div>
       ${sourcesList([...(l.sources || []), ...(c.sources || []).filter(s => !(l.sources || []).some(x => x.url === s.url))])}
       <nav class="pager" aria-label="Conferencias vecinas · Adjacent lectures">
@@ -128,6 +128,13 @@
         ${next ? `<a class="next" href="#/conferencia/${next.id}"><small>Siguiente · Next →</small>${esc(next.title)}</a>` : ""}
       </nav>`;
     if (l.audioSrc) wirePlayer(v);
+  }
+
+  const LINK_KIND = { prestamo: "Préstamo", comprar: "Comprar", audio: "Audio oficial", muestra: "Muestra" };
+  function linksHTML(links) {
+    if (!links || !links.length) return "";
+    return `<ul class="access">${links.map(k =>
+      `<li><a class="access-link ${esc(k.kind)}" href="${esc(k.url)}" target="_blank" rel="noopener noreferrer"><span class="kind ${esc(k.kind)}">${esc(LINK_KIND[k.kind] || k.kind)}</span><span class="lbl">${esc(k.label)}<span class="en">${esc(k.en || "")}</span></span><span class="arr" aria-hidden="true">↗</span></a></li>`).join("")}</ul>`;
   }
 
   function playerHTML(l) {
