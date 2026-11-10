@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Biblioteca Oral de Borges · The Oral Library of Borges</title>
+<meta name="description" content="Catálogo de las conferencias de Jorge Luis Borges: Borges oral, Siete noches y This Craft of Verse. A catalog of Borges' lectures.">
+<meta name="theme-color" content="#f1e3c4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,4 90,27 90,73 50,96 10,73 10,27' fill='none' stroke='%238a6420' stroke-width='6'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido · Skip to content</a>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="#/" aria-label="Inicio · Home">
+    <svg class="brand-hex" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,4 90,27 90,73 50,96 10,73 10,27"/><polygon points="50,22 74,36 74,64 50,78 26,64 26,36"/></svg>
+    <span>Biblioteca Oral</span>
+  </a>
+  <nav aria-label="Principal · Main">
+    <a href="#/">Catálogo <small>Catalog</small></a>
+    <a href="#/colecciones">Colecciones <small>Collections</small></a>
+    <a href="#/acerca">Acerca <small>About</small></a>
+  </nav>
+</header>
+
+<main id="main" tabindex="-1">
+  <!-- HOME -->
+  <section id="view-home" class="view" aria-labelledby="home-title">
+    <div class="hero">
+      <div class="emblem" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <g class="ring r1"><polygon points="100,6 181,53 181,147 100,194 19,147 19,53"/></g>
+          <g class="ring r2"><polygon points="100,30 160,65 160,135 100,170 40,135 40,65"/></g>
+          <g class="ring r3"><polygon points="100,54 140,77 140,123 100,146 60,123 60,77"/></g>
+          <circle cx="100" cy="100" r="3"/>
+        </svg>
+      </div>
+      <p class="eyebrow">Jorge Luis Borges · 1899–1986</p>
+      <h1 id="home-title">La Biblioteca Oral<span class="en">The Oral Library</span></h1>
+      <p class="lede">Un catálogo de las conferencias que Borges dictó, ya casi ciego, entre Harvard y Buenos Aires.<span class="en">A catalog of the lectures Borges gave, nearly blind, between Harvard and Buenos Aires.</span></p>
+      <figure class="epigraph" aria-live="polite">
+        <blockquote id="epi-text"></blockquote>
+        <figcaption id="epi-src"></figcaption>
+      </figure>
+    </div>
+    <figure class="hero-art">
+      <img class="illus" src="img/home.jpg" alt="Dibujo a tinta: Borges, de espaldas, dicta una conferencia ante una sala llena · Ink drawing: Borges, seen from behind, lecturing to a full hall" width="1280" height="720" fetchpriority="high">
+      <figcaption>Dibujo a partir de una fotografía de 1969, Asociación Cultural Rumbo, San Nicolás (<a href="https://www.fototecasannicolas.org/index.php/Detail/objects/19175" target="_blank" rel="noopener noreferrer">Fototeca San Nicolás</a>). <span class="en">Drawing after a 1969 photograph.</span></figcaption>
+    </figure>
+
+    <section class="catalog" aria-labelledby="cat-title">
+      <div class="catalog-head">
+        <h2 id="cat-title">Catálogo <span class="en">Catalog</span></h2>
+        <p class="count" id="count" aria-live="polite"></p>
+      </div>
+      <form class="filters" role="search" onsubmit="return false">
+        <label class="search">
+          <span class="sr">Buscar · Search</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+          <input id="q" type="search" placeholder="Buscar título, tema, cita…  ·  Search" autocomplete="off">
+        </label>
+        <div class="chips" id="chips" role="group" aria-label="Colección · Collection"></div>
+        <label class="theme-select">
+          <span class="sr">Tema · Theme</span>
+          <select id="theme"></select>
+        </label>
+      </form>
+      <ol class="cards" id="cards"></ol>
+      <p class="empty" id="empty" hidden>Ningún volumen responde a esa búsqueda. Quizá exista en otro hexágono.<span class="en">No volume matches. Perhaps it lives in another hexagon.</span></p>
+    </section>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section id="view-collections" class="view" hidden aria-labelledby="col-title">
+    <div class="page-head">
+      <p class="eyebrow">Tres ciclos · Three cycles</p>
+      <h1 id="col-title">Colecciones<span class="en">Collections</span></h1>
+    </div>
+    <div class="collections" id="collections"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="view-about" class="view prose" hidden aria-labelledby="about-title">
+    <div class="page-head">
+      <p class="eyebrow">Nota del bibliotecario · Librarian's note</p>
+      <h1 id="about-title">Acerca<span class="en">About</span></h1>
+    </div>
+    <p>Este sitio es un índice, no un depósito. Reúne fechas, lugares, resúmenes propios y enlaces a fuentes públicas donde leer o escuchar cada conferencia.</p>
+    <p class="en-p">This site is an index, not a repository. It gathers dates, venues, original summaries and links to public sources where each lecture can be read or heard.</p>
+    <h2>Derechos <span class="en">Rights</span></h2>
+    <p>Borges murió en 1986: sus textos y grabaciones siguen protegidos. Aquí solo hay citas breves. Los textos completos y los audios pueden agregarse en <code>data/lectures.js</code> (campos <code>fullText</code> y <code>audioSrc</code>) cuando se cuente con los derechos.</p>
+    <p class="en-p">Borges died in 1986; his texts and recordings remain under copyright. Only brief quotations appear here. Full texts and audio can be added in <code>data/lectures.js</code> (<code>fullText</code> and <code>audioSrc</code>) once the rights are secured.</p>
+    <h2>Fuentes de las fechas <span class="en">Sources for dates</span></h2>
+    <p>Las fechas de <em>Borges oral</em> y <em>Siete noches</em> provienen de las notas de las ediciones originales y de la bibliografía del Borges Center (Universidad de Pittsburgh). De las Norton Lectures solo se indica el día exacto de la primera; las demás figuran como 1967–1968.</p>
+    <p class="en-p">Dates for <em>Borges oral</em> and <em>Siete noches</em> come from the first editions' notes and the Borges Center bibliography (University of Pittsburgh). For the Norton Lectures only the first has an exact day here; the rest are listed as 1967–1968.</p>
+  </section>
+
+  <!-- LECTURE -->
+  <article id="view-lecture" class="view reading" hidden aria-labelledby="lec-title"></article>
+</main>
+
+<footer class="site-footer">
+  <svg class="maze" viewBox="0 0 120 24" aria-hidden="true"><path d="M2 12h10V4h12v16h12V4h12v16h12V4h12v16h12V4h12v16h10"/></svg>
+  <p>Catalogado en algún hexágono de Buenos Aires.<span class="en">Shelved in some hexagon of Buenos Aires.</span></p>
+  <p class="small">Proyecto sin fines de lucro. Resúmenes originales; citas breves con fines de comentario. <span class="en">Non-commercial index. Original summaries; brief quotations for commentary.</span></p>
+</footer>
+
+<script src="data/lectures.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
